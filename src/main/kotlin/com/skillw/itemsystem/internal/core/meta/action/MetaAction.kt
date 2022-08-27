@@ -24,7 +24,7 @@ object MetaAction : BaseMeta("action") {
                 warning("Unknown action type: $typeStr")
                 return
             }
-            val run = context["run"]?.toString() ?: return
+            val run = context["run"]?.toString()?.run { if (startsWith("js")) analysis() else this } ?: return
             nbt.getOrPut("ITEM_SYSTEM") { ItemTag() }.asCompound()
                 .getOrPut("actions") { ItemTag() }.asCompound()
                 .getOrPut(type.key) { ItemTagList() }.asList()

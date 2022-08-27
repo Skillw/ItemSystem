@@ -10,7 +10,6 @@ import java.lang.Double.min
 
 @AutoRegister
 object VarTypeNumber : VariableType("number", "num") {
-
     override fun createVar(memory: Memory): Any {
         with(memory) {
             val number = getDouble("value", 0.0)

@@ -14,12 +14,12 @@ function gemBuildData(gem) {
 }
 
 function inlay() {
-  this.event.setCancelled(true);
   const player = this.player;
   const gem = this.cursor;
   const weapon = this.current;
   const itemNbt = cacheTag(weapon);
   if (!itemNbt.containsKey("gem")) return;
+  this.event.setCancelled(true);
   const gemNbt = itemNbt.get("gem").asCompound();
   for (let index = 0; index < gemNbt.size(); index++) {
     const key = index + "";

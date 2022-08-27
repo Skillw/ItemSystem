@@ -27,25 +27,15 @@ command-rebuild-item-old: '&d[&bItemSystem&d] &e你将 &5&lX1 &b{0} &e重新构�
 command-rebuild-item-new: '&5&lX1 &b{0} &e! '
 command-rebuild-item-info: '&e已刷新变量: &9{0} &e构造数据: &d{1}'
 
-command-no-permission: '&d[&9ItemSystem&d] &c你没有权限做这个!'
-
 command-only-player: '&d[&9ItemSystem&d] &c此命令只能玩家使用!'
 
-command-valid-number: '&d[&9ItemSystem&d] &c你输入的页数必须是数字!'
 command-valid-world: '&d[&9ItemSystem&d] &c世界 &b{0} &c不存在!'
 command-valid-item: '&d[&9ItemSystem&d] &c物品 &b{0} &c不存在!'
 command-valid-player: '&d[&9ItemSystem&d] &c玩家 &b{0} &c不存在!'
 command-valid-item-in-hand: '&d[&9ItemSystem&d] &c你必须手持一个物品!'
 command-valid-is-item-in-hand: '&d[&9ItemSystem&d] &c你手持的不是一个ItemSystem生成的物品!'
-command-valid-save: '&d[&9ItemSystem&d] &c保存物品 &b{0} &c失败!'
-command-valid-id: '&d[&9ItemSystem&d] &cID &b{0} &c不存在! 已跳过!'
-command-valid-type: '&d[&bItemSystem&d] &c变量类型 &b{0} &c不存在!'
-command-valid-network: '&d[&9ItemSystem&d] 连接服务器失败! 请检查您的网络!'
 command-valid-command: '&d[&9ItemSystem&d] &c你是不是输错指令啦!'
-command-valid-slot: '&d[&9ItemSystem&d] &c怪物 &d{0} &c身上没有叫 &6{1} &c的槽位!'
-command-id-exists: '&d[&9ItemSystem&d] &c随机物品 &b{0} &c已存在!'
-
-call-valid-index: '&d[&9ItemSystem&d] &c下标调用发生错误: {0}'
+command-id-exists: '&d[&9ItemSystem&d] &c物品 &b{0} &c已存在!'
 command-clear: '&d[&9ItemSystem&d] &a耗时数据已清楚!'
 
 file-update: '&d[&9ItemSystem&d] &a检测到文件 &6{0} &a发生变动，已自动加载!'

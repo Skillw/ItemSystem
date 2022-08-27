@@ -64,7 +64,7 @@ ExampleItem:
       稀有: ["&b", "30", "IRON_SWORD"]
       优秀: ["&a", "40", "GOLD_SWORD"]
       史诗: ["&5", "50", "DIAMOND_SWORD"]
-      传说: ["&6", "60", "DIAMOND_SWORD"]
+      传说: ["&6", "60", "NETHERITE_SWORD"]
     #下面这段是声明品质相关的变量
     - run: |-
         def list = &品质数据Map get &quality
