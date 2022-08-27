@@ -1,10 +1,10 @@
 package com.skillw.itemsystem.internal.command.sub
 
 import com.skillw.itemsystem.ItemSystem
+import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.ItemDrop.effectDrop
 import com.skillw.itemsystem.internal.feature.ItemSyncer.syncNBT
-import com.skillw.itemsystem.internal.feature.compat.mythicmobs.DropData
 import com.skillw.itemsystem.internal.feature.effect.RandomItemEffect
 import com.skillw.itemsystem.internal.feature.product.ProductData
 import org.bukkit.Bukkit
@@ -197,7 +197,7 @@ object ItemProductCommand {
                                         val isSame = productData.isSame
                                         if (itemStacks.isEmpty()) return@submitAsync
 
-                                        val dropData = DropData(proxyPlayer.cast())
+                                        val dropData = ItemDrop.DropData(proxyPlayer.cast())
                                         if (productData.demand.tags.contains("effect")) {
                                             sync {
                                                 itemStacks.effectDrop(

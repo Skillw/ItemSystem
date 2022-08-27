@@ -19,7 +19,7 @@ object AttributesMeta : BaseMeta("attributes") {
 
 
     override fun loadData(data: ItemData): Any? {
-        return data.itemTag["ATTRIBUTE_DATA"]?.asCompound()?.toMutableMap()
+        return data.itemTag.remove("ATTRIBUTE_DATA")?.asCompound()?.toMutableMap()
     }
 
 }

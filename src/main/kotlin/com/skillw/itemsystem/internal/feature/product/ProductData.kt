@@ -1,7 +1,7 @@
 package com.skillw.itemsystem.internal.feature.product
 
 import com.skillw.itemsystem.api.builder.BaseItemBuilder
-import com.skillw.itemsystem.internal.builder.ProcessData
+import com.skillw.itemsystem.internal.core.builder.ProcessData
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import taboolib.common5.Demand

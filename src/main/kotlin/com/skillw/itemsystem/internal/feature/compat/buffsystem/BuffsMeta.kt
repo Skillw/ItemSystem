@@ -37,7 +37,7 @@ object BuffsMeta : BaseMeta("buffs") {
 
 
     override fun loadData(data: ItemData): Any? {
-        return data.itemTag[BUFF_KEY]?.asCompound()?.toMutableMap()
+        return data.itemTag.remove(BUFF_KEY)?.asCompound()?.toMutableMap()
     }
 
 
@@ -56,10 +56,11 @@ object BuffsMeta : BaseMeta("buffs") {
                 tags.getOrPut(item.hashCode()) { item.getItemTag() }[BUFF_KEY]?.asCompound()
                     ?.forEach buffKey@{ (key, data) ->
                         val buff = buffManager[key] ?: return@buffKey
-                        sets.add(key)
-                        if (entity.hasBuff(key)) return@buffKey
-                        BuffsMeta.data.put(entity.uniqueId, key)
-                        BuffSystem.buffDataManager.giveBuff(entity, key, buff) { buffData ->
+                        val dataKey = entity.uniqueId.toString() + "-item-$key"
+                        sets.add(dataKey)
+                        if (entity.hasBuff(dataKey)) return@buffKey
+                        BuffsMeta.data.put(entity.uniqueId, dataKey)
+                        BuffSystem.buffDataManager.giveBuff(entity, dataKey, buff) { buffData ->
                             buffData.putAll(data.asCompound().toMutableMap())
                             buffData["duration"] = -1
                         }

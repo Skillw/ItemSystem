@@ -3,6 +3,7 @@ package com.skillw.itemsystem.api.action
 import com.skillw.itemsystem.internal.feature.action.ItemAction.run
 import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.map.LowerKeyMap
+import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
@@ -15,22 +16,23 @@ class ActionType(override val key: String) : Registrable<String> {
         @JvmStatic
         fun call(
             string: String,
-            player: Player,
+            entity: LivingEntity,
             itemStack: ItemStack,
             receiver: MutableMap<String, Any>.() -> Unit,
         ) {
-            call(actionTypes[string] ?: return, player, itemStack, receiver)
+            call(actionTypes[string] ?: return, entity, itemStack, receiver)
         }
 
         private fun call(
             type: ActionType,
-            player: Player,
+            entity: LivingEntity,
             item: ItemStack,
             receiver: MutableMap<String, Any>.() -> Unit,
         ) {
             val context = HashMap<String, Any>()
             receiver(context)
-            context["player"] = player
+            context["entity"] = entity
+            if (entity is Player) context["player"] = entity
             context["item"] = item
             item.run(type, context)
         }

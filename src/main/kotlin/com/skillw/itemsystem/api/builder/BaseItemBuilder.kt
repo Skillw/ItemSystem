@@ -1,10 +1,12 @@
 package com.skillw.itemsystem.api.builder
 
-import com.skillw.itemsystem.internal.builder.ProcessData
+import com.skillw.itemsystem.internal.core.builder.ProcessData
+import com.skillw.itemsystem.internal.core.meta.data.MetaData
 import com.skillw.pouvoir.api.able.Registrable
 import org.bukkit.configuration.serialization.ConfigurationSerializable
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
+import java.util.*
 
 /**
  * @className BaseItemBuilder
@@ -26,4 +28,6 @@ abstract class BaseItemBuilder(override val key: String) : Registrable<String>, 
 
     /** 每次更新时，更新的NBT路径 */
     abstract val lockedNBT: HashSet<String>
+    abstract var autoUpdate: Boolean
+    abstract val process: LinkedList<MetaData>
 }

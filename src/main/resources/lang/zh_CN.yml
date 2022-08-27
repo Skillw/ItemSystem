@@ -54,3 +54,6 @@ annotation-meta-register: '&d[&9ItemSystem&d] &a物品元 &6{0} &a注册成功!'
 annotation-meta-unregister: '&d[&9ItemSystem&d] &c物品元 &6{0} &c注销成功!'
 annotation-var-type-register: '&d[&9ItemSystem&d] &a变量类型 &6{0} &a注册成功!'
 annotation-var-type-unregister: '&d[&9ItemSystem&d] &c变量类型 &6{0} &c注销成功!'
+
+item-cant-be-built: '&d[&9ItemSystem&d] &c物品 &6{0} &c不能被放置!'
+item-cant-be-craft: '&d[&9ItemSystem&d] &c物品 &6{0} &c不能参与合成!'

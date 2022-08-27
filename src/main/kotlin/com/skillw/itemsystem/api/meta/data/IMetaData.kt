@@ -1,7 +1,7 @@
 package com.skillw.itemsystem.api.meta.data
 
 import com.skillw.itemsystem.api.meta.BaseMeta
-import com.skillw.itemsystem.internal.meta.data.MetaData
+import com.skillw.itemsystem.internal.core.meta.data.MetaData
 import com.skillw.pouvoir.api.able.Keyable
 import org.bukkit.configuration.serialization.ConfigurationSerializable
 

@@ -1,6 +1,7 @@
 package com.skillw.itemsystem.internal.feature.compat.mythicmobs
 
 import com.skillw.itemsystem.ItemSystem.itemBuilderManager
+import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.ItemDrop.effectDrop
 import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
@@ -14,11 +15,11 @@ import taboolib.platform.util.toProxyLocation
 import taboolib.type.BukkitEquipment
 
 internal object MobUtils {
-    private fun DropData.warning(obj: String) {
+    private fun ItemDrop.DropData.warning(obj: String) {
         taboolib.common.platform.function.warning("Wrong $obj in MythicMobs Mob $mobKey\'s Item System Config!")
     }
 
-    internal fun DropData.equip(equipments: List<String>) {
+    internal fun ItemDrop.DropData.equip(equipments: List<String>) {
         equipments.forEach { line ->
             if (!line.contains(" ")) warning("Equipment Line")
             val args = line.split(" ")
@@ -37,16 +38,17 @@ internal object MobUtils {
         }
     }
 
-    internal fun DropData.drop(
+    internal fun ItemDrop.DropData.drop(
         drops: List<String>,
         effect: Boolean,
         vector: Vector,
     ) {
         drops.flatMap { line ->
-            current = if (line.startsWith("mob::")) this else killer
-            val slotId = if (line.contains(" ")) line.substringBefore(' ') else line
+            var dropLine = line
+            current = if (line.startsWith("mob::")) this.also { dropLine = line.substring(5) } else killer
+            val slotId = if (dropLine.contains(" ")) dropLine.substringBefore(' ') else dropLine
             val slot = BukkitEquipment.fromString(slotId)
-            if (slot == null) normalDrop(line) else equipmentDrop(slot, line.substringAfter(' '))
+            if (slot == null) normalDrop(dropLine) else equipmentDrop(slot, dropLine.substringAfter(' '))
         }.run {
             if (effect) {
                 effectDrop(RandomItemEffect(location.toProxyLocation()), vector, this@drop)
@@ -59,7 +61,7 @@ internal object MobUtils {
 
     }
 
-    private fun DropData.normalDrop(line: String): List<ItemStack> {
+    private fun ItemDrop.DropData.normalDrop(line: String): List<ItemStack> {
         val itemKey = line.substringBefore(' ')
         val itemBuilder = itemBuilderManager[itemKey]
             ?: kotlin.run { warning("Item $itemKey"); return emptyList() }
@@ -67,7 +69,7 @@ internal object MobUtils {
         return ProductData.product(itemBuilder, demand, this).items
     }
 
-    private fun DropData.equipmentDrop(equipment: BukkitEquipment, line: String): List<ItemStack> {
+    private fun ItemDrop.DropData.equipmentDrop(equipment: BukkitEquipment, line: String): List<ItemStack> {
         val (product, amount, isSame, data) = DemandData.demand(line.substringAfter(' '), current)
         if (!product) return emptyList()
         val item = equipment.getItem(current) ?: return emptyList()

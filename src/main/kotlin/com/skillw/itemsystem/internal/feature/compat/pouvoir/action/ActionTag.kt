@@ -4,6 +4,7 @@ import com.skillw.itemsystem.util.NBTUtils.obj
 import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.action.IAction
 import com.skillw.pouvoir.api.function.parser.Parser
+import org.bukkit.inventory.ItemStack
 import taboolib.module.nms.ItemTag
 import taboolib.module.nms.ItemTagData
 
@@ -16,7 +17,7 @@ import taboolib.module.nms.ItemTagData
 @AutoRegister
 object ActionTag : IAction {
     override val actions: Set<String> =
-        hashSetOf("get", "set", "put", "remove", "has")
+        hashSetOf("get", "put", "remove", "has", "saveTo")
     override val type: Class<*> = ItemTag::class.java
 
     override fun action(parser: Parser, obj: Any, action: String): Any? {
@@ -31,18 +32,24 @@ object ActionTag : IAction {
 
                     "put" -> {
                         val key = parseString()
+                        except("to")
                         val value = ItemTagData.toNBT(parseAny())
-                        key.run { if (contains(".")) putDeep(key, value) else put(key, value) }
+                        return key.run { if (contains(".")) putDeep(key, value) else put(key, value) }?.obj()
                     }
 
                     "remove" -> {
                         val key = parseString()
-                        key.run { if (contains(".")) removeDeep(key) else remove(key) }
+                        return key.run { if (contains(".")) removeDeep(key) else remove(key) }?.obj()
                     }
 
                     "has" -> {
                         val key = parseString()
-                        return obj.containsKey(key)
+                        return key.run { if (contains(".")) getDeep(key) != null else containsKey(key) }
+                    }
+
+                    "saveTo" -> {
+                        val item = parse<ItemStack>()
+                        return saveTo(item)
                     }
 
                     else -> {
@@ -51,6 +58,5 @@ object ActionTag : IAction {
                 }
             }
         }
-        return null
     }
 }

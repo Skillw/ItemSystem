@@ -14,9 +14,9 @@ object ISConfig : ConfigManager(ItemSystem) {
 
     override fun onLoad() {
         createIfNotExists(
-            "scripts", "listener/durability.js", "listener/time.js"
+            "scripts", "durability.js", "time.js", "action.js", "custom.js", "gem.js"
         )
-        createIfNotExists("items", "Example.yml", "青钢剑.yml")
+        createIfNotExists("items", "action.yml", "example.yml", "gem.yml")
         createIfNotExists("global", "global.yml")
         Metrics(16051, BukkitPlugin.getInstance().description.version, Platform.BUKKIT).run {
 

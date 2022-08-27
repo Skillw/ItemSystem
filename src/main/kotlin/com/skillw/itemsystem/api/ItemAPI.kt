@@ -1,10 +1,16 @@
 package com.skillw.itemsystem.api
 
 import com.skillw.itemsystem.ItemSystem.itemBuilderManager
-import com.skillw.itemsystem.internal.builder.ProcessData
+import com.skillw.itemsystem.api.action.ActionType
+import com.skillw.itemsystem.internal.core.builder.ProcessData
+import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
+import com.skillw.itemsystem.internal.feature.ItemDrop
+import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.ItemSyncer.syncNBT
 import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
 import com.skillw.pouvoir.api.annotation.ScriptTopLevel
+import org.bukkit.Location
+import org.bukkit.entity.Item
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import java.util.function.Consumer
@@ -59,4 +65,70 @@ object ItemAPI {
     ): ItemStack {
         return this.updateItem(entity, variables, productData, force)
     }
+
+    /**
+     * 判斷物品是否來自ItemSystem
+     *
+     * @return Boolean 是否來自ItemSystem
+     * @receiver ItemStack 物品
+     */
+    @JvmStatic
+    fun ItemStack.fromIS(): Boolean {
+        return cacheTag().containsKey("ITEM_SYSTEM")
+    }
+
+    /**
+     * 注册物品动作
+     *
+     * @param key String 物品动作id
+     * @return ActionType 物品动作
+     */
+    @JvmStatic
+    fun registerAction(key: String): ActionType {
+        return ActionType(key).apply { register() }
+    }
+
+    /**
+     * 触发物品动作
+     *
+     * @param key String 物品动作id
+     * @param entity LivingEntity 玩家
+     * @param itemStack ItemStack 物品
+     * @param receiver Consumer<MutableMap<String, Any>> 操作变量池
+     */
+    @JvmStatic
+    fun callAction(
+        key: String,
+        entity: LivingEntity,
+        itemStack: ItemStack,
+        receiver: Consumer<MutableMap<String, Any>>,
+    ) {
+        ActionType.call(key, entity, itemStack) { receiver.accept(this) }
+    }
+
+    /**
+     * 让物品的展示名和lore与NBT中的值同步 (syncNBT)
+     *
+     * 会直接改变物品
+     *
+     * @param entity LivingEntity 实体
+     * @receiver ItemStack 物品
+     */
+    @JvmStatic
+    fun ItemStack.syncNBTValues(entity: LivingEntity) {
+        syncNBT(entity)
+    }
+
+    /**
+     * 掉落，如果物品有掉落技能则会触发技能
+     *
+     * @param location Location 位置
+     * @param entity LivingEntity 实体
+     * @receiver ItemStack 物品
+     */
+    @JvmStatic
+    fun ItemStack.dropAt(location: Location, entity: LivingEntity): Item {
+        return drop(location, ItemDrop.DropData(entity))
+    }
+
 }

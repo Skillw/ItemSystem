@@ -3,7 +3,7 @@ package com.skillw.itemsystem.internal.feature
 
 import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.api.event.ItemBuildEvent
-import com.skillw.itemsystem.internal.builder.ProcessData
+import com.skillw.itemsystem.internal.core.builder.ProcessData
 import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
 import com.skillw.itemsystem.util.NBTUtils.toMutableMap
 import org.bukkit.entity.LivingEntity
@@ -23,12 +23,13 @@ object ItemUpdater {
      * @return Boolean 是否该更新
      * @receiver ItemStack 待更新的物品
      */
+    @JvmStatic
     fun ItemStack.isOutDated(): Boolean {
         if (isAir()) return false
         val tag = cacheTag()["ITEM_SYSTEM"]?.asCompound() ?: return false
         val key = tag["key"]?.asString() ?: return false
         val new = ItemSystem.itemBuilderManager[key] ?: return false
-        return tag["hash"]?.asInt() != new.hashCode()
+        return new.autoUpdate && tag["hash"]?.asInt() != new.hashCode()
     }
 
     /**
@@ -42,6 +43,7 @@ object ItemUpdater {
      * @receiver ItemStack 待更新的物品
      */
 
+    @JvmStatic
     fun ItemStack.updateItem(
         entity: LivingEntity,
         variables: Set<String> = emptySet(),
@@ -67,13 +69,14 @@ object ItemUpdater {
                 .apply { putAll(productData) }
         } ?: return this
         val item = ItemSystem.itemBuilderManager[key] ?: return this
-        val update = ItemBuildEvent.Update(item, this, entity)
+        val processData = ProcessData(entity).apply { putAll(data); savingKeys.addAll(data.keys) }
+        val update = ItemBuildEvent.Update(item, processData, this, entity)
         update.call()
         val itemTag = update.itemStack.cacheTag().apply {
             removeDeep("ITEM_SYSTEM")
         }
 
-        return item.build(entity, ProcessData(entity).apply { putAll(data); savingKeys.addAll(data.keys) }).apply item@{
+        return item.build(entity, processData).apply item@{
             getItemTag().apply {
                 item.lockedNBT.forEach(::removeDeep)
                 itemTag.forEach { key, value ->

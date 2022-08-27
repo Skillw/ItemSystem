@@ -19,7 +19,7 @@ object ConditionsMeta : BaseMeta("conditions") {
 
 
     override fun loadData(data: ItemData): Any? {
-        return data.itemTag["CONDITION_DATA"]?.asCompound()?.toMutableMap()
+        return data.itemTag.remove("CONDITION_DATA")?.asCompound()?.toMutableMap()
     }
 
 }

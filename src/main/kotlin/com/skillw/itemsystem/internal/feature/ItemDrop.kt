@@ -1,25 +1,38 @@
 package com.skillw.itemsystem.internal.feature
 
+import com.skillw.itemsystem.api.event.ItemDropEvent
 import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
-import com.skillw.itemsystem.internal.feature.compat.mythicmobs.DropData
 import com.skillw.itemsystem.internal.feature.effect.RandomItemEffect
 import ink.ptms.um.Mythic
 import org.bukkit.Location
 import org.bukkit.entity.Item
+import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import org.bukkit.util.Vector
 import taboolib.common.platform.function.submitAsync
 import taboolib.platform.util.toBukkitLocation
 
 object ItemDrop {
+
+    internal data class DropData(
+        val entity: LivingEntity,
+        val mobKey: String = "",
+        val killer: LivingEntity = entity,
+        var current: LivingEntity = entity,
+    ) :
+        LivingEntity by entity
+
     @JvmStatic
     internal fun ItemStack.drop(location: Location, data: DropData): Item {
         val skills = cacheTag().getDeep("ITEM_SYSTEM.drop-skills")?.asList()
         skills?.map { it.asString() }?.forEach { line ->
             Mythic.API.castSkill(data.entity, line, data.killer, location)
         }
-        return location.world.dropItem(location, this)
+        val event = ItemDropEvent(data.entity, location.world.dropItem(location, this))
+        event.call()
+        return event.item
     }
+
 
     @JvmStatic
     internal fun List<ItemStack>.effectDrop(

@@ -1,8 +1,9 @@
 package com.skillw.itemsystem.internal.manager
 
 import com.skillw.itemsystem.ItemSystem
+import com.skillw.itemsystem.ItemSystem.itemBuilderManager
 import com.skillw.itemsystem.api.manager.GlobalManager
-import com.skillw.itemsystem.internal.meta.data.MetaData
+import com.skillw.itemsystem.internal.core.meta.data.MetaData
 import com.skillw.itemsystem.util.FileWatcher.unwatch
 import com.skillw.itemsystem.util.FileWatcher.watch
 import com.skillw.pouvoir.api.map.BaseMap
@@ -20,17 +21,16 @@ object GlobalManagerImpl : GlobalManager() {
     override val subPouvoir: SubPouvoir = ItemSystem
     private val globals = BaseMap<File, HashSet<String>>()
 
-    private fun reloadFile(file: File) {
+    private fun reload(file: File) {
         globals[file]?.forEach(this::remove)
         globals.remove(file)
         file.loadYaml()?.apply {
             getKeys(false).forEach { key ->
                 val section = this[key] as? ConfigurationSection? ?: return@forEach
-                MetaData.deserialize(section.toMap())?.let {
-                    register(key, it)
-                }
+                register(key, MetaData.deserialize(section.toMap()))
             }
         }
+        itemBuilderManager.onReload()
     }
 
     override fun onEnable() {
@@ -47,6 +47,6 @@ object GlobalManagerImpl : GlobalManager() {
         clear()
         File(getDataFolder(), "global").listSubFiles()
             .filter { it.extension == "yml" }
-            .forEach { it.watch(this::reloadFile) }
+            .forEach { it.watch(this::reload); reload(it) }
     }
 }

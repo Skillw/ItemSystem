@@ -33,21 +33,21 @@ class GlowColor(override val key: ChatColor) : Registrable<ChatColor> {
         }
 
         @JvmStatic
-        fun Player.addGlowEntity(entity: Entity, color: ChatColor) {
+        internal fun Player.addGlowEntity(entity: Entity, color: ChatColor) {
             entity.isGlowing = true
             initGlowColors()
             sendPacket(NMS.INSTANCE.buildColorPacket(color, Operation.ADD_ENTITY, entity))
         }
 
         @JvmStatic
-        fun Player.removeGlowEntity(entity: Entity, color: ChatColor) {
+        internal fun Player.removeGlowEntity(entity: Entity, color: ChatColor) {
             entity.isGlowing = false
             initGlowColors()
             sendPacket(NMS.INSTANCE.buildColorPacket(color, Operation.REMOVE_ENTITY, entity))
         }
 
         @Awake(LifeCycle.ENABLE)
-        fun initGlowColors() {
+        internal fun initGlowColors() {
             ChatColor.values().map { GlowColor(it) }.forEach(GlowColor::register)
         }
     }

@@ -1,7 +1,7 @@
 package com.skillw.itemsystem.internal.command.sub
 
 import com.skillw.itemsystem.ItemSystem
-import com.skillw.itemsystem.internal.builder.ItemBuilder
+import com.skillw.itemsystem.internal.core.builder.ItemBuilder
 import org.bukkit.entity.Player
 import taboolib.common.io.newFile
 import taboolib.common.platform.command.subCommand
@@ -10,7 +10,6 @@ import taboolib.module.configuration.Configuration
 import taboolib.module.configuration.Type
 import taboolib.platform.util.isAir
 import taboolib.platform.util.sendLang
-import java.io.FileWriter
 
 object ItemSaveCommand {
     val save = subCommand {
@@ -40,15 +39,13 @@ object ItemSaveCommand {
                     val fileName = context.argument(-1)
                     submit(async = true) {
                         val file = newFile(ItemSystem.plugin.dataFolder, "items/${fileName}")
+                        val origin = file.readText()
+                        file.delete()
+                        file.createNewFile()
                         val config = Configuration.loadFromFile(file, Type.YAML)
                         config[key] = map
                         val str = config.saveToString()
-                        FileWriter(file).apply {
-                            write("")
-                            flush()
-                            close()
-                        }
-                        file.writeText(str)
+                        file.writeText(origin + str)
                         ItemSystem.reload()
                     }
                     sender.sendLang("command-save-item", key, fileName)

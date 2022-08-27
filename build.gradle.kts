@@ -29,23 +29,24 @@ taboolib {
             name("Pouvoir")
             name("BuffSystem").optional(true)
             name("AttributeSystem").optional(true)
+            name("MythicMobs").optional(true)
 
         }
     }
     install("common")
-    install("module-configuration")
-    install("common-5")
     install("module-chat")
+    install("common-5")
+    install("module-configuration")
     install("module-database")
     install("module-effect")
+    install("module-nms-util")
     install("module-lang")
     install("module-metrics")
-    install("module-nms-util")
     install("module-nms")
     install("platform-bukkit")
     install("module-ui")
     classifier = null
-    version = "6.0.9-65"
+    version = "6.0.9-72"
 }
 
 repositories {

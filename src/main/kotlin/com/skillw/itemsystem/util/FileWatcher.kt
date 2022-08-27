@@ -10,7 +10,6 @@ object FileWatcher {
 
 
     fun File.watch(callback: (File) -> Unit) {
-        callback(this)
         if (!fileWatcher.hasListener(this))
             fileWatcher.addSimpleListener(this) {
                 console().sendLang("file-update", name)

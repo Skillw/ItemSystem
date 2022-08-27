@@ -1,8 +1,8 @@
 package com.skillw.itemsystem.api.meta.data
 
 import com.skillw.itemsystem.api.builder.IProcessData
-import com.skillw.itemsystem.internal.builder.ProcessData
-import com.skillw.itemsystem.internal.meta.data.MetaData
+import com.skillw.itemsystem.internal.core.builder.ProcessData
+import com.skillw.itemsystem.internal.core.meta.data.MetaData
 import taboolib.common5.Coerce
 
 /**

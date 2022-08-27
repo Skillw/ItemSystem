@@ -1,7 +1,7 @@
 package com.skillw.itemsystem.api.event
 
 import com.skillw.itemsystem.api.builder.BaseItemBuilder
-import com.skillw.itemsystem.internal.builder.ProcessData
+import com.skillw.itemsystem.internal.core.builder.ProcessData
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import taboolib.platform.type.BukkitProxyEvent
@@ -38,7 +38,12 @@ class ItemBuildEvent {
      * @property itemStack 结果物品
      * @property entity 实体
      */
-    class After(val builder: BaseItemBuilder, var itemStack: ItemStack, val entity: LivingEntity?) : BukkitProxyEvent()
+    class After(
+        val builder: BaseItemBuilder,
+        val data: ProcessData,
+        var itemStack: ItemStack,
+        val entity: LivingEntity?,
+    ) : BukkitProxyEvent()
 
     /**
      * 物品更新前，还没有更新，你可以操作物品
@@ -47,5 +52,10 @@ class ItemBuildEvent {
      * @property itemStack 结果物品
      * @property entity 实体
      */
-    class Update(val builder: BaseItemBuilder, var itemStack: ItemStack, val entity: LivingEntity) : BukkitProxyEvent()
+    class Update(
+        val builder: BaseItemBuilder,
+        val data: ProcessData,
+        var itemStack: ItemStack,
+        val entity: LivingEntity,
+    ) : BukkitProxyEvent()
 }

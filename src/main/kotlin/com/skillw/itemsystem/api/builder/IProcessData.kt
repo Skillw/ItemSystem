@@ -1,6 +1,6 @@
 package com.skillw.itemsystem.api.builder
 
-import com.skillw.itemsystem.internal.builder.ProcessData
+import com.skillw.itemsystem.internal.core.builder.ProcessData
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import taboolib.module.nms.ItemTag

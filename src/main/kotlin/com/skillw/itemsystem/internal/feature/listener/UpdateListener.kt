@@ -13,7 +13,7 @@ import taboolib.common.platform.Schedule
 import taboolib.common.platform.event.EventPriority
 import taboolib.common.platform.event.OptionalEvent
 import taboolib.common.platform.event.SubscribeEvent
-import taboolib.common.platform.function.submit
+import taboolib.common.platform.function.submitAsync
 
 private object UpdateListener {
     @Schedule(period = 100, async = true)
@@ -23,12 +23,12 @@ private object UpdateListener {
 
     @SubscribeEvent
     fun onJoin(e: PlayerJoinEvent) {
-        e.player.updateItems()
+        submitAsync { e.player.updateItems() }
     }
 
     @SubscribeEvent
     fun onRespawn(e: PlayerRespawnEvent) {
-        e.player.updateItems()
+        submitAsync { e.player.updateItems() }
     }
 
     @SubscribeEvent(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -45,7 +45,7 @@ private object UpdateListener {
     fun onOpen(e: InventoryOpenEvent) {
         kotlin.runCatching {
             if (e.inventory.location != null) {
-                submit(async = true) {
+                submitAsync {
                     (e.player as Player).updateItems()
                 }
             }
@@ -55,6 +55,8 @@ private object UpdateListener {
     @SubscribeEvent(bind = "cc.bukkitPlugin.pds.events.PlayerDataLoadCompleteEvent")
     fun onLoad(e: OptionalEvent) {
         val player = e.read<Player>("player")!!
-        player.updateItems()
+        submitAsync {
+            player.updateItems()
+        }
     }
 }
