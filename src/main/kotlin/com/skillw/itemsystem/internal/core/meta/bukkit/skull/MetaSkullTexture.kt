@@ -25,7 +25,7 @@ object MetaSkullTexture : BaseMeta("skull-texture") {
 
     override fun loadData(data: ItemData): Any? {
         val skull = data.builder.skullTexture ?: return null
-        return linkedMapOf("texture" to skull.textures, "uuid" to skull.uuid.toString())
+        return mapOf("skull-texture" to linkedMapOf("texture" to skull.textures, "uuid" to skull.uuid.toString()))
     }
 
 }

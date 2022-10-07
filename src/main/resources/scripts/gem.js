@@ -1,15 +1,15 @@
 function unique(gem) {
-  const nbt = cacheTag(gem);
+  const nbt = getTag(gem);
   return nbt.get("unique").asString();
 }
 
 function gemKey(gem) {
-  const nbt = cacheTag(gem);
+  const nbt = getTag(gem);
   return obj(nbt.getDeep("ITEM_SYSTEM.key"));
 }
 
 function gemBuildData(gem) {
-  const nbt = cacheTag(gem);
+  const nbt = getTag(gem);
   return obj(nbt.getDeep("ITEM_SYSTEM.data"));
 }
 
@@ -17,7 +17,7 @@ function inlay() {
   const player = this.player;
   const gem = this.cursor;
   const weapon = this.current;
-  const itemNbt = cacheTag(weapon);
+  const itemNbt = getTag(weapon);
   if (!itemNbt.containsKey("gem")) return;
   this.event.setCancelled(true);
   const gemNbt = itemNbt.get("gem").asCompound();
@@ -68,7 +68,7 @@ function buildGem(key, player, data) {
 }
 
 function disassemble(player, weapon, disassemble, returnGem) {
-  const itemNbt = cacheTag(weapon);
+  const itemNbt = getTag(weapon);
   if (!itemNbt.containsKey("gem")) return;
   const gemNbt = itemNbt.get("gem").asCompound();
   for (let index = gemNbt.size() - 1; index >= 0; index--) {

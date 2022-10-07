@@ -1,9 +1,6 @@
 package com.skillw.itemsystem
 
-import com.skillw.itemsystem.api.manager.GlobalManager
-import com.skillw.itemsystem.api.manager.ItemBuilderManager
-import com.skillw.itemsystem.api.manager.MetaManager
-import com.skillw.itemsystem.api.manager.VarTypeManager
+import com.skillw.itemsystem.api.manager.*
 import com.skillw.itemsystem.internal.manager.ISConfig
 import com.skillw.pouvoir.api.annotation.PouManager
 import com.skillw.pouvoir.api.manager.ManagerData
@@ -43,6 +40,10 @@ object ItemSystem : Plugin(), SubPouvoir {
     @JvmStatic
     @PouManager
     lateinit var configManager: ISConfig
+
+    @JvmStatic
+    @PouManager
+    lateinit var optionManager: OptionManager
 
     @JvmStatic
     @PouManager

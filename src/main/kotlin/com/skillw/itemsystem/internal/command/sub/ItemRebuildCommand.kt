@@ -1,6 +1,6 @@
 package com.skillw.itemsystem.internal.command.sub
 
-import com.skillw.itemsystem.internal.feature.ItemSyncer.syncNBT
+import com.skillw.itemsystem.api.ItemAPI.replace
 import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
 import com.skillw.itemsystem.util.GsonUtils.parseToMap
 import org.bukkit.Bukkit
@@ -76,7 +76,7 @@ object ItemRebuildCommand {
                 }
             val data = demand.get("data", "{}")!!.parseToMap()
 
-            val newItem = itemInHand.updateItem(player, variables, data, true)
+            val newItem = itemInHand.updateItem(player, variables, data)
 
             sync { player.inventory.setItemInMainHand(newItem) }
             adaptPlayer(player).sendRebuildMessage(itemInHand, newItem, variables, data)
@@ -91,8 +91,8 @@ object ItemRebuildCommand {
         data: Map<String, Any>,
     ) {
         val player = cast<Player>()
-        val oldItem = old.clone().apply { syncNBT(player) }
-        val newItem = new.clone().apply { syncNBT(player) }
+        val oldItem = old.clone().apply { replace(player) }
+        val newItem = new.clone().apply { replace(player) }
         TellrawJson()
             .append(
                 TellrawJson()

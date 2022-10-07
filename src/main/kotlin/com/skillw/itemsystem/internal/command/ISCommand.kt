@@ -12,7 +12,7 @@ import taboolib.module.lang.sendLang
 import taboolib.platform.util.sendLang
 
 
-@CommandHeader(name = "item", aliases = ["is"])
+@CommandHeader(name = "item")
 object ISCommand {
 
     @CommandBody
@@ -30,6 +30,7 @@ object ISCommand {
         incorrectCommand { sender, _, _, _ ->
             sender.sendLang("command-valid-command")
         }
+        
 
         execute<ProxyCommandSender> { sender, _, _ ->
             sender.sendLang("command-info")

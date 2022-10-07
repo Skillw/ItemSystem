@@ -12,6 +12,7 @@ import org.bukkit.entity.Player
 import taboolib.library.reflex.Reflex.Companion.getProperty
 import taboolib.library.reflex.Reflex.Companion.setProperty
 import taboolib.library.reflex.Reflex.Companion.unsafeInstance
+import taboolib.module.nms.MinecraftVersion
 import java.util.*
 
 /**
@@ -137,15 +138,26 @@ class NMSImpl : NMS() {
                             packet.getProperty<Optional<Any>>(
                                 "k"
                             )?.get() ?: return packet
-                        params.withFields(
-                            "a" to ChatComponentText(name),
-                            "b" to ChatComponentText(chatColor.toString()),
-                            "c" to ChatComponentText(""),
-                            "d" to "always",
-                            "e" to "always",
-                            "f" to chatColor.toNMS(),
-                            "g" to 3,
-                        )
+                        if (MinecraftVersion.major >= 11)
+                            params.withFields(
+                                "a" to net.minecraft.network.chat.IChatBaseComponent.b(name),
+                                "b" to net.minecraft.network.chat.IChatBaseComponent.b(chatColor.toString()),
+                                "c" to net.minecraft.network.chat.IChatBaseComponent.b(""),
+                                "d" to "always",
+                                "e" to "always",
+                                "f" to chatColor.toNMS(),
+                                "g" to 3,
+                            )
+                        else
+                            params.withFields(
+                                "a" to ChatComponentText(name),
+                                "b" to ChatComponentText(chatColor.toString()),
+                                "c" to ChatComponentText(""),
+                                "d" to "always",
+                                "e" to "always",
+                                "f" to chatColor.toNMS(),
+                                "g" to 3,
+                            )
                         packet.setProperty("k", Optional.of(params))
                         return packet
                     }

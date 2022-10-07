@@ -13,12 +13,12 @@ BaseGem:
     - key: 品质数据Map
       meta: define
       type: map
-      粗糙: ["&8", "10", "YELLOW_DYE"]
-      精良: ["&e", "20", "PINK_DYE"]
-      稀有: ["&b", "30", "MAGENTA_DYE"]
-      优秀: ["&a", "40", "PURPLE_DYE"]
-      史诗: ["&5", "50", "RED_DYE"]
-      传说: ["&6", "60", "RED_DYE"]
+      粗糙: [ "&8", "10", "YELLOW_DYE" ]
+      精良: [ "&e", "20", "PINK_DYE" ]
+      稀有: [ "&b", "30", "MAGENTA_DYE" ]
+      优秀: [ "&a", "40", "PURPLE_DYE" ]
+      史诗: [ "&5", "50", "RED_DYE" ]
+      传说: [ "&6", "60", "RED_DYE" ]
     - run: |-
         def list = &品质数据Map get &quality
         def 品质数据 = mapOf with &品质数据模板 &list
@@ -29,8 +29,9 @@ BaseGem:
     - run: "def 总评分 to type int calculate ' { &品质评分 } * 10 '"
     - material: "{&材质}"
     - glow-color: "{&品质颜色}"
-    #注意这里，调用了父物品没有的变量 name 和 attributes
     - run: |-
+        def name to '模板'
+        def attributes to '无' 
         def 名字 to &name
         def 属性 to join &attributes by '\n'
     - display: "{&品质颜色}{&名字}宝石"
@@ -68,9 +69,11 @@ AttackGem:
     #给父物品提供了变量name和attributes
     - key: name
       type: string
+      override: true
       value: "攻击"
     - key: attributes
       type: strings
+      override: true
       values:
         - "&f>> &7攻击力 &c+{ calculate '10 * {&总评分}' }"
         - "&f>> &7攻击力 &c+{ calculate '{&总评分}/10' }&8(%)"
@@ -102,8 +105,8 @@ ExampleDisassemble:
     - key: 品质数据Map
       meta: define
       type: map
-      粗糙: ["&8", "flint"]
-      精良: ["&e", "ink_sac"]
+      粗糙: [ "&8", "flint" ]
+      精良: [ "&e", "ink_sac" ]
     - run: |-
         def list = &品质数据Map get &quality
         def 品质数据 = mapOf with &品质数据模板 &list

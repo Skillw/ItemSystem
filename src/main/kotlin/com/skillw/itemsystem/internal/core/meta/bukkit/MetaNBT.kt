@@ -22,12 +22,16 @@ object MetaNBT : BaseMeta("nbt") {
     }
 
 
-    override fun loadData(data: ItemData): Any {
-        return data.itemTag.apply {
+    override fun loadData(data: ItemData): Map<String, Map<String, Any>>? {
+        val nbt = data.itemTag.apply {
             remove("ITEM_SYSTEM")
+        }.run {
+            if (isNotEmpty()) {
+                toMutableMap()
+                    .valuesToTypeString()
+            } else return null
         }
-            .toMutableMap()
-            .valuesToTypeString()
+        return mapOf("nbt" to nbt)
     }
 
 

@@ -7,6 +7,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("org.jetbrains.dokka") version "1.6.10"
 }
+
 tasks.dokkaJavadoc.configure {
     outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\itemsystem"))
     dokkaSourceSets {
@@ -27,9 +28,9 @@ taboolib {
         }
         dependencies {
             name("Pouvoir")
-            name("BuffSystem").optional(true)
             name("AttributeSystem").optional(true)
             name("MythicMobs").optional(true)
+            name("BuffSystem").optional(true)
 
         }
     }
@@ -41,12 +42,12 @@ taboolib {
     install("module-effect")
     install("module-nms-util")
     install("module-lang")
+    install("platform-bukkit")
     install("module-metrics")
     install("module-nms")
-    install("platform-bukkit")
     install("module-ui")
     classifier = null
-    version = "6.0.9-72"
+    version = "6.0.9-111"
 }
 
 repositories {
@@ -57,8 +58,6 @@ repositories {
 dependencies {
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.10")
     compileOnly("ink.ptms:nms-all:1.0.0")
-    compileOnly("ink.ptms.core:v11800:11800-minimize:mapped")
-    compileOnly("ink.ptms.core:v11900:11900-minimize:mapped")
     compileOnly("com.google.code.gson:gson:2.9.0")
     compileOnly("io.lumine:Mythic-Dist:5.0.3")
 

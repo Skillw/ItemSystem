@@ -6,7 +6,7 @@ import com.skillw.pouvoir.api.annotation.AutoRegister
 import taboolib.module.nms.ItemTagData
 
 @AutoRegister
-object MetaDropSkill : BaseMeta("drop-skill") {
+object MetaDropSkill : BaseMeta("drop-skills") {
     override fun invoke(memory: Memory) {
         with(memory) {
             val skill = getList("drop-skills").map { it.toString() }

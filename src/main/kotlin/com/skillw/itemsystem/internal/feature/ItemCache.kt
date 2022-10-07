@@ -9,18 +9,27 @@ import taboolib.platform.util.isAir
 object ItemCache {
     private val loreCache = HashMap<Int, MutableList<String>>()
 
-    private val tagCache = HashMap<Int, ItemTag>()
-
     @ScriptTopLevel
     @JvmStatic
     fun ItemStack.cacheLore(): MutableList<String> {
-        return ArrayList(loreCache.getOrPut(hashCode()) { lore ?: mutableListOf() })
+        return ArrayList(loreCache.getOrPut(hashCode()) {
+            if (hasItemMeta()) itemMeta.lore ?: mutableListOf() else mutableListOf()
+        })
     }
 
     @ScriptTopLevel
     @JvmStatic
+    @Deprecated("Use getTag")
     fun ItemStack.cacheTag(): ItemTag {
-        if (isAir()) return ItemTag()
-        return tagCache.getOrPut(hashCode()) { getItemTag() }
+        return getTag()
     }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun ItemStack.getTag(): ItemTag {
+        if (isAir()) return ItemTag()
+        return getItemTag()
+    }
+
+
 }

@@ -4,7 +4,9 @@ package com.skillw.itemsystem.internal.feature
 import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.api.event.ItemBuildEvent
 import com.skillw.itemsystem.internal.core.builder.ProcessData
-import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
+import com.skillw.itemsystem.internal.core.option.OptionAutoUpdate.autoUpdate
+import com.skillw.itemsystem.internal.core.option.OptionLockedNBTKeys.lockedNBT
+import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.util.NBTUtils.toMutableMap
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
@@ -26,7 +28,7 @@ object ItemUpdater {
     @JvmStatic
     fun ItemStack.isOutDated(): Boolean {
         if (isAir()) return false
-        val tag = cacheTag()["ITEM_SYSTEM"]?.asCompound() ?: return false
+        val tag = getTag()["ITEM_SYSTEM"]?.asCompound() ?: return false
         val key = tag["key"]?.asString() ?: return false
         val new = ItemSystem.itemBuilderManager[key] ?: return false
         return new.autoUpdate && tag["hash"]?.asInt() != new.hashCode()
@@ -38,7 +40,6 @@ object ItemUpdater {
      * @param entity LivingEntity 实体
      * @param variables Set<String> 只更新的变量名，如果含 ’all‘ 则更新所有
      * @param productData Map<String, Any> 构造数据(就是变量名和变量值)
-     * @param force 是否强制更新物品
      * @return ItemStack 更新后的物品
      * @receiver ItemStack 待更新的物品
      */
@@ -48,10 +49,8 @@ object ItemUpdater {
         entity: LivingEntity,
         variables: Set<String> = emptySet(),
         productData: Map<String, Any> = emptyMap(),
-        force: Boolean = false,
     ): ItemStack {
-        if (!isOutDated() && !force) return this
-        val tag = cacheTag()["ITEM_SYSTEM"]?.asCompound() ?: return this
+        val tag = getTag()["ITEM_SYSTEM"]?.asCompound() ?: return this
         val key = tag["key"]?.asString() ?: return this
         val data = tag["data"]?.run {
             asCompound()
@@ -72,7 +71,7 @@ object ItemUpdater {
         val processData = ProcessData(entity).apply { putAll(data); savingKeys.addAll(data.keys) }
         val update = ItemBuildEvent.Update(item, processData, this, entity)
         update.call()
-        val itemTag = update.itemStack.cacheTag().apply {
+        val itemTag = update.itemStack.getTag().apply {
             removeDeep("ITEM_SYSTEM")
         }
 
@@ -107,7 +106,10 @@ object ItemUpdater {
      */
     fun Inventory.updateItems(entity: LivingEntity) {
         for (i in 0 until size) {
-            setItem(i, getItem(i)?.updateItem(entity))
+            getItem(i)?.apply {
+                if (isOutDated())
+                    setItem(i, updateItem(entity))
+            }
         }
     }
 

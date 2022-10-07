@@ -1,7 +1,7 @@
 package com.skillw.itemsystem.internal.feature
 
 import com.skillw.itemsystem.api.event.ItemDropEvent
-import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
+import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.internal.feature.effect.RandomItemEffect
 import ink.ptms.um.Mythic
 import org.bukkit.Location
@@ -24,7 +24,7 @@ object ItemDrop {
 
     @JvmStatic
     internal fun ItemStack.drop(location: Location, data: DropData): Item {
-        val skills = cacheTag().getDeep("ITEM_SYSTEM.drop-skills")?.asList()
+        val skills = getTag().getDeep("ITEM_SYSTEM.drop-skills")?.asList()
         skills?.map { it.asString() }?.forEach { line ->
             Mythic.API.castSkill(data.entity, line, data.killer, location)
         }

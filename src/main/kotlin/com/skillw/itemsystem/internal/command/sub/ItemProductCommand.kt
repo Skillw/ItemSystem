@@ -1,10 +1,10 @@
 package com.skillw.itemsystem.internal.command.sub
 
 import com.skillw.itemsystem.ItemSystem
+import com.skillw.itemsystem.api.ItemAPI.replace
 import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.ItemDrop.effectDrop
-import com.skillw.itemsystem.internal.feature.ItemSyncer.syncNBT
 import com.skillw.itemsystem.internal.feature.effect.RandomItemEffect
 import com.skillw.itemsystem.internal.feature.product.ProductData
 import org.bukkit.Bukkit
@@ -80,7 +80,7 @@ object ItemProductCommand {
 
     @Suppress("DEPRECATION")
     private fun ProxyCommandSender.sendGiveMessage(player: Player, itemStack: ItemStack, amount: Int) {
-        val item = itemStack.clone().apply { syncNBT(player) }
+        val item = itemStack.clone().apply { replace(player) }
         TellrawJson()
             .append(asLangText("command-give-item", player.displayName, amount, item.getName()))
             .hoverItem(item)
@@ -243,7 +243,7 @@ object ItemProductCommand {
         amount: Int,
         location: Location,
     ) {
-        val item = itemStack.clone().apply { syncNBT(player) }
+        val item = itemStack.clone().apply { replace(player) }
         with(location) {
             TellrawJson()
                 .append(

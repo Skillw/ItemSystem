@@ -19,7 +19,10 @@ object AttributesMeta : BaseMeta("attributes") {
 
 
     override fun loadData(data: ItemData): Any? {
-        return data.itemTag.remove("ATTRIBUTE_DATA")?.asCompound()?.toMutableMap()
+        val attributes = (data.itemTag.remove("ATTRIBUTE_DATA")?.asCompound()?.toMutableMap()) ?: return null
+        return mapOf(
+            "attributes" to attributes
+        )
     }
 
 }

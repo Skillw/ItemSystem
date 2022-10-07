@@ -2,7 +2,7 @@ package com.skillw.itemsystem.internal.feature.listener
 
 import com.skillw.itemsystem.api.glow.GlowColor.Companion.addGlowEntity
 import com.skillw.itemsystem.api.glow.GlowColor.Companion.initGlowColors
-import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
+import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.util.ColorUtils.toColor
 import com.skillw.itemsystem.util.nms.NMS
 import org.bukkit.entity.Item
@@ -28,7 +28,7 @@ private object GlowListener {
             val player = event.player
             val id = getProperty<Int>("a") ?: return
             val entity = NMS.INSTANCE.getEntity(player.world, id) as? Item? ?: return
-            val tag = entity.itemStack.cacheTag()
+            val tag = entity.itemStack.getTag()
             val colorStr = tag.getDeep("ITEM_SYSTEM.glow-color")?.asString() ?: return
             val flag = getProperty<List<Any>>("b")?.get(0) ?: return
             val byte = flag.getProperty<Any>("b") as? Byte? ?: return

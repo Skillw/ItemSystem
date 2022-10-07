@@ -1,7 +1,7 @@
 package com.skillw.itemsystem.internal.feature.block
 
 import com.skillw.itemsystem.api.ItemAPI
-import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
+import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.util.GsonUtils.parseToMap
 import com.skillw.itemsystem.util.NBTUtils.obj
 import com.skillw.pouvoir.util.FileUtils.loadYaml
@@ -23,7 +23,7 @@ object BlockData {
     val blockData = HashMap<Location, Map<String, Any>>()
 
     fun push(location: Location, item: ItemStack) {
-        val nbt = item.cacheTag()
+        val nbt = item.getTag()
         val key = nbt.getDeep("ITEM_SYSTEM.key").asString()
         val data = nbt.getDeep("ITEM_SYSTEM.data").obj()
         blockData[location] = mapOf("item_key" to key, "data" to data)

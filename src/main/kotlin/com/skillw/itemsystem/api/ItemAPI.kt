@@ -3,9 +3,10 @@ package com.skillw.itemsystem.api
 import com.skillw.itemsystem.ItemSystem.itemBuilderManager
 import com.skillw.itemsystem.api.action.ActionType
 import com.skillw.itemsystem.internal.core.builder.ProcessData
-import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
+import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
+import com.skillw.itemsystem.internal.feature.ItemDynamic.dynamic
 import com.skillw.itemsystem.internal.feature.ItemSyncer.syncNBT
 import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
 import com.skillw.pouvoir.api.annotation.ScriptTopLevel
@@ -36,14 +37,40 @@ object ItemAPI {
     }
 
     /**
-     * 同步物品的lore和NBT (会直接改变物品本身)
+     * 替换物品展示名，描述中的 syncNBT 与 dynamic (会直接改变物品本身)
+     *
+     * @param entity LivingEntity
+     * @receiver ItemStack
+     */
+    @JvmStatic
+    @ScriptTopLevel
+    fun ItemStack.replace(entity: LivingEntity) {
+        replaceSyncNBT(entity)
+        replaceDynamic(entity)
+    }
+
+    /**
+     * 将物品的展示名,描述中的 syncNBT 同步为NBT值 (会直接改变物品本身)
      *
      * @param entity LivingEntity 实体
      * @receiver ItemStack 物品
      */
     @JvmStatic
-    fun ItemStack.syncLoreNBT(entity: LivingEntity) {
+    @ScriptTopLevel
+    fun ItemStack.replaceSyncNBT(entity: LivingEntity) {
         this.syncNBT(entity)
+    }
+
+    /**
+     * 将物品的展示名,描述中的 dynamic 替换成实时内联函数运算的返回值(会直接改变物品本身)
+     *
+     * @param entity LivingEntity 实体
+     * @receiver ItemStack 物品
+     */
+    @JvmStatic
+    @ScriptTopLevel
+    fun ItemStack.replaceDynamic(entity: LivingEntity) {
+        this.dynamic(entity)
     }
 
     /**
@@ -61,9 +88,8 @@ object ItemAPI {
         entity: LivingEntity,
         variables: Set<String> = emptySet(),
         productData: Map<String, Any> = emptyMap(),
-        force: Boolean = false,
     ): ItemStack {
-        return this.updateItem(entity, variables, productData, force)
+        return this.updateItem(entity, variables, productData)
     }
 
     /**
@@ -74,7 +100,7 @@ object ItemAPI {
      */
     @JvmStatic
     fun ItemStack.fromIS(): Boolean {
-        return cacheTag().containsKey("ITEM_SYSTEM")
+        return getTag().containsKey("ITEM_SYSTEM")
     }
 
     /**
@@ -104,19 +130,6 @@ object ItemAPI {
         receiver: Consumer<MutableMap<String, Any>>,
     ) {
         ActionType.call(key, entity, itemStack) { receiver.accept(this) }
-    }
-
-    /**
-     * 让物品的展示名和lore与NBT中的值同步 (syncNBT)
-     *
-     * 会直接改变物品
-     *
-     * @param entity LivingEntity 实体
-     * @receiver ItemStack 物品
-     */
-    @JvmStatic
-    fun ItemStack.syncNBTValues(entity: LivingEntity) {
-        syncNBT(entity)
     }
 
     /**

@@ -1,9 +1,10 @@
 package com.skillw.itemsystem.internal.core.meta.bukkit.interact
 
 import com.skillw.itemsystem.api.builder.ItemData
+import com.skillw.itemsystem.api.event.ItemBuildEvent
 import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
-import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
+import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.block.BlockData
@@ -14,6 +15,7 @@ import org.bukkit.event.block.BlockPlaceEvent
 import taboolib.common.platform.event.SubscribeEvent
 import taboolib.module.nms.ItemTagData
 import taboolib.module.nms.getName
+import taboolib.module.nms.setItemTag
 import taboolib.platform.util.sendLang
 
 @AutoRegister
@@ -32,10 +34,19 @@ object MetaCanBePlaced : BaseMeta("can-be-placed") {
     }
 
     @SubscribeEvent
+    fun build(event: ItemBuildEvent.After) {
+        event.itemStack.apply {
+            setItemTag(getTag().also {
+                it["ITEM_SYSTEM"]?.asCompound()?.putIfAbsent("ITEM_SYSTEM.can-be-placed", ItemTagData("true"))
+            })
+        }
+    }
+
+    @SubscribeEvent
     fun build(event: BlockPlaceEvent) {
         val player = event.player
         val blockItem = event.itemInHand
-        val nbt = blockItem.cacheTag()
+        val nbt = blockItem.getTag()
         val canBuild = nbt["ITEM_SYSTEM.can-be-placed"]?.asString()?.toBoolean() ?: return
         if (!canBuild) {
             player.sendLang("item-cant-be-built", blockItem.getName())

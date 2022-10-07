@@ -37,7 +37,8 @@ object BuffsMeta : BaseMeta("buffs") {
 
 
     override fun loadData(data: ItemData): Any? {
-        return data.itemTag.remove(BUFF_KEY)?.asCompound()?.toMutableMap()
+        val buffs = data.itemTag.remove(BUFF_KEY)?.asCompound()?.toMutableMap() ?: return null
+        return mapOf("buffs" to buffs)
     }
 
 

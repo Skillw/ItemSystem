@@ -17,6 +17,14 @@ import java.util.*
  * @date 2022/8/15 22:01 Copyright 2022 user. All rights reserved.
  */
 abstract class BaseItemBuilder(override val key: String) : Registrable<String>, ConfigurationSerializable {
+
+    abstract val options: MutableMap<String, Any>
+
+    /** 每次更新时，更新的NBT路径 */
+//    abstract val lockedNBT: HashSet<String>
+//    abstract var autoUpdate: Boolean
+    abstract val process: LinkedList<MetaData>
+
     /**
      * 构建物品
      *
@@ -26,8 +34,4 @@ abstract class BaseItemBuilder(override val key: String) : Registrable<String>, 
      */
     abstract fun build(entity: LivingEntity? = null, processData: ProcessData = ProcessData(entity)): ItemStack
 
-    /** 每次更新时，更新的NBT路径 */
-    abstract val lockedNBT: HashSet<String>
-    abstract var autoUpdate: Boolean
-    abstract val process: LinkedList<MetaData>
 }

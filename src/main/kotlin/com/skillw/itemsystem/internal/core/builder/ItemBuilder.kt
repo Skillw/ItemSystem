@@ -1,8 +1,8 @@
 package com.skillw.itemsystem.internal.core.builder
 
-import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.ItemSystem.itemBuilderManager
 import com.skillw.itemsystem.ItemSystem.metaManager
+import com.skillw.itemsystem.ItemSystem.optionManager
 import com.skillw.itemsystem.api.builder.BaseItemBuilder
 import com.skillw.itemsystem.api.builder.ItemData
 import com.skillw.itemsystem.api.event.ItemBuildEvent
@@ -22,9 +22,9 @@ import java.util.function.Supplier
  * @date 2022/8/7 7:19 Copyright 2022 user. All rights reserved.
  */
 class ItemBuilder(key: String) : BaseItemBuilder(key) {
+
+    override val options = HashMap<String, Any>()
     override val process = LinkedList<MetaData>()
-    override val lockedNBT = HashSet<String>()
-    override var autoUpdate = false
 
     constructor(key: String, receiver: ItemBuilder.() -> Unit) : this(key) {
         receiver(this)
@@ -54,8 +54,6 @@ class ItemBuilder(key: String) : BaseItemBuilder(key) {
                             )
                         }
                     })
-                    putIfAbsent("can-be-placed", ItemTagData("true"))
-                    putIfAbsent("can-craft", ItemTagData("false"))
                 }
             }.also {
                 ItemBuildEvent.After(this, data, it, entity).call()
@@ -68,26 +66,29 @@ class ItemBuilder(key: String) : BaseItemBuilder(key) {
         @JvmStatic
         fun deserialize(section: org.bukkit.configuration.ConfigurationSection): ItemBuilder {
             val key = section.name
-            val item = ItemBuilder(key)
-            val father = LinkedList<MetaData>()
+            val builder = ItemBuilder(key)
+            val superItemOption = HashMap<String, Any>()
+            val superMetadata = LinkedList<MetaData>()
             section.getStringList("extends")
                 .apply {
                     if (isNotEmpty())
                         itemBuilderManager.loading.add(section)
                 }.forEach {
-                    father.addAll(itemBuilderManager[it]?.process ?: return item)
+                    val superItem = itemBuilderManager[it] ?: return@forEach
+                    superItemOption.putAll(superItem.options)
+                    superMetadata.addAll(superItem.process)
                 }
             section.getList("process")?.forEach { data ->
                 data as? Map<String, Any>? ?: return@forEach
                 MetaData.deserialize(data).let {
-                    item.process += it
+                    builder.process += it
                 }
             }
-            item.process.addAll(father)
-            item.lockedNBT.addAll(section.getStringList("locked-nbt-keys"))
-            item.autoUpdate = section.getBoolean("auto-update", false)
+            builder.options.putAll(superItemOption)
+            optionManager.initOption(section, builder)
+            builder.process.addAll(superMetadata)
             itemBuilderManager.loading.remove(section)
-            return item
+            return builder
         }
 
         @JvmStatic
@@ -101,6 +102,10 @@ class ItemBuilder(key: String) : BaseItemBuilder(key) {
                 val map = LinkedHashMap<String, Any>()
                 when (any) {
                     is Map<*, *> -> {
+                        if (any.size == 1 && any.containsKey(metaKey)) {
+                            process += any
+                            return@forEach
+                        }
                         map["meta"] = metaKey
                         map.putAll(any as Map<String, Any>)
                     }
@@ -109,12 +114,12 @@ class ItemBuilder(key: String) : BaseItemBuilder(key) {
                 }
                 process += map
             }
-            return linkedMapOf("process" to process, "locked-nbt-keys" to emptyList())
+            return linkedMapOf("process" to process)
         }
     }
 
     override fun register() {
-        ItemSystem.itemBuilderManager.register(this)
+        itemBuilderManager.register(this)
     }
 
     override fun serialize(): MutableMap<String, Any> {

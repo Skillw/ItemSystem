@@ -10,7 +10,7 @@ object FunctionDef : PouFunction<Any>("def", "var", "let", "const", namespace = 
     override fun execute(parser: Parser): Any? {
         with(parser) {
             if (context !is ProcessData) return "Error Context"
-            val key = parseString()
+            val key = next() ?: return null
             if (context.containsKey(key)) return context[key]
             except("=", "to")
             val value = parseAny()

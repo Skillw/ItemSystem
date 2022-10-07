@@ -2,12 +2,11 @@ package com.skillw.itemsystem.internal.feature
 
 
 import com.skillw.itemsystem.internal.feature.ItemCache.cacheLore
-import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
+import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.pouvoir.api.PouvoirAPI.placeholder
 import com.skillw.pouvoir.util.ColorUtils.decolored
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.ItemMeta
 import taboolib.module.chat.colored
 import taboolib.module.nms.ItemTag
 import java.util.regex.Pattern
@@ -32,19 +31,12 @@ object ItemSyncer {
         return decolored().replace(key, status.placeholder(entity).colored()).colored()
     }
 
-
-    private val metaCache = HashMap<Int, ItemMeta>()
-
-    fun ItemStack.syncNBT(entity: LivingEntity) {
+    internal fun ItemStack.syncNBT(entity: LivingEntity) {
         if (!hasItemMeta()) return
-
-        val hashCode = hashCode()
-        val meta = if (metaCache.containsKey(hashCode)) {
-            metaCache[hashCode]; return
-        } else itemMeta
+        val meta = itemMeta
         var display = if (meta.hasDisplayName()) meta.displayName else null
         val lore = cacheLore()
-        val tag = cacheTag()
+        val tag = getTag()
         val keys = tag.getDeep("ITEM_SYSTEM.SYNC_KEYS")?.asList()?.map { it.asString() } ?: return
         transform(tag, keys).forEach { pair ->
             display = display?.syncNBT(pair, entity)

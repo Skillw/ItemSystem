@@ -12,7 +12,6 @@ import taboolib.library.xseries.XMaterial
 import taboolib.module.nms.ItemTag
 import taboolib.module.nms.getItemTag
 import taboolib.platform.util.ItemBuilder
-import java.util.*
 
 /**
  * @className ProcessData
@@ -28,8 +27,6 @@ class ProcessData(override val entity: LivingEntity? = null, val context: IConte
 
     //    MM Hook
     init {
-        context["unique"] = UUID.randomUUID().toString()
-        savingKeys.add("unique")
         entity?.let { context["entity"] = it }
     }
 

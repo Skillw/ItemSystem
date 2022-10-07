@@ -1,7 +1,7 @@
 package com.skillw.itemsystem.internal.feature.compat.pouvoir.action
 
 
-import com.skillw.itemsystem.internal.feature.ItemCache.cacheTag
+import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
@@ -123,7 +123,7 @@ object ActionItem : IAction {
                             parse<ItemTag>().saveTo(this)
                             return true
                         }
-                        return cacheTag()
+                        return getTag()
                     }
 
                     "repair" -> {
@@ -142,7 +142,7 @@ object ActionItem : IAction {
                             variables = parseList().map { it.toString() }.toSet()
                             data = parseMap().mapKeys { it.toString() }
                         }
-                        updateItem(player, variables, data, true)
+                        updateItem(player, variables, data)
                     }
 
                     else -> {

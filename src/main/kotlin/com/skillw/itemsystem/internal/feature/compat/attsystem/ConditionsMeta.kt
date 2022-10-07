@@ -19,7 +19,8 @@ object ConditionsMeta : BaseMeta("conditions") {
 
 
     override fun loadData(data: ItemData): Any? {
-        return data.itemTag.remove("CONDITION_DATA")?.asCompound()?.toMutableMap()
+        val conditions = data.itemTag.remove("CONDITION_DATA")?.asCompound()?.toMutableMap() ?: return null
+        return mapOf("conditions" to conditions)
     }
 
 }
