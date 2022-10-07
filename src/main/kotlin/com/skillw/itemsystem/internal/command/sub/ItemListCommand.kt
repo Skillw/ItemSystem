@@ -2,8 +2,8 @@ package com.skillw.itemsystem.internal.command.sub
 
 import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.api.ItemAPI.replace
-import com.skillw.itemsystem.internal.core.meta.type.MetaType
-import com.skillw.itemsystem.internal.core.meta.type.MetaType.type
+import com.skillw.itemsystem.internal.core.option.OptionType
+import com.skillw.itemsystem.internal.core.option.OptionType.type
 import com.skillw.itemsystem.internal.manager.ISConfig
 import com.skillw.pouvoir.util.StringUtils.replacement
 import org.bukkit.Material
@@ -37,7 +37,7 @@ object ItemListCommand {
         }
         dynamic(optional = true) {
             suggestion<ProxyCommandSender> { sender, context ->
-                listOf("all", *MetaType.types.toTypedArray())
+                listOf("all", *OptionType.types.toTypedArray())
             }
             dynamic(optional = true) {
                 restrict<ProxyCommandSender> { _, _, argument ->
