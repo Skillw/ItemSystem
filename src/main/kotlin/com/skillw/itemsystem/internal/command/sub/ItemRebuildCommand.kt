@@ -1,6 +1,6 @@
 package com.skillw.itemsystem.internal.command.sub
 
-import com.skillw.itemsystem.api.ItemAPI.replace
+import com.skillw.itemsystem.api.ItemAPI.dynamic
 import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
 import com.skillw.itemsystem.util.GsonUtils.parseToMap
 import org.bukkit.Bukkit
@@ -91,8 +91,8 @@ object ItemRebuildCommand {
         data: Map<String, Any>,
     ) {
         val player = cast<Player>()
-        val oldItem = old.clone().apply { replace(player) }
-        val newItem = new.clone().apply { replace(player) }
+        val oldItem = old.clone().apply { dynamic(player) }
+        val newItem = new.clone().apply { dynamic(player) }
         TellrawJson()
             .append(
                 TellrawJson()

@@ -9,8 +9,8 @@ object FunctionDynamic : PouFunction<String>("dynamic", namespace = "item_system
 
     override fun execute(parser: Parser): String {
         with(parser) {
-            val content = splitTill("{", "}").replace("\n", "")
-            return "_dynamic::${content}_"
+            val content = splitTill("{", "}")
+            return "{{_dynamic::${content}_}}"
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.skillw.itemsystem.internal.core.meta.action
 
-import com.skillw.itemsystem.api.action.ActionType
+import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.api.meta.data.Memory.Companion.get
@@ -17,16 +17,20 @@ object MetaAction : BaseMeta("action") {
         with(memory) {
             val context = get<Map<String, Any>>("action")
             val typeStr = context["type"].toString().analysis()
-            val type = ActionType.actionTypes[typeStr]
+            val type = ItemSystem.actionTypeManager[typeStr]
             if (type == null) {
                 warning("Unknown action type: $typeStr")
                 return
             }
+            val key = type.key
+            val cooldown = getLong("cooldown", 0L)
             val run = context["run"]?.toString()?.run { if (startsWith("js")) analysis() else this } ?: return
             nbt.getOrPut("ITEM_SYSTEM") { ItemTag() }.asCompound()
                 .getOrPut("actions") { ItemTag() }.asCompound()
-                .getOrPut(type.key) { ItemTagList() }.asList()
+                .getOrPut(key) { ItemTagList() }.asList()
                 .add(ItemTagData.toNBT(run))
+            if (cooldown > 0)
+                nbt.putDeep("ITEM_SYSTEM.action_cooldown.${key}", ItemTagData(cooldown))
         }
     }
 

@@ -9,7 +9,7 @@ import java.util.function.Supplier
 
 object VarTypeManagerImpl : VarTypeManager() {
     override val key: String = "VarTypeManager"
-    override val priority: Int = 2
+    override val priority: Int = 0
     override val subPouvoir: SubPouvoir = ItemSystem
 
 

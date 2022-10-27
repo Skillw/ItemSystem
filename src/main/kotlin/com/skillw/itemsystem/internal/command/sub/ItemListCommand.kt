@@ -1,7 +1,7 @@
 package com.skillw.itemsystem.internal.command.sub
 
 import com.skillw.itemsystem.ItemSystem
-import com.skillw.itemsystem.api.ItemAPI.replace
+import com.skillw.itemsystem.api.ItemAPI.dynamic
 import com.skillw.itemsystem.internal.core.option.OptionType
 import com.skillw.itemsystem.internal.core.option.OptionType.type
 import com.skillw.itemsystem.internal.manager.ISConfig
@@ -76,7 +76,7 @@ object ItemListCommand {
                             val itemStack =
                                 runCatching { item.build(player) }.run { exceptionOrNull()?.printStackTrace();getOrNull() }
                                     ?: error
-                            player?.let { itemStack.replace(it) }
+                            player?.let { itemStack.dynamic(it) }
                             raw = TellrawJson()
                                 .append(
                                     format.replacement(

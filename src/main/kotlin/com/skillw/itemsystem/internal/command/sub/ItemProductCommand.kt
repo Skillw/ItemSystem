@@ -1,7 +1,7 @@
 package com.skillw.itemsystem.internal.command.sub
 
 import com.skillw.itemsystem.ItemSystem
-import com.skillw.itemsystem.api.ItemAPI.replace
+import com.skillw.itemsystem.api.ItemAPI.dynamic
 import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.ItemDrop.effectDrop
@@ -80,7 +80,7 @@ object ItemProductCommand {
 
     @Suppress("DEPRECATION")
     private fun ProxyCommandSender.sendGiveMessage(player: Player, itemStack: ItemStack, amount: Int) {
-        val item = itemStack.clone().apply { replace(player) }
+        val item = itemStack.clone().apply { dynamic(player) }
         TellrawJson()
             .append(asLangText("command-give-item", player.displayName, amount, item.getName()))
             .hoverItem(item)
@@ -243,7 +243,7 @@ object ItemProductCommand {
         amount: Int,
         location: Location,
     ) {
-        val item = itemStack.clone().apply { replace(player) }
+        val item = itemStack.clone().apply { dynamic(player) }
         with(location) {
             TellrawJson()
                 .append(

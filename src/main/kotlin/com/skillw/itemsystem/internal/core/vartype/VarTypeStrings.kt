@@ -3,6 +3,7 @@ package com.skillw.itemsystem.internal.core.vartype
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.api.vartype.VariableType
 import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.util.StringUtils.toList
 import taboolib.common5.Coerce
 import java.util.*
 
@@ -10,8 +11,11 @@ import java.util.*
 @AutoRegister
 object VarTypeStrings : VariableType("strings", "string", "str") {
 
-    private fun Any?.toList(): List<String> {
-        return Coerce.toListOf(this, String::class.java)
+    private fun Any?.toStrList(): List<String> {
+        return if (this is String)
+            this.toList()
+        else
+            Coerce.toListOf(this, String::class.java)
     }
 
     override fun createVar(memory: Memory): Any {
@@ -19,11 +23,11 @@ object VarTypeStrings : VariableType("strings", "string", "str") {
             val content =
                 when {
                     metaData.containsKey("values") -> {
-                        LinkedList(metaData["values"].toList())
+                        LinkedList(metaData["values"].toStrList())
                     }
 
                     metaData.containsKey("strings") -> {
-                        LinkedList(metaData["strings"].toList())
+                        LinkedList(metaData["strings"].toStrList())
                     }
 
                     metaData.containsKey("value") -> {

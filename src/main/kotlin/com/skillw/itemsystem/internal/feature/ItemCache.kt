@@ -19,13 +19,6 @@ object ItemCache {
 
     @ScriptTopLevel
     @JvmStatic
-    @Deprecated("Use getTag")
-    fun ItemStack.cacheTag(): ItemTag {
-        return getTag()
-    }
-
-    @ScriptTopLevel
-    @JvmStatic
     fun ItemStack.getTag(): ItemTag {
         if (isAir()) return ItemTag()
         return getItemTag()

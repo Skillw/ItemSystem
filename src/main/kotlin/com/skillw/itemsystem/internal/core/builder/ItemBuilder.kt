@@ -26,10 +26,6 @@ class ItemBuilder(key: String) : BaseItemBuilder(key) {
     override val options = HashMap<String, Any>()
     override val process = LinkedList<MetaData>()
 
-    constructor(key: String, receiver: ItemBuilder.() -> Unit) : this(key) {
-        receiver(this)
-    }
-
     override fun build(entity: LivingEntity?, processData: ProcessData): ItemStack {
         val pre = ItemBuildEvent.Post(this, processData, entity)
         pre.call()

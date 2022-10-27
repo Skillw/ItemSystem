@@ -9,7 +9,7 @@ import com.skillw.pouvoir.api.annotation.AutoRegister
 object MetaScript : BaseMeta("script") {
     override fun invoke(memory: Memory) {
         with(memory) {
-            scriptManager.evalJs<Any?>(getString("script"), mapOf("data" to memory.processData))
+            scriptManager.evalJs<Any?>(metaData.map["script"].toString(), mapOf("data" to memory.processData))
         }
     }
 }

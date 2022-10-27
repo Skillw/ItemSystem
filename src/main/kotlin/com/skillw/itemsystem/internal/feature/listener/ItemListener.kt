@@ -1,6 +1,6 @@
 package com.skillw.itemsystem.internal.feature.listener
 
-import com.skillw.itemsystem.api.ItemAPI.replace
+import com.skillw.itemsystem.api.ItemAPI.dynamic
 import com.skillw.itemsystem.util.nms.NMS
 import org.bukkit.GameMode
 import taboolib.common.platform.event.SubscribeEvent
@@ -16,7 +16,10 @@ private object SyncListener {
         if (packet.name != "PacketPlayOutWindowItems") return
         val player = event.player
         if (player.gameMode !in modes) return
-        NMS.INSTANCE.computeCraftItems(player, packet.source) { item -> item.replace(player) }
+        NMS.INSTANCE.computeCraftItems(
+            player,
+            packet.source
+        ) { item -> item.dynamic(player) }
     }
 
     @SubscribeEvent
@@ -26,6 +29,9 @@ private object SyncListener {
         if (packet.name != "PacketPlayOutSetSlot") return
         val player = event.player
         if (player.gameMode !in modes) return
-        NMS.INSTANCE.computeCraftItem(player, packet.source) { item -> item.replace(player) }
+        NMS.INSTANCE.computeCraftItem(
+            player,
+            packet.source
+        ) { item -> item.dynamic(player) }
     }
 }

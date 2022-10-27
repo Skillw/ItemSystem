@@ -61,6 +61,10 @@ object ItemSystem : Plugin(), SubPouvoir {
     @PouManager
     lateinit var varTypeManager: VarTypeManager
 
+    @JvmStatic
+    @PouManager
+    lateinit var actionTypeManager: ActionTypeManager
+
     override fun onLoad() {
         load()
     }

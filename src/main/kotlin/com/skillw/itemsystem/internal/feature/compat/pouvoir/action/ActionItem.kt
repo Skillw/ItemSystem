@@ -43,12 +43,12 @@ object ActionItem : IAction {
     override fun action(parser: Parser, obj: Any, action: String): Any? {
         if (obj !is ItemStack) return null
         with(parser) {
-            val player = context["player"] as? Player? ?: error("No player found, please define 'player' !")
             with(obj) {
                 when (action) {
                     "drop" -> {
                         except("at")
                         val loc = parse<Location>()
+                        val player = context["player"] as? Player? ?: error("No player found, please define 'player' !")
                         return obj.drop(loc, ItemDrop.DropData(player))
                     }
 
@@ -71,6 +71,7 @@ object ActionItem : IAction {
                             itemMeta = meta
                             return true
                         }
+                        val player = context["player"] as? Player? ?: error("No player found, please define 'player' !")
                         return getName(player)
                     }
 
@@ -99,6 +100,7 @@ object ActionItem : IAction {
                     }
 
                     "cooldown" -> {
+                        val player = context["player"] as? Player? ?: error("No player found, please define 'player' !")
                         if (except("to")) {
                             player.setCooldown(type, parseInt())
                             return true
@@ -136,6 +138,7 @@ object ActionItem : IAction {
                     }
 
                     "rebuild" -> {
+                        val player = context["player"] as? Player? ?: error("No player found, please define 'player' !")
                         var variables = setOf("all")
                         var data: Map<String, Any> = HashMap()
                         if (except("with")) {

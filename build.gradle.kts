@@ -3,7 +3,7 @@ import java.net.URL
 plugins {
     `java-library`
     `maven-publish`
-    id("io.izzel.taboolib") version "1.42"
+    id("io.izzel.taboolib") version "1.50"
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("org.jetbrains.dokka") version "1.6.10"
 }
@@ -21,7 +21,7 @@ tasks.dokkaJavadoc.configure {
 }
 
 taboolib {
-    options("skip-kotlin-relocate")
+//    options("skip-kotlin-relocate")
     description {
         contributors {
             name("Glom_")
@@ -45,9 +45,8 @@ taboolib {
     install("platform-bukkit")
     install("module-metrics")
     install("module-nms")
-    install("module-ui")
     classifier = null
-    version = "6.0.9-111"
+    version = "6.0.10-7"
 }
 
 repositories {

@@ -17,7 +17,7 @@ import java.io.File
 
 object GlobalManagerImpl : GlobalManager() {
     override val key: String = "GlobalManager"
-    override val priority: Int = 1
+    override val priority: Int = 2
     override val subPouvoir: SubPouvoir = ItemSystem
     private val globals = BaseMap<File, HashSet<String>>()
 
@@ -30,6 +30,10 @@ object GlobalManagerImpl : GlobalManager() {
                 register(key, MetaData.deserialize(section.toMap()))
             }
         }
+    }
+
+    private fun fileReload(file: File) {
+        reload(file)
         itemBuilderManager.onReload()
     }
 
@@ -47,6 +51,6 @@ object GlobalManagerImpl : GlobalManager() {
         clear()
         File(getDataFolder(), "global").listSubFiles()
             .filter { it.extension == "yml" }
-            .forEach { it.watch(this::reload); reload(it) }
+            .forEach { it.watch(this::fileReload); reload(it) }
     }
 }
