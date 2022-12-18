@@ -53,16 +53,16 @@ jobs:
       - name: build (retry 1)
         continue-on-error: true
         id: build_api_2
-        if: steps.build_1.outcome == 'failure'
+        if: steps.build_api_1.outcome == 'failure'
         run: ./gradlew build -Pcode=true
       - name: build (retry 2)
         continue-on-error: true
         id: build_api_3
-        if: steps.build_2.outcome == 'failure'
+        if: steps.build_api_2.outcome == 'failure'
         run: ./gradlew build -Pcode=true
       - name: build (retry 3)
         id: build_api_4
-        if: steps.build_3.outcome == 'failure'
+        if: steps.build_api_3.outcome == 'failure'
         run: ./gradlew build -Pcode=true
       # 上传构建文件
       - name: capture build artifacts
