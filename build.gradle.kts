@@ -23,7 +23,7 @@ task("versionPlus") {
 task("buildCode") {
     if (code == null) return@task
     val origin = project.version.toString()
-    project.version = "$origin-code"
+    project.version = "$origin-api"
 }
 
 tasks.dokkaJavadoc.configure {
@@ -39,7 +39,7 @@ tasks.dokkaJavadoc.configure {
 }
 
 taboolib {
-    if (project.version.toString().contains("-code")) {
+    if (project.version.toString().contains("-api")) {
         options("skip-kotlin-relocate")
     }
     description {
