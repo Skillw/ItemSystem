@@ -37,7 +37,7 @@ object MetaEnchantments : BaseMeta("enchantments") {
         data.itemTag.remove("ench")
         data.itemTag.remove("Enchantments")
         if (data.builder.enchants.isEmpty()) return null
-        return mapOf("enchantments" to data.builder.enchants.mapKeys { it.key.key.key })
+        return mapOf("enchantments" to data.builder.enchants.mapKeys { XEnchantment.matchXEnchantment(it.key).name })
     }
 
 }

@@ -23,7 +23,8 @@ object MetaAction : BaseMeta("action") {
                 return
             }
             val key = type.key
-            val cooldown = getLong("cooldown", 0L)
+            val sync = context.getOrDefault("sync", false).toString().toBoolean()
+            val cooldown = context.getOrDefault("cooldown", 0L).toString().toLong()
             val run = context["run"]?.toString()?.run { if (startsWith("js")) analysis() else this } ?: return
             nbt.getOrPut("ITEM_SYSTEM") { ItemTag() }.asCompound()
                 .getOrPut("actions") { ItemTag() }.asCompound()
@@ -31,6 +32,8 @@ object MetaAction : BaseMeta("action") {
                 .add(ItemTagData.toNBT(run))
             if (cooldown > 0)
                 nbt.putDeep("ITEM_SYSTEM.action_cooldown.${key}", ItemTagData(cooldown))
+            if (sync)
+                nbt.putDeep("ITEM_SYSTEM.action_sync.${key}", ItemTagData("true"))
         }
     }
 

@@ -11,7 +11,7 @@ object FunctionSave : PouFunction<Any>("save", namespace = "item_system") {
         with(parser) {
             if (context !is ProcessData) return "Error Context"
             val processData = context as ProcessData
-            if (peekNext() == "[") {
+            if (peek() == "[") {
                 return parseList().onEach { processData.savingKeys.add(it.toString()) }
             }
             return parseString().also { processData.savingKeys.add(it) }

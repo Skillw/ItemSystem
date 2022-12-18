@@ -6,11 +6,11 @@ import com.skillw.pouvoir.api.annotation.AutoRegister
 import org.bukkit.configuration.ConfigurationSection
 
 @AutoRegister
-object OptionLockedNBTKeys : BaseOption("locked-nbt-keys") {
+object OptionAbstract : BaseOption("abstract") {
     override fun init(section: ConfigurationSection, builder: BaseItemBuilder) {
-        builder.options["locked-nbt-keys"] = section.getStringList("locked-nbt-keys")
+        builder.options["abstract"] = section.getBoolean("abstract")
     }
 
-    val BaseItemBuilder.lockedNBT: List<String>
-        get() = options["locked-nbt-keys"] as List<String>
+    val BaseItemBuilder.abstract: Boolean
+        get() = options["abstract"] as Boolean
 }

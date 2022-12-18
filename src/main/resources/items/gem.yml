@@ -1,7 +1,10 @@
 BaseGem:
+  abstract: true
   process:
+    - unique: true
     - key: quality
       type: weight
+      save: true
       values:
         - 200: "粗糙"
         - 100: "精良"
@@ -20,20 +23,20 @@ BaseGem:
       史诗: [ "&5", "50", "RED_DYE" ]
       传说: [ "&6", "60", "RED_DYE" ]
     - run: |-
-        def list = &品质数据Map get &quality
-        def 品质数据 = mapOf with &品质数据模板 &list
-        def 品质颜色 = &品质数据 get '颜色'
-        def 品质评分 = &品质数据 get '评分'
-        def 材质 = &品质数据 get '材质'
-        def 品质 = join [ &品质颜色 , &quality ]
-    - run: "def 总评分 to type int calculate ' { &品质评分 } * 10 '"
+        set list = &品质数据Map get &quality
+        set 品质数据 = mapOf with &品质数据模板 &list
+        set 品质颜色 = &品质数据 get '颜色'
+        set 品质评分 = &品质数据 get '评分'
+        set 材质 = &品质数据 get '材质'
+        set 品质 = join [ &品质颜色 , &quality ]
+    - run: "set 总评分 to type int calculate ' { &品质评分 } * 10 '"
     - material: "{&材质}"
     - glow-color: "{&品质颜色}"
     - run: |-
         def name to '模板'
         def attributes to '无' 
-        def 名字 to &name
-        def 属性 to join &attributes by '\n'
+        set 名字 to &name
+        set 属性 to join &attributes by '\n'
     - display: "{&品质颜色}{&名字}宝石"
     - lore:
         - "&f&m─&7&m─────────&f&m─&f介绍&f&m─&7&m─────────&f&m─"
@@ -54,12 +57,14 @@ BaseGem:
         IGNORE_ATTRIBUTE: "true"
     - action:
         type: build
+        sync: true
         run: |-
           set attKey to analysis 'gem-{&unique}'
           set gemAtt to attr readLore &item
           attr addItemAttr &item &attKey &gemAtt
     - action:
         type: click_item
+        sync: true
         run: js_invoke::gem.js::inlay
 
 AttackGem:
@@ -98,6 +103,7 @@ ExampleDisassemble:
   process:
     - key: quality
       type: weight
+      save: true
       values:
         - 200: "粗糙"
         - 100: "精良"
@@ -108,11 +114,11 @@ ExampleDisassemble:
       粗糙: [ "&8", "flint" ]
       精良: [ "&e", "ink_sac" ]
     - run: |-
-        def list = &品质数据Map get &quality
-        def 品质数据 = mapOf with &品质数据模板 &list
-        def 品质颜色 = &品质数据 get '颜色'
-        def 材质 = &品质数据 get '材质'
-        def 品质 = join [ &品质颜色 , &quality ]
+        set list = &品质数据Map get &quality
+        set 品质数据 = mapOf with &品质数据模板 &list
+        set 品质颜色 = &品质数据 get '颜色'
+        set 材质 = &品质数据 get '材质'
+        set 品质 = join [ &品质颜色 , &quality ]
     - display: "{&品质} &7拆卸石"
     - material: "flint"
     - glow-color: "{&品质颜色}"
@@ -126,4 +132,5 @@ ExampleDisassemble:
         - "&7请将我放到有宝石的物品上"
     - action:
         type: click_item
+        sync: true
         run: js_invoke::gem.js::{if check &quality equals '精良' then 'disassembleWithGem' else 'disassembleWithOutGem'}

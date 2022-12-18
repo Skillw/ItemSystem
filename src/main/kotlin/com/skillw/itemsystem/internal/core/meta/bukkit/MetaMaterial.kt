@@ -6,8 +6,6 @@ import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.taboolib.library.xseries.XMaterial
 import org.bukkit.Material
-import taboolib.common5.Coerce
-import taboolib.library.xseries.parseToXMaterial
 
 @AutoRegister
 object MetaMaterial : BaseMeta("material") {
@@ -17,11 +15,8 @@ object MetaMaterial : BaseMeta("material") {
     override fun invoke(memory: Memory) {
         with(memory) {
             val material = getString("material")
-            builder.material = material.parseToXMaterial().parseMaterial() ?: Coerce.toEnum(
-                material,
-                Material::class.java,
-                Material.STONE
-            )
+            builder.material = Material.matchMaterial(material.uppercase()) ?: XMaterial.matchXMaterial(material)
+                .orElse(XMaterial.STONE).parseMaterial() ?: Material.STONE
         }
     }
 

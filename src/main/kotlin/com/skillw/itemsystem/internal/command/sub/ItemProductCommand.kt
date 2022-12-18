@@ -1,12 +1,18 @@
 package com.skillw.itemsystem.internal.command.sub
 
 import com.skillw.itemsystem.ItemSystem
-import com.skillw.itemsystem.api.ItemAPI.dynamic
+import com.skillw.itemsystem.internal.command.ISCommand.soundClick
+import com.skillw.itemsystem.internal.command.ISCommand.soundFail
+import com.skillw.itemsystem.internal.command.ISCommand.soundSuccess
+import com.skillw.itemsystem.internal.core.option.OptionAbstract.abstract
 import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.ItemDrop.effectDrop
 import com.skillw.itemsystem.internal.feature.effect.RandomItemEffect
 import com.skillw.itemsystem.internal.feature.product.ProductData
+import com.skillw.itemsystem.util.ItemUtils.displayClone
+import com.skillw.itemsystem.util.ItemUtils.displayItem
+import com.skillw.pouvoir.util.PlayerUtils.soundFinish
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.entity.Player
@@ -15,6 +21,7 @@ import org.bukkit.util.Vector
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.ProxyPlayer
 import taboolib.common.platform.command.subCommand
+import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getProxyPlayer
 import taboolib.common.platform.function.onlinePlayers
 import taboolib.common.platform.function.submitAsync
@@ -25,7 +32,6 @@ import taboolib.module.lang.asLangText
 import taboolib.module.lang.sendLang
 import taboolib.module.nms.getName
 import taboolib.platform.util.giveItem
-import taboolib.platform.util.hoverItem
 import taboolib.platform.util.toProxyLocation
 
 object ItemProductCommand {
@@ -43,6 +49,10 @@ object ItemProductCommand {
         val item = ItemSystem.itemBuilderManager[itemKey]
         if (item == null) {
             sender.sendLang("command-valid-item", itemKey)
+            return ProductData(ArrayList(), false)
+        }
+        if (item.abstract) {
+            sender.sendLang("item-cant-be-produced", itemKey)
             return ProductData(ArrayList(), false)
         }
         return ProductData.product(item, productData, proxyPlayer?.cast<Player>())
@@ -64,6 +74,7 @@ object ItemProductCommand {
             if (itemStacks.isEmpty()) return@submitAsync
             if (!isSame) {
                 sync {
+                    player.soundFinish()
                     for (itemStack in itemStacks) {
                         player.giveItem(itemStack)
                         sender.sendGiveMessage(player, itemStack, 1)
@@ -74,16 +85,21 @@ object ItemProductCommand {
             sync {
                 player.giveItem(itemStacks)
             }
+            player.soundFinish()
             sender.sendGiveMessage(player, itemStacks[0], itemStacks.size)
         }
     }
 
     @Suppress("DEPRECATION")
     private fun ProxyCommandSender.sendGiveMessage(player: Player, itemStack: ItemStack, amount: Int) {
-        val item = itemStack.clone().apply { dynamic(player) }
+        val item = itemStack.displayClone(player)
         TellrawJson()
             .append(asLangText("command-give-item", player.displayName, amount, item.getName()))
-            .hoverItem(item)
+            .append(
+                TellrawJson()
+                    .append(console().asLangText("show-item"))
+                    .displayItem(item)
+            )
             .sendTo(this)
     }
 
@@ -105,7 +121,8 @@ object ItemProductCommand {
 
     val give = subCommand {
         dynamic {
-            suggestion<ProxyCommandSender>(uncheck = true) { _, _ ->
+            suggestion<ProxyCommandSender>(uncheck = true) { sender, _ ->
+                sender.soundClick()
                 onlinePlayers().map { it.name }
             }
             dynamic {
@@ -117,6 +134,7 @@ object ItemProductCommand {
                     val proxyPlayer = getProxyPlayer(playerName)
                     if (proxyPlayer == null) {
                         sender.sendLang("command-valid-player", playerName)
+                        sender.soundFail()
                         return@execute
                     }
                     give(argument, sender, proxyPlayer)
@@ -126,19 +144,23 @@ object ItemProductCommand {
     }
     val drop = subCommand {
         dynamic {
-            suggestion<ProxyCommandSender>(uncheck = true) { _, _ ->
+            suggestion<ProxyCommandSender>(uncheck = true) { sender, _ ->
+                sender.soundClick()
                 onlinePlayers().map { it.name }
             }
             dynamic {
-                suggestion<ProxyCommandSender>(uncheck = true) { _, _ ->
+                suggestion<ProxyCommandSender>(uncheck = true) { sender, _ ->
+                    sender.soundClick()
                     ItemSystem.itemBuilderManager.map { it.key }
                 }
                 dynamic {
-                    suggestion<ProxyCommandSender>(uncheck = true) { _, _ ->
+                    suggestion<ProxyCommandSender>(uncheck = true) { sender, _ ->
+                        sender.soundClick()
                         Bukkit.getWorlds().map { it.name }
                     }
                     dynamic {
                         suggestion<ProxyPlayer>(uncheck = true) { sender, _ ->
+                            sender.soundClick()
                             listOf(sender.location.x.toString())
                         }
                         restrict<ProxyCommandSender> { _, _, argument ->
@@ -146,6 +168,7 @@ object ItemProductCommand {
                         }
                         dynamic {
                             suggestion<ProxyPlayer>(uncheck = true) { sender, _ ->
+                                sender.soundClick()
                                 listOf(sender.location.y.toString())
                             }
                             restrict<ProxyCommandSender> { _, _, argument ->
@@ -153,6 +176,7 @@ object ItemProductCommand {
                             }
                             dynamic {
                                 suggestion<ProxyPlayer>(uncheck = true) { sender, _ ->
+                                    sender.soundClick()
                                     listOf(sender.location.z.toString())
                                 }
                                 restrict<ProxyCommandSender> { _, _, argument ->
@@ -163,6 +187,7 @@ object ItemProductCommand {
                                     val proxyPlayer = getProxyPlayer(playerName)
                                     if (proxyPlayer == null) {
                                         sender.sendLang("command-valid-player", playerName)
+                                        sender.soundFail()
                                         return@execute
                                     }
 
@@ -172,6 +197,7 @@ object ItemProductCommand {
                                     val world = Bukkit.getWorld(worldKey)
                                     if (world == null) {
                                         sender.sendLang("command-valid-world", worldKey)
+                                        sender.soundFail()
                                         return@execute
                                     }
 
@@ -210,6 +236,7 @@ object ItemProductCommand {
                                             sync { itemStacks.forEach { it.drop(location, dropData) } }
                                         }
 
+                                        proxyPlayer.soundSuccess()
                                         itemStacks.forEach {
                                             if (!isSame)
                                                 sender.sendDropMessage(
@@ -243,13 +270,17 @@ object ItemProductCommand {
         amount: Int,
         location: Location,
     ) {
-        val item = itemStack.clone().apply { dynamic(player) }
+        val item = itemStack.displayClone(player)
         with(location) {
             TellrawJson()
                 .append(
                     TellrawJson()
                         .append(asLangText("command-drop-item-item", item.getName(), amount))
-                        .hoverItem(item)
+                )
+                .append(
+                    TellrawJson()
+                        .append(console().asLangText("show-item"))
+                        .displayItem(item)
                 )
                 .append(
                     TellrawJson()

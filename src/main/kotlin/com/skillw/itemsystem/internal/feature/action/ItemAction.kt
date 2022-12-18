@@ -24,7 +24,6 @@ internal object ItemAction {
         val tag = getTag()
         val hashCode = hashCode()
         val key = actionType.key
-
         val argumentsMap = HashMap(arguments)
 
         argumentsMap["isCooldown"] = actionCooldown.getOrPut(entity.uniqueId) { BaseMap() }
@@ -32,8 +31,9 @@ internal object ItemAction {
             .contains(key)
 
         val actions = tag.getDeep("ITEM_SYSTEM.actions.${key}")?.asList() ?: return
+        val sync = tag.getDeep("ITEM_SYSTEM.action_sync.${key}")?.asString()?.toBoolean() ?: false
         val cooldown = tag.getDeep("ITEM_SYSTEM.action_cooldown.${key}")?.asLong() ?: 0L
-        submitAsync {
+        fun exec() {
             actions.forEach {
                 it.asString().run {
                     if (startsWith("js_eval::"))
@@ -46,6 +46,9 @@ internal object ItemAction {
                 }
             }
         }
+        if (sync)
+            exec()
+        else submitAsync { exec() }
         if (cooldown <= 0) return
         actionCooldown.getOrPut(entity.uniqueId) { BaseMap() }.put(hashCode, key)
         submit(delay = cooldown) {

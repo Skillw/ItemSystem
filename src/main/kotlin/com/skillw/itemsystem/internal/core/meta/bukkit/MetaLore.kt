@@ -24,7 +24,6 @@ object MetaLore : BaseMeta("lore") {
 
     override fun invoke(memory: Memory) {
         with(memory) {
-            //                                        气死，拓展函数不能函数引用
             getList("lore").map { it.toString() }.forEach { addLore(it) }
         }
     }

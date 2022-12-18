@@ -45,13 +45,13 @@ object BuffsMeta : BaseMeta("buffs") {
     private val tags = ConcurrentHashMap<Int, ItemTag>()
     private val data = BaseMap<UUID, HashSet<String>>()
 
-    @SubscribeEvent(bind = "com.skillw.attsystem.api.event.EquipmentUpdateEvent")
+    @SubscribeEvent(bind = "com.skillw.attsystem.api.event.EquipmentUpdateEvent\$After")
     fun e(optional: OptionalEvent) {
-        val event = optional.get<EquipmentUpdateEvent>()
+        val event = optional.get<EquipmentUpdateEvent.After>()
         val entity = event.entity
         if (entity !is LivingEntity) return
         val sets = HashSet<String>()
-        event.equipmentData.values.forEach inner@{
+        event.compound.values.forEach inner@{
             it.values.forEach { item ->
                 if (item.isAir()) return@forEach
                 tags.getOrPut(item.hashCode()) { item.getItemTag() }[BUFF_KEY]?.asCompound()

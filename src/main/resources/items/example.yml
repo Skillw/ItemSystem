@@ -1,3 +1,7 @@
+#物品元数据内的变量尽量不用def 尽量不要存到NBT，除非你需要
+#否则NBT内的数据会很长
+#什么变量要存到NBT里？
+#那些在物品更新中不应该变的变量
 ExampleItem:
   process:
     #声明一个无参数函数，用于随机颜色
@@ -14,7 +18,7 @@ ExampleItem:
       type: random
       #不缓存，每次都重新生成一个随机颜色
       cache: false
-      #不保存到NBT，供自动更新时使用（你存这玩意干啥）
+      #不保存到NBT，供自动更新时使用（默认就是不存）
       save: false
       values:
         [
@@ -36,10 +40,12 @@ ExampleItem:
         ]
     #处理品质相关
     # 这个`quality`是变量名，可以随意取名，但是不能重复
+    #一个权重变量，用于随机品质
     - key: quality
       #类型: 权重
       type: weight
-      #一个权重变量，用于随机品质
+      #要把随机出来的品质存到NBT里，防止更新时被刷成其他的
+      save: true
       values:
         - 200: "粗糙"
         - 100: "精良"
@@ -59,20 +65,20 @@ ExampleItem:
       #  颜色: &8
       #  评分: 10
       #  材质: WOOD_SWORD
-      粗糙: ["&8", "10", "WOOD_SWORD"]
-      精良: ["&e", "20", "STONE_SWORD"]
-      稀有: ["&b", "30", "IRON_SWORD"]
-      优秀: ["&a", "40", "GOLD_SWORD"]
-      史诗: ["&5", "50", "DIAMOND_SWORD"]
-      传说: ["&6", "60", "NETHERITE_SWORD"]
+      粗糙: [ "&8", "10", "WOOD_SWORD" ]
+      精良: [ "&e", "20", "STONE_SWORD" ]
+      稀有: [ "&b", "30", "IRON_SWORD" ]
+      优秀: [ "&a", "40", "GOLD_SWORD" ]
+      史诗: [ "&5", "50", "DIAMOND_SWORD" ]
+      传说: [ "&6", "60", "NETHERITE_SWORD" ]
     #下面这段是声明品质相关的变量
     - run: |-
-        def list = &品质数据Map get &quality
-        def 品质数据 = mapOf with &品质数据模板 &list
-        def 品质颜色 = &品质数据 get '颜色'
-        def 品质评分 = &品质数据 get '评分'
-        def 材质 = &品质数据 get '材质'
-        def 品质 = join [ &品质颜色 , &quality ]
+        set list = &品质数据Map get &quality
+        set 品质数据 = mapOf with &品质数据模板 &list
+        set 品质颜色 = &品质数据 get '颜色'
+        set 品质评分 = &品质数据 get '评分'
+        set 材质 = &品质数据 get '材质'
+        set 品质展示 = join [ &品质颜色 , &quality ]
 
     #处理前缀相关
     #  导入全局前缀元数据
@@ -81,7 +87,7 @@ ExampleItem:
     - run: |-
         def 前缀颜色 = &randomColor
         def prefix = &default-prefixes get &quality 
-        def 前缀 = join [ &前缀颜色 &prefix ]
+        set 前缀 = join [ &前缀颜色 &prefix ]
 
     #处理后缀相关
     #导入全局后缀元数据
@@ -93,17 +99,17 @@ ExampleItem:
         def suffix to &default-suffixes 
         def 后缀颜色 = &randomColor  
 
-        def 后缀 to join [ &后缀颜色 &suffix ] 
-        def 后缀效果 to join &suffix-effects get &suffix by '\n'
+        set 后缀 to join [ &后缀颜色 &suffix ] 
+        set 后缀效果 to join &suffix-effects get &suffix by '\n'
     #处理强度相关
     #声明强度相关的变量
     - run: |-
         def 强度 = random 0 to 1
-        def 强度展示 = format calculate '{&强度} * 100' '#.##'
-        def 强度条 = createBar [ empty to '&8|' , fill to '&a|' , length to 20 , percent to &强度 ]
+        set 强度展示 = format calculate '{&强度} * 100' '#.##'
+        set 强度条 = createBar [ empty to '&8|' , fill to '&a|' , length to 20 , percent to &强度 ]
 
     #计算总评分            转为整数
-    - run: "def 总评分 to type int calculate ' { &品质评分 } * {&强度} '"
+    - run: "set 总评分 to type int calculate ' { &品质评分 } * {&强度} '"
     #材质
     - material: "{&材质}"
     - can-craft: "false"
@@ -121,7 +127,7 @@ ExampleItem:
     - lore:
         - "&f&m─&7&m─────────&f&m─&f介绍&f&m─&7&m─────────&f&m─"
         - ""
-        - "&f>> &7品质: {&品质}             &7评分: &c{&总评分}"
+        - "&f>> &7品质: {&品质展示}             &7评分: &c{&总评分}"
         - "&e由青钢锻造而成，是一把强大的武器。"
         - ""
         - "&f&m─&7&m─────────&f&m─&f属性统计&f&m─&7&m─────────&f&m─"

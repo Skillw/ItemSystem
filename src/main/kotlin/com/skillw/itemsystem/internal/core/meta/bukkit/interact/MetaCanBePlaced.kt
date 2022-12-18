@@ -10,6 +10,7 @@ import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.block.BlockData
 import com.skillw.itemsystem.util.NBTUtils.obj
 import com.skillw.pouvoir.api.annotation.AutoRegister
+import org.bukkit.Location
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import taboolib.common.platform.event.SubscribeEvent
@@ -24,7 +25,7 @@ object MetaCanBePlaced : BaseMeta("can-be-placed") {
     override val default = "true"
     override fun invoke(memory: Memory) {
         with(memory) {
-            nbt["ITEM_SYSTEM.can-be-placed"] = ItemTagData.toNBT(getString("can-be-placed"))
+            nbt["ITEM_SYSTEM.can-be-placed"] = ItemTagData.toNBT(getString("can-be-placed", "false"))
         }
     }
 
@@ -53,14 +54,18 @@ object MetaCanBePlaced : BaseMeta("can-be-placed") {
             event.isCancelled = true
             return
         }
-        val location = event.block.location.toBlockLocation()
+        val location = event.block.location.blockLoc()
         BlockData.push(location, blockItem)
+    }
+
+    private fun Location.blockLoc(): Location {
+        return Location(world, x.toInt().toDouble(), y.toInt().toDouble(), z.toInt().toDouble())
     }
 
     @SubscribeEvent
     fun dig(event: BlockBreakEvent) {
         val player = event.player
-        val location = event.block.location.toBlockLocation()
+        val location = event.block.location.blockLoc()
         BlockData.pull(location, player)?.let {
             event.isDropItems = false
             it.drop(location, ItemDrop.DropData(player))

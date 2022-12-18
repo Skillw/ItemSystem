@@ -21,7 +21,7 @@ object MetaCanCraft : BaseMeta("can-craft") {
 
     override fun invoke(memory: Memory) {
         with(memory) {
-            nbt["ITEM_SYSTEM.can-craft"] = ItemTagData.toNBT(getString("can-craft"))
+            nbt["ITEM_SYSTEM.can-craft"] = ItemTagData.toNBT(getString("can-craft", "false"))
         }
     }
 

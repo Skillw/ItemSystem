@@ -11,7 +11,7 @@ object MetaDefine : BaseMeta("define") {
         with(memory) {
             val key = memory.metaData["key"]?.toString() ?: return
             val override = getBoolean("override", false)
-            if (getBoolean("save", getBoolean("cache", true))) {
+            if (getBoolean("save", getBoolean("cache", false))) {
                 savingKeys += key
                 if (processData.containsKey(key) && !override) {
                     return

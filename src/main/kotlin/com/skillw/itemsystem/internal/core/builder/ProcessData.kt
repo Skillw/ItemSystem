@@ -1,11 +1,11 @@
 package com.skillw.itemsystem.internal.core.builder
 
 import com.skillw.itemsystem.api.builder.IProcessData
-import com.skillw.itemsystem.util.TypeUtils.cast
 import com.skillw.pouvoir.api.PouvoirAPI.analysis
 import com.skillw.pouvoir.api.PouvoirAPI.eval
 import com.skillw.pouvoir.api.function.context.IContext
 import com.skillw.pouvoir.internal.core.function.context.SimpleContext
+import com.skillw.pouvoir.util.TypeUtils.cast
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import taboolib.library.xseries.XMaterial
@@ -91,7 +91,7 @@ class ProcessData(override val entity: LivingEntity? = null, val context: IConte
         }
     }
 
-    fun clone(): ProcessData {
-        return ProcessData(entity, SimpleContext(HashMap(context)))
+    override fun clone(): ProcessData {
+        return ProcessData(entity, context.clone())
     }
 }

@@ -1,8 +1,13 @@
 package com.skillw.itemsystem.internal.command.sub
 
-import com.skillw.itemsystem.api.ItemAPI.dynamic
+import com.skillw.itemsystem.internal.command.ISCommand.soundClick
+import com.skillw.itemsystem.internal.command.ISCommand.soundFail
 import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
 import com.skillw.itemsystem.util.GsonUtils.parseToMap
+import com.skillw.itemsystem.util.ItemUtils.displayClone
+import com.skillw.itemsystem.util.ItemUtils.displayItem
+import com.skillw.pouvoir.util.PlayerUtils.soundFinish
+import com.skillw.pouvoir.util.PlayerUtils.soundSuccess
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
@@ -11,6 +16,7 @@ import taboolib.common.platform.ProxyPlayer
 import taboolib.common.platform.command.subCommand
 import taboolib.common.platform.function.adaptPlayer
 import taboolib.common.platform.function.console
+import taboolib.common.platform.function.submit
 import taboolib.common.platform.function.submitAsync
 import taboolib.common.util.sync
 import taboolib.common5.Demand
@@ -19,7 +25,6 @@ import taboolib.module.lang.asLangText
 import taboolib.module.lang.sendLang
 import taboolib.module.nms.getItemTag
 import taboolib.module.nms.getName
-import taboolib.platform.util.hoverItem
 import taboolib.platform.util.isAir
 import taboolib.platform.util.onlinePlayers
 
@@ -27,16 +32,19 @@ object ItemRebuildCommand {
     val rebuild = subCommand {
         dynamic(optional = true) {
             suggestion<ProxyCommandSender> { sender, context ->
+                sender.soundClick()
                 onlinePlayers.map { it.name }
             }
             dynamic {
                 suggestion<ProxyCommandSender>(uncheck = true) { sender, context ->
+                    sender.soundClick()
                     listOf("-vars all -data {}")
                 }
                 execute<ProxyCommandSender> { sender, context, argument ->
                     val name = context.argument(-1)
                     val player = Bukkit.getPlayer(name)
                     if (player == null) {
+                        sender.soundFail()
                         sender.sendLang("command-valid-player", name)
                         return@execute
                     }
@@ -91,20 +99,32 @@ object ItemRebuildCommand {
         data: Map<String, Any>,
     ) {
         val player = cast<Player>()
-        val oldItem = old.clone().apply { dynamic(player) }
-        val newItem = new.clone().apply { dynamic(player) }
+        player.soundSuccess()
+        submit(delay = 10) {
+            player.soundFinish()
+        }
+        val oldItem = old.displayClone(player)
+        val newItem = new.displayClone(player)
         TellrawJson()
             .append(
                 TellrawJson()
                     .append(asLangText("command-rebuild-item-old", oldItem.getName()))
-                    .hoverItem(oldItem)
+            )
+            .append(
+                TellrawJson()
+                    .append(console().asLangText("show-item"))
+                    .displayItem(oldItem)
             )
             .append(
                 TellrawJson()
                     .append(
                         asLangText("command-rebuild-item-new", newItem.getName())
                     )
-                    .hoverItem(newItem)
+            )
+            .append(
+                TellrawJson()
+                    .append(console().asLangText("show-item"))
+                    .displayItem(newItem)
             )
             .append(
                 TellrawJson()

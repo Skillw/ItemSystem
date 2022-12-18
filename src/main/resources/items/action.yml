@@ -1,4 +1,4 @@
-eaxmple_left:
+example_left:
   auto-update: true
   process:
     - display: "&7Glomの神奇石头"
@@ -21,7 +21,9 @@ eaxmple_left:
         run: |-
           set loc to &entity location add listOf [ 0 3 0 ]
           set diamond to item material DIAMOND
+          #5tick后丢个钻石
           task in 5 {
              &diamond drop at &loc 
           }
-          effect particle 'REDSTONE' at &loc data particleData dust [ color [ 255 0 255 ] in 10 ]
+          #播放粒子特效
+          effect particle 'REDSTONE' at &loc

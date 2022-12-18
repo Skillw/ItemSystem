@@ -11,14 +11,12 @@ object FunctionMythicSkill : PouFunction<Boolean>("mmskill", namespace = "common
     override fun execute(parser: Parser): Boolean {
         with(parser) {
             val skillKey = parseString()
-            val skill = Mythic.API.getSkillMechanic(skillKey)
-            var trigger = "API"
+            var power = 1.0f
             if (except("with")) {
-                trigger = parseString()
+                power = parseFloat()
             }
-            val entity = (context["entity"] ?: context["player"]) as? LivingEntity? ?: return false
-            return skill?.execute(Mythic.API.getSkillTrigger(trigger), entity, entity)
-                ?: error("No such mm skill called $skillKey")
+            val caster = (context["entity"] ?: context["player"]) as? LivingEntity? ?: return false
+            return Mythic.API.castSkill(caster, skillKey, null, power = power)
         }
     }
 }

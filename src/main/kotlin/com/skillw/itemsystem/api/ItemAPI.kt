@@ -95,6 +95,40 @@ object ItemAPI {
     }
 
     /**
+     * 注册物品动作
+     *
+     * @param key String 物品动作id
+     * @return ActionType 物品动作
+     */
+    @JvmStatic
+    @ScriptTopLevel
+    @Deprecated(
+        "过时，请用registerAction",
+        ReplaceWith("registerAction")
+    )
+    fun registerAsyncAction(key: String): ActionType {
+        return ActionType(key).apply { register() }
+    }
+
+    /**
+     * 注册同步物品动作 与当前线程同步
+     *
+     * 现在同步动作需要在 物品元 Action 里将 sync 调为 true
+     *
+     * @param key String 物品动作id
+     * @return ActionType 物品动作
+     */
+    @JvmStatic
+    @ScriptTopLevel
+    @Deprecated(
+        "过时，请用registerAction",
+        ReplaceWith("registerAction")
+    )
+    fun registerSyncAction(key: String): ActionType {
+        return ActionType(key).apply { register() }
+    }
+
+    /**
      * 触发物品动作
      *
      * @param key String 物品动作id

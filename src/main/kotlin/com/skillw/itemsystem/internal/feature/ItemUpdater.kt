@@ -5,7 +5,9 @@ import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.api.event.ItemBuildEvent
 import com.skillw.itemsystem.internal.core.builder.ProcessData
 import com.skillw.itemsystem.internal.core.option.OptionAutoUpdate.autoUpdate
+import com.skillw.itemsystem.internal.core.option.OptionLockedLore.lockedLore
 import com.skillw.itemsystem.internal.core.option.OptionLockedNBTKeys.lockedNBT
+import com.skillw.itemsystem.internal.feature.ItemCache.cacheLore
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.util.NBTUtils.toMutableMap
 import org.bukkit.entity.LivingEntity
@@ -17,6 +19,7 @@ import taboolib.module.nms.ItemTagData
 import taboolib.module.nms.ItemTagType
 import taboolib.module.nms.getItemTag
 import taboolib.platform.util.isAir
+import taboolib.platform.util.modifyLore
 
 object ItemUpdater {
     /**
@@ -32,6 +35,17 @@ object ItemUpdater {
         val key = tag["key"]?.asString() ?: return false
         val new = ItemSystem.itemBuilderManager[key] ?: return false
         return new.autoUpdate && tag["hash"]?.asInt() != new.hashCode()
+    }
+
+    @JvmStatic
+    fun ItemStack.updateIfNeed(
+        entity: LivingEntity,
+        variables: Set<String> = emptySet(),
+        productData: Map<String, Any> = emptyMap(),
+    ): ItemStack {
+        return if (isOutDated()) {
+            updateItem(entity, variables, productData)
+        } else this
     }
 
     /**
@@ -67,6 +81,7 @@ object ItemUpdater {
                 .toMutableMap()
                 .apply { putAll(productData) }
         } ?: return this
+        val originLore = cacheLore()
         val item = ItemSystem.itemBuilderManager[key] ?: return this
         val processData = ProcessData(entity).apply { putAll(data); savingKeys.addAll(data.keys) }
         val update = ItemBuildEvent.Update(item, processData, this, entity)
@@ -76,12 +91,19 @@ object ItemUpdater {
         }
 
         return item.build(entity, processData).apply item@{
+            amount = this@updateItem.amount
             getItemTag().apply {
                 item.lockedNBT.forEach(::removeDeep)
                 itemTag.forEach { key, value ->
                     merge(key, value)
                 }
                 saveTo(this@item)
+            }
+            if (item.lockedLore) {
+                modifyLore {
+                    clear()
+                    addAll(originLore)
+                }
             }
         }
     }

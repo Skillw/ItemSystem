@@ -12,5 +12,5 @@ object OptionAutoUpdate : BaseOption("auto-update") {
     }
 
     val BaseItemBuilder.autoUpdate: Boolean
-        get() = options["locked-nbt-keys"].toString().toBoolean()
+        get() = options["auto-update"].toString().toBoolean()
 }

@@ -2,13 +2,13 @@ prefix: '&d[&9ItemSystem&d] '
 
 command-reload: '&d[&9ItemSystem&d] &a插件已重载成功!'
 command-info:
-  - '&6================================'
+  - '&f&m─&6&m────────────────────────────────────────────────────&6&f&m─'
   - ' &9指令列表:'
   - '  &6/item'
   - '    &d- &ehelp &5—— &a显示帮助.'
   - '    &d- &eget &b[物品ID] (-amount 数量公式) (-probable 几率公式) (--same) (-data 构造数据) &5—— &a获取一个物品.'
   - '    &d- &egive &b[玩家ID] [物品ID] (-amount 数量公式) (-probable 几率公式) (--same) (-data 构造数据) &5—— &a给玩家物品'
-  - '    &d- &erebuild &b(玩家ID) (-vars 刷新的变量id) (-data 构造数据) &5—— &a刷新玩家手上的物品'
+  - '    &d- &erebuild &b[玩家ID] (-vars 刷新的变量id) (-data 构造数据) &5—— &a刷新玩家手上的物品'
   - '    &d- &elist &b(类型) (页数) &5—— &a列出物品列表'
   - '    &d- &esave &b[文件路径] [物品ID] &5—— &a存储你手上的物品'
   - '    &d- &edrop &b[玩家ID] [物品ID] [世界名] [x] [y] [z] (-amount 数量公式) (-probable 几率公式) (--same) (--effect) (-data 构造数据)  &5—— &a掉落物品.'
@@ -16,8 +16,9 @@ command-info:
   - '&d[]为必填项 , ()为可填项'
   - '&d公式支持PAPI 四则运算,几率0~1对应1%~100%'
   - '&d(构造数据) 的 格式: &a{变量ID:值,变量id2:[a,b,c]}'
-  - '  &6================================'
-command-save-item: '&d[&9ItemSystem&d] &e保存了 &b{0} &5&lX1 &e至文件 &d{1} &e中!'
+  - '&f&m─&6&m────────────────────────────────────────────────────&6&f&m─'
+command-save-item-item: '&d[&9ItemSystem&d] &e将 &b{0} '
+command-save-item-key-file: '&e以键 &6{0} &e保存到了文件 &d{1} &e中!'
 command-give-item: '&d[&9ItemSystem&d] &e你给予了玩家 &6{0} &5&lX{1} &b{2}&e!'
 command-drop-item-item: '&d[&9ItemSystem&d] &e你让随机物品 &6{0} &5X{1}'
 command-drop-item-loc: '&e掉落在了世界 &a{0} &e: &b{1}&c,&b{2}&c,&b{3}'
@@ -38,6 +39,15 @@ command-valid-command: '&d[&9ItemSystem&d] &c你是不是输错指令啦!'
 command-id-exists: '&d[&9ItemSystem&d] &c物品 &b{0} &c已存在!'
 command-clear: '&d[&9ItemSystem&d] &a耗时数据已清楚!'
 
+command-list-error-item: '&c配置错误! 请查看后台报错!'
+command-list-abstract-item: '&7抽象物品'
+command-list-no-more-page: '&d[&9ItemSystem&d] 没有这一页!'
+command-list-previous: '&7上一页'
+command-list-next: '&7下一页'
+
+show-item: ' &c[?] '
+click-to-get-item: ' &a[!] '
+
 file-update: '&d[&9ItemSystem&d] &a检测到文件 &6{0} &a发生变动，已自动加载!'
 
 annotation-meta-register: '&d[&9ItemSystem&d] &a物品元 &6{0} &a注册成功!'
@@ -47,3 +57,6 @@ annotation-var-type-unregister: '&d[&9ItemSystem&d] &c变量类型 &6{0} &c注�
 
 item-cant-be-built: '&d[&9ItemSystem&d] &c物品 &6{0} &c不能被放置!'
 item-cant-be-craft: '&d[&9ItemSystem&d] &c物品 &6{0} &c不能参与合成!'
+
+item-cant-be-produced: '&d[&9ItemSystem&d] &c抽象物品 &6{0} &c不能被生成!'
+unknown-dynamic: "未知"

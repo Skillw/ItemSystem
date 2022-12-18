@@ -1,35 +1,60 @@
 package com.skillw.itemsystem.internal.feature
 
 
+import com.skillw.itemsystem.internal.core.builder.ProcessData
 import com.skillw.itemsystem.internal.feature.ItemCache.cacheLore
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
+import com.skillw.itemsystem.internal.manager.ISConfig
 import com.skillw.pouvoir.api.PouvoirAPI.eval
+import com.skillw.pouvoir.api.event.ManagerTime
+import com.skillw.pouvoir.api.function.context.IContext
+import com.skillw.pouvoir.api.function.parser.Parser
+import com.skillw.pouvoir.api.manager.Manager.Companion.addExec
 import com.skillw.pouvoir.internal.core.function.context.SimpleContext
 import com.skillw.pouvoir.util.ColorUtils.decolored
 import com.skillw.pouvoir.util.StringUtils.toList
 import org.bukkit.entity.LivingEntity
+import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
+import taboolib.common.LifeCycle
+import taboolib.common.platform.Awake
 import taboolib.module.chat.colored
-import taboolib.module.chat.uncolored
+import taboolib.module.nms.ItemTag
+import taboolib.module.nms.ItemTagData
+import taboolib.module.nms.getItemTag
 import java.util.regex.Pattern
 
 object ItemDynamic {
-    private val dynamicPattern = Pattern.compile("\\{\\{_dynamic::(?<content>.*?)_}}")
+    private var dynamicPattern: Pattern = Pattern.compile("\\{}")
+
+    @Awake(LifeCycle.ACTIVE)
+    fun addFunc() {
+        dynamicPattern = Pattern.compile("\\{${ISConfig.unknownDynamic}(?<index>\\d)}")
+        ISConfig.addExec("dynamic-pattern-update", ManagerTime.RELOAD) {
+            dynamicPattern = Pattern.compile("\\{${ISConfig.unknownDynamic}(?<index>\\d)}")
+        }
+    }
 
     private fun String.dynamic(itemStack: ItemStack, entity: LivingEntity): String {
         val matcher = dynamicPattern.matcher(this.decolored())
         if (!matcher.find()) return this
         val buffer = StringBuffer()
-        val context = SimpleContext().apply { put("item", itemStack); put("entity", entity) }
+        val context = SimpleContext().apply {
+            put("item", itemStack)
+            put("entity", entity)
+            if (entity is Player)
+                put("player", entity)
+        }
         do {
-            val content = matcher.group("content").uncolored().replace("\\$", "&")
+            val index = matcher.group("index")
+            val content = itemStack.getContent(index)
+            val replaced = content?.eval(
+                namespaces = arrayOf("item_system", "common"),
+                context = context
+            ).toString()
             matcher.appendReplacement(
                 buffer,
-                content.eval(
-                    namespaces = arrayOf("item_system", "common"),
-                    context = context
-                )
-                    .toString()
+                replaced
             )
         } while (matcher.find())
         return matcher.appendTail(buffer).toString().colored()
@@ -49,6 +74,31 @@ object ItemDynamic {
         meta.setDisplayName(display)
         meta.lore = newLore
         itemMeta = meta
+    }
+
+    private const val INDEX_KEY = "!!dynamicIndex!!"
+
+    internal fun ItemStack.getContent(index: String): String? {
+        val data = getItemTag().getDeepOrElse("ITEM_SYSTEM.DYNAMIC_DATA", ItemTag()).asCompound()
+        if (data.isEmpty()) return null
+        return data[index]?.asString()
+    }
+
+    internal fun Parser.addDynamic(content: String): String {
+        val dynamicData = (context as ProcessData).nbt
+            .getOrPut("ITEM_SYSTEM") { ItemTag() }.asCompound()
+            .getOrPut("DYNAMIC_DATA") { ItemTag() }.asCompound()
+        val index = nextIndex().toString()
+        val name = "${ISConfig.unknownDynamic}$index"
+        dynamicData[index] = ItemTagData(content)
+        return "{$name}"
+    }
+
+    private val IContext.dynamicIndexNow
+        get() = getOrPut(INDEX_KEY) { 0 } as Int
+
+    private fun IContext.nextIndex(): Int {
+        return (dynamicIndexNow + 1).also { put(INDEX_KEY, it) }
     }
 
 }

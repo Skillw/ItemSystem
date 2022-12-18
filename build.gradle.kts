@@ -3,9 +3,27 @@ import java.net.URL
 plugins {
     `java-library`
     `maven-publish`
-    id("io.izzel.taboolib") version "1.50"
+    id("io.izzel.taboolib") version "1.51"
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("org.jetbrains.dokka") version "1.6.10"
+}
+
+val code: String? by project
+task("versionPlus") {
+    val file = file("version.properties")
+    val properties = org.jetbrains.kotlin.konan.properties.loadProperties(file.path)
+    var subVersion = properties.getProperty("subVersion").toString().toInt()
+    if (code == null) {
+        properties["subVersion"] = (++subVersion).toString()
+        properties.store(file.outputStream(), null)
+    }
+    project.version = project.version.toString() + "-$subVersion"
+}
+
+task("buildCode") {
+    if (code == null) return@task
+    val origin = project.version.toString()
+    project.version = "$origin-code"
 }
 
 tasks.dokkaJavadoc.configure {
@@ -21,23 +39,25 @@ tasks.dokkaJavadoc.configure {
 }
 
 taboolib {
-//    options("skip-kotlin-relocate")
+    if (project.version.toString().contains("-code")) {
+        options("skip-kotlin-relocate")
+    }
     description {
         contributors {
             name("Glom_")
         }
         dependencies {
             name("Pouvoir")
-            name("AttributeSystem").optional(true)
             name("MythicMobs").optional(true)
+            name("AttributeSystem").optional(true)
             name("BuffSystem").optional(true)
 
         }
     }
     install("common")
     install("module-chat")
-    install("common-5")
     install("module-configuration")
+    install("common-5")
     install("module-database")
     install("module-effect")
     install("module-nms-util")
@@ -46,12 +66,13 @@ taboolib {
     install("module-metrics")
     install("module-nms")
     classifier = null
-    version = "6.0.10-7"
+    version = "6.0.10-31"
 }
 
 repositories {
     mavenCentral()
     maven { url = uri("https://mvn.lumine.io/repository/maven-public/") }
+    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
@@ -59,6 +80,7 @@ dependencies {
     compileOnly("ink.ptms:nms-all:1.0.0")
     compileOnly("com.google.code.gson:gson:2.9.0")
     compileOnly("io.lumine:Mythic-Dist:5.0.3")
+    compileOnly("com.github.LoneDev6:api-itemsadder:3.0.0")
 
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))

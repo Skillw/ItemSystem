@@ -1,12 +1,13 @@
 options:
   thread-pool-size: 4
   debug: false
+  drops-glow: true
 list:
   pre-page-size: 10
-  up: '&d&l&m======================================='
+  up: '&f&m─&d&m───────────────────────────────────────────&d&f&m'
   format: '&a{order} &b -> &6{key} &5- &b{name}'
   left: '  &b<-'
   page-info: '      &e{current}&5/&e{total}      '
   right: '&b->  '
-  down: '&d&l&m======================================='
+  down: '&f&m─&d&m─────────────────────────────────────────&d&f&m'
 

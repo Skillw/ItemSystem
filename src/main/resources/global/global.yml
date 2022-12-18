@@ -10,6 +10,7 @@ default-prefixes:
 default-suffixes:
   key: "default-suffixes"
   type: weight
+  save: true
   values:
     - 100: "快速"
     - 100: "平衡"

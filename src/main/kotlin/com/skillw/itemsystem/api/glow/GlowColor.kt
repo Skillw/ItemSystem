@@ -33,6 +33,11 @@ class GlowColor(override val key: ChatColor) : Registrable<ChatColor> {
         }
 
         @JvmStatic
+        internal fun Player.resetGlowColors() {
+            glowColors.values.map { it.packet }.forEach(::sendPacket)
+        }
+
+        @JvmStatic
         internal fun Player.addGlowEntity(entity: Entity, color: ChatColor) {
             entity.isGlowing = true
             initGlowColors()

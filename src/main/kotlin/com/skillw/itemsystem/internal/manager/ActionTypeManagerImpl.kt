@@ -21,7 +21,7 @@ object ActionTypeManagerImpl : ActionTypeManager() {
         itemStack: ItemStack,
         receiver: MutableMap<String, Any>.() -> Unit,
     ) {
-        call(this[string] ?: return, entity, itemStack, receiver)
+        return call(this[string] ?: return, entity, itemStack, receiver)
     }
 
     override fun call(
@@ -35,7 +35,7 @@ object ActionTypeManagerImpl : ActionTypeManager() {
         context["entity"] = entity
         if (entity is Player) context["player"] = entity
         context["item"] = item
-        item.run(type, context, entity)
+        return item.run(type, context, entity)
     }
 
     override fun onReload() {

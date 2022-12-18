@@ -17,7 +17,7 @@ import com.skillw.pouvoir.api.able.Registrable
  */
 abstract class BaseMeta(override val key: String) : Registrable<String>, Comparable<BaseMeta> {
 
-    protected open val priority: Int = 999
+    protected open val priority: Int = 1
     open val default: Any? = null
 
     override fun compareTo(other: BaseMeta): Int = if (this.priority == other.priority) 0
