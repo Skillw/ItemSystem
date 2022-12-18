@@ -70,3 +70,8 @@ jobs:
         with:
           name: Artifacts
           path: build/libs
+      - name: Sync version
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: master
+          folder: ./version.properties
