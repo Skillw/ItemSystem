@@ -22,13 +22,6 @@ object ItemSystem : Plugin(), SubPouvoir {
         BukkitPlugin.getInstance()
     }
 
-    val poolExecutor by lazy {
-        ScheduledThreadPoolExecutor(
-            ISConfig.threadPoolSize,
-            BasicThreadFactory.Builder().daemon(true).namingPattern("item-system-schedule-pool-%d").build()
-        )
-    }
-
     /** Config */
     @Config("config.yml")
     lateinit var config: ConfigFile

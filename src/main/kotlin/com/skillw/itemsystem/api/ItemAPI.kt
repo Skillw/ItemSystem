@@ -17,7 +17,9 @@ import org.bukkit.inventory.ItemStack
 import taboolib.common.util.random
 import taboolib.module.nms.getItemTag
 import java.util.function.Consumer
-
+/*
+主要API
+ */
 @ScriptTopLevel
 object ItemAPI {
 
