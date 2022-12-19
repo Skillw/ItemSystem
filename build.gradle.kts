@@ -8,6 +8,18 @@ plugins {
     id("org.jetbrains.dokka") version "1.6.10"
 }
 
+
+tasks.dokkaJavadoc.configure {
+    outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\itemsystem"))
+    dokkaSourceSets {
+        configureEach {
+            externalDocumentationLink {
+                url.set(URL("https://doc.skillw.com/pouvoir/"))
+            }
+        }
+    }
+
+}
 val api: String? by project
 val order: String? by project
 
@@ -28,18 +40,6 @@ task("releaseName") {
 
 task("version") {
     println(project.version.toString())
-}
-
-tasks.dokkaJavadoc.configure {
-    outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\itemsystem"))
-    dokkaSourceSets {
-        configureEach {
-            externalDocumentationLink {
-                url.set(URL("https://doc.skillw.com/pouvoir/"))
-            }
-        }
-    }
-
 }
 
 
