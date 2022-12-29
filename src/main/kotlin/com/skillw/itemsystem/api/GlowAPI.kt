@@ -2,12 +2,10 @@ package com.skillw.itemsystem.api
 
 import com.skillw.itemsystem.api.glow.GlowColor.Companion.addGlowEntity
 import com.skillw.itemsystem.api.glow.GlowColor.Companion.removeGlowEntity
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import org.bukkit.ChatColor
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 
-@ScriptTopLevel
 object GlowAPI {
     /**
      * 给玩家添加发光实体

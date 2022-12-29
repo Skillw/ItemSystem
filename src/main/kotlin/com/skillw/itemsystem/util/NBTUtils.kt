@@ -1,6 +1,6 @@
 package com.skillw.itemsystem.util
 
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
+
 import taboolib.module.nms.ItemTag
 import taboolib.module.nms.ItemTagData
 import taboolib.module.nms.ItemTagList
@@ -26,7 +26,7 @@ object NBTUtils {
     }
 
     @Suppress("IMPLICIT_CAST_TO_ANY")
-    @ScriptTopLevel
+    
     @JvmStatic
     fun ItemTagData.obj(): Any {
         val value = when (this.type) {
@@ -60,7 +60,7 @@ object NBTUtils {
         }
     }
 
-    @ScriptTopLevel
+    
     @JvmStatic
     fun toNBT(any: Any): ItemTagData {
         return ItemTagData.toNBT(any)

@@ -1,16 +1,22 @@
 package com.skillw.itemsystem.internal.manager
 
 import com.skillw.itemsystem.ItemSystem
+import com.skillw.itemsystem.api.ItemAPI
+import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.ConfigManager
+import com.skillw.pouvoir.util.ClassUtils.static
+import org.bukkit.inventory.ItemStack
 import taboolib.common.platform.Platform
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
 import taboolib.module.chat.colored
 import taboolib.module.lang.asLangText
 import taboolib.module.metrics.Metrics
+import taboolib.module.nms.ItemTag
 import taboolib.platform.BukkitPlugin
 import java.io.File
+import java.util.function.Function
 
 object ISConfig : ConfigManager(ItemSystem) {
     override val priority = 0
@@ -37,6 +43,12 @@ object ISConfig : ConfigManager(ItemSystem) {
         createIfNotExists("global", "global.yml")
         Metrics(16051, BukkitPlugin.getInstance().description.version, Platform.BUKKIT).run {
 
+        }
+        Pouvoir.scriptEngineManager.globalVariables.also {
+            it["ItemAPI"] = ItemAPI::class.java.static()
+            it["getTag"] = Function<ItemStack,ItemTag>{ item ->
+                return@Function item.getTag()
+            }
         }
     }
 

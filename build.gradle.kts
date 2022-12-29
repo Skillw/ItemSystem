@@ -67,11 +67,11 @@ taboolib {
     install("module-effect")
     install("module-nms-util")
     install("module-lang")
-    install("platform-bukkit")
     install("module-metrics")
+    install("platform-bukkit")
     install("module-nms")
     classifier = null
-    version = "6.0.10-31"
+    version = "6.0.10-38"
 }
 
 repositories {
@@ -82,8 +82,8 @@ repositories {
 
 dependencies {
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.10")
-    compileOnly("ink.ptms:nms-all:1.0.0")
     compileOnly("com.google.code.gson:gson:2.9.0")
+    compileOnly("ink.ptms:nms-all:1.0.0")
     compileOnly("io.lumine:Mythic-Dist:5.0.3")
     compileOnly("com.github.LoneDev6:api-itemsadder:3.0.0")
 

@@ -9,7 +9,6 @@ import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.ItemDynamic.replaceDynamic
 import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import org.bukkit.Location
 import org.bukkit.entity.Item
 import org.bukkit.entity.LivingEntity
@@ -20,7 +19,7 @@ import java.util.function.Consumer
 /*
 主要API
  */
-@ScriptTopLevel
+
 object ItemAPI {
 
     /**
@@ -47,7 +46,7 @@ object ItemAPI {
      * @receiver ItemStack 物品
      */
     @JvmStatic
-    @ScriptTopLevel
+    
     fun ItemStack.dynamic(entity: LivingEntity) {
         this.replaceDynamic(entity)
     }
@@ -63,7 +62,7 @@ object ItemAPI {
      * @receiver ItemStack 待更新的物品
      */
     @JvmStatic
-    @ScriptTopLevel
+    
     fun ItemStack.update(
         entity: LivingEntity,
         variables: Set<String> = emptySet(),
@@ -79,7 +78,7 @@ object ItemAPI {
      * @receiver ItemStack 物品
      */
     @JvmStatic
-    @ScriptTopLevel
+    
     fun ItemStack.fromIS(): Boolean {
         return getTag().containsKey("ITEM_SYSTEM")
     }
@@ -91,7 +90,7 @@ object ItemAPI {
      * @return ActionType 物品动作
      */
     @JvmStatic
-    @ScriptTopLevel
+    
     fun registerAction(key: String): ActionType {
         return ActionType(key).apply { register() }
     }
@@ -103,7 +102,7 @@ object ItemAPI {
      * @return ActionType 物品动作
      */
     @JvmStatic
-    @ScriptTopLevel
+    
     @Deprecated(
         "过时，请用registerAction",
         ReplaceWith("registerAction")
@@ -121,7 +120,7 @@ object ItemAPI {
      * @return ActionType 物品动作
      */
     @JvmStatic
-    @ScriptTopLevel
+    
     @Deprecated(
         "过时，请用registerAction",
         ReplaceWith("registerAction")
@@ -139,7 +138,7 @@ object ItemAPI {
      * @param receiver Consumer<MutableMap<String, Any>> 操作变量池
      */
     @JvmStatic
-    @ScriptTopLevel
+    
     fun callAction(
         key: String,
         entity: LivingEntity,
@@ -157,7 +156,7 @@ object ItemAPI {
      * @receiver ItemStack 物品
      */
     @JvmStatic
-    @ScriptTopLevel
+    
     fun ItemStack.dropAt(location: Location, entity: LivingEntity): Item {
         return drop(location, ItemDrop.DropData(entity))
     }
@@ -168,7 +167,7 @@ object ItemAPI {
      * @receiver ItemStack
      */
     @JvmStatic
-    @ScriptTopLevel
+    
     fun ItemStack.refresh() {
         getItemTag().apply {
             putDeep("ITEM_SYSTEM.dynamic", random())

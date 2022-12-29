@@ -2,7 +2,7 @@ package com.skillw.itemsystem.util
 
 import com.skillw.itemsystem.api.ItemAPI.dynamic
 import com.skillw.itemsystem.internal.feature.ItemCache.cacheLore
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
+
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
@@ -34,7 +34,7 @@ object ItemUtils {
         return hoverText(text)
     }
 
-    @ScriptTopLevel
+    
     @JvmStatic
     fun ItemStack.displayClone(entity: LivingEntity? = null): ItemStack {
         return clone().apply { entity?.let { dynamic(it) } }.let {
@@ -45,7 +45,7 @@ object ItemUtils {
         }
     }
 
-    @ScriptTopLevel
+    
     @JvmStatic
     fun name(item: ItemStack): String {
         return item.getName()
