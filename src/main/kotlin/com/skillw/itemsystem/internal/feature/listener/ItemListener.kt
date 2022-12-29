@@ -10,6 +10,7 @@ import taboolib.module.nms.PacketSendEvent
 private object SyncListener {
     private val modes = arrayOf(GameMode.SURVIVAL, GameMode.ADVENTURE)
 
+    //XXX: 下板加创造模式发原物品包
     @SubscribeEvent
     fun e(event: PacketSendEvent) {
         if (event.isCancelled) return
