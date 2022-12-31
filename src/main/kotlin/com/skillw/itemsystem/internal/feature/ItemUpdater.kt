@@ -129,8 +129,7 @@ object ItemUpdater {
     fun Inventory.updateItems(entity: LivingEntity) {
         for (i in 0 until size) {
             getItem(i)?.apply {
-                if (isOutDated())
-                    setItem(i, updateItem(entity))
+                setItem(i, updateIfNeed(entity))
             }
         }
     }
