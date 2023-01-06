@@ -17,13 +17,13 @@
 **ItemSystem** 是基于 **TabooLib VI** & **Pouvoir** 编写的一款物品引擎插件  
 
 其主要功能如下:
-- 全客制化式的物品配置
+- 全客制化式的物品配置(基于物品元流程，且支持内联Asahi)
 - 自动更新
 - 动态name/lore(发包)
 - 物品的序列化与反序列化
 - 完善的物品动作机制
 
-**ItemSystem** 提供包括但不限于以下[**API**](http://book.skillw.com/attrsystem/doc/):
+**ItemSystem** 提供包括但不限于以下[**API**](http://doc.skillw.com/itemsystem/doc/):
 
 - GlobalManager 全局变量管理器
 - ActionTypeManager 物品动作管理器
