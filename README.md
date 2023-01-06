@@ -23,7 +23,7 @@
 - 物品的序列化与反序列化
 - 完善的物品动作机制
 
-**ItemSystem** 提供包括但不限于以下[**API**](http://doc.skillw.com/itemsystem/doc/):
+**ItemSystem** 提供包括但不限于以下[**API**](http://doc.skillw.com/itemsystem/):
 
 - GlobalManager 全局变量管理器
 - ActionTypeManager 物品动作管理器
