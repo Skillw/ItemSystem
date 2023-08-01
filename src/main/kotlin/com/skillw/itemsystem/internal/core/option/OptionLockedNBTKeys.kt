@@ -2,7 +2,7 @@ package com.skillw.itemsystem.internal.core.option
 
 import com.skillw.itemsystem.api.builder.BaseItemBuilder
 import com.skillw.itemsystem.api.option.BaseOption
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import org.bukkit.configuration.ConfigurationSection
 
 @AutoRegister

@@ -12,7 +12,7 @@ import com.skillw.itemsystem.internal.feature.effect.RandomItemEffect
 import com.skillw.itemsystem.internal.feature.product.ProductData
 import com.skillw.itemsystem.util.ItemUtils.displayClone
 import com.skillw.itemsystem.util.ItemUtils.displayItem
-import com.skillw.pouvoir.util.PlayerUtils.soundFinish
+import com.skillw.pouvoir.util.soundFinish
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.entity.Player

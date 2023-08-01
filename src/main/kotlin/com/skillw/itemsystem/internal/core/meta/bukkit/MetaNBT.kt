@@ -5,8 +5,8 @@ import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.api.meta.data.Memory.Companion.get
 import com.skillw.itemsystem.util.NBTUtils.toMutableMap
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.util.TypeUtils.valuesToTypeString
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
+import com.skillw.pouvoir.util.valuesToTypeString
 import taboolib.module.nms.ItemTag
 
 @AutoRegister

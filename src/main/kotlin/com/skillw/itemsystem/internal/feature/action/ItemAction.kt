@@ -3,10 +3,10 @@ package com.skillw.itemsystem.internal.feature.action
 import com.skillw.itemsystem.api.action.ActionType
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.pouvoir.Pouvoir.scriptManager
-import com.skillw.pouvoir.api.PouvoirAPI.eval
-import com.skillw.pouvoir.api.map.BaseMap
-import com.skillw.pouvoir.internal.core.function.context.SimpleContext
-import com.skillw.pouvoir.util.MapUtils.put
+import com.skillw.asahi.api.AsahiAPI.asahi
+import com.skillw.pouvoir.api.plugin.map.BaseMap
+import com.skillw.asahi.api.member.context.AsahiContext.Companion.create
+import com.skillw.pouvoir.util.put
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import taboolib.common.platform.function.submit
@@ -40,9 +40,9 @@ internal object ItemAction {
                         scriptManager.evalJs<Any?>(substring(10), arguments = argumentsMap)
                     else if (startsWith("js_invoke::"))
                         scriptManager.invoke<Any?>(substring(11), arguments = argumentsMap)
-                    else eval(
-                        arrayOf("common"),
-                        context = SimpleContext().apply { putAll(argumentsMap); })
+                    else asahi(
+                        namespaces = arrayOf("common"),
+                        context = create().apply { putAll(argumentsMap); })
                 }
             }
         }

@@ -1,9 +1,9 @@
 package com.skillw.itemsystem.internal.feature.compat.pouvoir.function
 
 import com.skillw.pouvoir.api.PouvoirAPI.placeholder
-import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.api.function.parser.Parser
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import org.bukkit.entity.LivingEntity
 
 @AutoRegister

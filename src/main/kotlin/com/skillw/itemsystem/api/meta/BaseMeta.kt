@@ -5,7 +5,7 @@ import com.skillw.itemsystem.api.builder.ItemData
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.internal.core.builder.ProcessData
 import com.skillw.itemsystem.internal.core.meta.data.MetaData
-import com.skillw.pouvoir.api.able.Registrable
+import com.skillw.pouvoir.api.plugin.map.component.Registrable
 
 /**
  * @className BaseMeta

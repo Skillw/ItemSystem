@@ -6,8 +6,8 @@ import com.skillw.itemsystem.api.vartype.VariableType
 import com.skillw.itemsystem.internal.core.builder.ProcessData
 import com.skillw.itemsystem.internal.core.meta.data.MetaData
 import com.skillw.itemsystem.internal.core.meta.define.MetaDefine
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.internal.core.function.context.SimpleContext
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
+import com.skillw.asahi.api.member.context.AsahiContext.Companion.create
 import java.util.function.Supplier
 
 
@@ -18,7 +18,7 @@ object VarTypeMap : VariableType("map") {
     @Suppress("UNCHECKED_CAST")
     override fun createVar(memory: Memory): Any {
         with(memory) {
-            val context = SimpleContext()
+            val context = create()
             val mapData = ProcessData(entity, context)
             context.apply {
                 putAll(memory.metaData.map

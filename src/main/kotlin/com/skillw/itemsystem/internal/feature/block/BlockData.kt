@@ -4,9 +4,9 @@ import com.skillw.itemsystem.api.ItemAPI
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.util.GsonUtils.parseToMap
 import com.skillw.itemsystem.util.NBTUtils.obj
-import com.skillw.pouvoir.util.FileUtils.loadYaml
-import com.skillw.pouvoir.util.FileUtils.toMap
-import com.skillw.pouvoir.util.GsonUtils.encodeJson
+import com.skillw.pouvoir.util.loadYaml
+import com.skillw.pouvoir.util.toMap
+import com.skillw.pouvoir.util.encodeJson
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.entity.Player

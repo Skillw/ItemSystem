@@ -2,7 +2,7 @@ package com.skillw.itemsystem.api.option
 
 import com.skillw.itemsystem.ItemSystem.optionManager
 import com.skillw.itemsystem.api.builder.BaseItemBuilder
-import com.skillw.pouvoir.api.able.Registrable
+import com.skillw.pouvoir.api.plugin.map.component.Registrable
 import org.bukkit.configuration.ConfigurationSection
 
 /**

@@ -5,7 +5,7 @@ import com.skillw.itemsystem.api.ItemAPI
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.ConfigManager
-import com.skillw.pouvoir.util.ClassUtils.static
+import com.skillw.pouvoir.util.static
 import org.bukkit.inventory.ItemStack
 import taboolib.common.platform.Platform
 import taboolib.common.platform.function.console

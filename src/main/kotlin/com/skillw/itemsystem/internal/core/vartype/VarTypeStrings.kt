@@ -2,8 +2,8 @@ package com.skillw.itemsystem.internal.core.vartype
 
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.api.vartype.VariableType
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.util.StringUtils.toList
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
+import com.skillw.pouvoir.util.toList
 import taboolib.common5.Coerce
 import java.util.*
 

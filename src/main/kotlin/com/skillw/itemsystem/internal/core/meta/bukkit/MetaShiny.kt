@@ -2,7 +2,7 @@ package com.skillw.itemsystem.internal.core.meta.bukkit
 
 import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 
 @AutoRegister
 object MetaShiny : BaseMeta("shiny") {

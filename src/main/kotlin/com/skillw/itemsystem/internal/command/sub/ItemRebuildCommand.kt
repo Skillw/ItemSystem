@@ -6,8 +6,8 @@ import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
 import com.skillw.itemsystem.util.GsonUtils.parseToMap
 import com.skillw.itemsystem.util.ItemUtils.displayClone
 import com.skillw.itemsystem.util.ItemUtils.displayItem
-import com.skillw.pouvoir.util.PlayerUtils.soundFinish
-import com.skillw.pouvoir.util.PlayerUtils.soundSuccess
+import com.skillw.pouvoir.util.soundFinish
+import com.skillw.pouvoir.util.soundSuccess
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
