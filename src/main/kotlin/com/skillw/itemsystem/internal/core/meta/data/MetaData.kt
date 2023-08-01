@@ -5,7 +5,7 @@ import com.skillw.itemsystem.ItemSystem.metaManager
 import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.IMetaData
 import com.skillw.itemsystem.internal.core.meta.define.MetaDefine
-import com.skillw.pouvoir.api.map.BaseMap
+import com.skillw.pouvoir.api.plugin.map.BaseMap
 
 
 /**

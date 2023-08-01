@@ -5,14 +5,14 @@ import com.skillw.itemsystem.internal.core.builder.ProcessData
 import com.skillw.itemsystem.internal.feature.ItemCache.cacheLore
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.internal.manager.ISConfig
-import com.skillw.pouvoir.api.PouvoirAPI.eval
-import com.skillw.pouvoir.api.event.ManagerTime
+import com.skillw.asahi.api.AsahiAPI.asahi
 import com.skillw.pouvoir.api.function.context.IContext
 import com.skillw.pouvoir.api.function.parser.Parser
 import com.skillw.pouvoir.api.manager.Manager.Companion.addExec
-import com.skillw.pouvoir.internal.core.function.context.SimpleContext
-import com.skillw.pouvoir.util.ColorUtils.decolored
-import com.skillw.pouvoir.util.StringUtils.toList
+import com.skillw.pouvoir.api.plugin.ManagerTime
+import com.skillw.asahi.api.member.context.AsahiContext.Companion.create
+import com.skillw.pouvoir.util.decolored
+import com.skillw.pouvoir.util.toList
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
@@ -39,7 +39,7 @@ object ItemDynamic {
         val matcher = dynamicPattern.matcher(this.decolored())
         if (!matcher.find()) return this
         val buffer = StringBuffer()
-        val context = SimpleContext().apply {
+        val context = create().apply {
             put("item", itemStack)
             put("entity", entity)
             if (entity is Player)
@@ -48,7 +48,7 @@ object ItemDynamic {
         do {
             val index = matcher.group("index")
             val content = itemStack.getContent(index)
-            val replaced = content?.eval(
+            val replaced = content?.asahi(
                 namespaces = arrayOf("item_system", "common"),
                 context = context
             ).toString()

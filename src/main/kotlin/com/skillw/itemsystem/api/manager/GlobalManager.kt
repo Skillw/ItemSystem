@@ -2,7 +2,7 @@ package com.skillw.itemsystem.api.manager
 
 import com.skillw.itemsystem.internal.core.meta.data.MetaData
 import com.skillw.pouvoir.api.manager.Manager
-import com.skillw.pouvoir.api.map.BaseMap
+import com.skillw.pouvoir.api.plugin.map.BaseMap
 
 /**
  * @className GlobalManager

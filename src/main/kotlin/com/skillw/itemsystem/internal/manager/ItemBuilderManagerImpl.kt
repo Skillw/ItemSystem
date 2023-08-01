@@ -5,11 +5,11 @@ import com.skillw.itemsystem.api.manager.ItemBuilderManager
 import com.skillw.itemsystem.internal.core.builder.ItemBuilder
 import com.skillw.itemsystem.util.FileWatcher.unwatch
 import com.skillw.itemsystem.util.FileWatcher.watch
-import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
-import com.skillw.pouvoir.util.FileUtils.listSubFiles
-import com.skillw.pouvoir.util.FileUtils.loadYaml
-import com.skillw.pouvoir.util.MapUtils.put
+import com.skillw.pouvoir.api.plugin.map.BaseMap
+import com.skillw.pouvoir.util.listSubFiles
+import com.skillw.pouvoir.util.loadYaml
+import com.skillw.pouvoir.util.put
 import org.bukkit.configuration.ConfigurationSection
 import taboolib.common.platform.function.getDataFolder
 import java.io.File

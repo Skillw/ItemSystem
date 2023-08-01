@@ -4,8 +4,8 @@ import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.api.builder.BaseItemBuilder
 import com.skillw.itemsystem.api.option.BaseOption
 import com.skillw.pouvoir.api.manager.Manager
-import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
+import com.skillw.pouvoir.api.plugin.map.KeyMap
 import org.bukkit.configuration.ConfigurationSection
 
 /**

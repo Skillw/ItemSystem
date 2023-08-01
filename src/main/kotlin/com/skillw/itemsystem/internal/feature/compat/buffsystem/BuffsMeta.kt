@@ -9,9 +9,9 @@ import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.api.meta.data.Memory.Companion.get
 import com.skillw.itemsystem.util.NBTUtils.toMutableMap
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.map.BaseMap
-import com.skillw.pouvoir.util.MapUtils.put
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.map.BaseMap
+import com.skillw.pouvoir.util.put
 import org.bukkit.entity.LivingEntity
 import taboolib.common.platform.event.OptionalEvent
 import taboolib.common.platform.event.SubscribeEvent

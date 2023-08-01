@@ -6,9 +6,9 @@ import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.ItemUpdater.updateItem
-import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.action.PouAction
 import com.skillw.pouvoir.api.function.parser.Parser
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player

@@ -1,8 +1,8 @@
 package com.skillw.itemsystem.internal.feature.compat.pouvoir.action
 
 import com.skillw.itemsystem.util.NBTUtils.obj
-import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.action.PouAction
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import org.bukkit.inventory.ItemStack
 import taboolib.module.nms.ItemTag
 import taboolib.module.nms.ItemTagData

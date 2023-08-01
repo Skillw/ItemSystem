@@ -1,22 +1,22 @@
 package com.skillw.itemsystem.internal.feature.compat.pouvoir.function
 
+import com.skillw.asahi.api.annotation.AsahiPrefix
+import com.skillw.asahi.api.prefixParser
+import com.skillw.asahi.api.quester
 import com.skillw.itemsystem.internal.core.builder.ProcessData
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.function.PouFunction
-import com.skillw.pouvoir.api.function.parser.Parser
 
-@AutoRegister
-object FunctionDef : PouFunction<Any>("def", "var", "let", "const", namespace = "item_system") {
-    override fun execute(parser: Parser): Any? {
-        with(parser) {
-            if (context !is ProcessData) return "Error Context"
-            val key = next() ?: return null
-            if (context.containsKey(key)) return context[key]
-            except("=", "to")
-            val value = parseAny()
-            context[key] = value
-            (context as ProcessData).savingKeys.add(key)
-            return value
+@AsahiPrefix(["def"], "item_system")
+private fun def() = prefixParser<Any> {
+    quester {
+        if (context() !is ProcessData) {
+            error("Error Context")
         }
+        val key = next()
+        if (containsKey(key)) result { get(key) }
+        expect("=", "to")
+        val value = questAny()
+        put(key, value)
+        (context() as ProcessData).savingKeys.add(key)
+        result { value }
     }
 }

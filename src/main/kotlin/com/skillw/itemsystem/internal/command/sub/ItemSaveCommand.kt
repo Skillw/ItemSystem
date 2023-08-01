@@ -4,9 +4,9 @@ import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.internal.core.builder.ItemBuilder
 import com.skillw.itemsystem.util.ItemUtils.displayClone
 import com.skillw.itemsystem.util.ItemUtils.displayItem
-import com.skillw.pouvoir.util.PlayerUtils.soundClick
-import com.skillw.pouvoir.util.PlayerUtils.soundFail
-import com.skillw.pouvoir.util.PlayerUtils.soundSuccess
+import com.skillw.pouvoir.util.soundClick
+import com.skillw.pouvoir.util.soundFail
+import com.skillw.pouvoir.util.soundSuccess
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import taboolib.common.io.newFile
