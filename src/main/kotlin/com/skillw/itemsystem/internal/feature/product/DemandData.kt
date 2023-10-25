@@ -1,8 +1,8 @@
 package com.skillw.itemsystem.internal.feature.product
 
 import com.skillw.itemsystem.util.GsonUtils.parseToMap
-import com.skillw.pouvoir.util.CalculationUtils.calculate
-import com.skillw.pouvoir.util.CalculationUtils.calculateDouble
+import com.skillw.pouvoir.util.calculate
+import com.skillw.pouvoir.util.calculateDouble
 import org.bukkit.entity.LivingEntity
 import taboolib.common.util.random
 import taboolib.common5.Coerce

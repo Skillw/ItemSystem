@@ -9,13 +9,14 @@ import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.api.meta.data.Memory.Companion.get
 import com.skillw.itemsystem.util.NBTUtils.toMutableMap
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.map.BaseMap
-import com.skillw.pouvoir.util.MapUtils.put
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.map.BaseMap
+import com.skillw.pouvoir.util.put
 import org.bukkit.entity.LivingEntity
 import taboolib.common.platform.event.OptionalEvent
 import taboolib.common.platform.event.SubscribeEvent
 import taboolib.module.nms.ItemTag
+import taboolib.module.nms.ItemTagData
 import taboolib.module.nms.getItemTag
 import taboolib.platform.util.isAir
 import java.util.*
@@ -30,7 +31,7 @@ object BuffsMeta : BaseMeta("buffs") {
             val buffs = get<Map<String, Any>>("buffs")
             buffs.forEach { (key, data) ->
                 if (!buffManager.containsKey(key)) return@forEach
-                nbt.getOrPut(BUFF_KEY) { ItemTag() }.asCompound()[key] = ItemTag.toNBT(data)
+                nbt.getOrPut(BUFF_KEY) { ItemTag() }.asCompound()[key] = ItemTagData.toNBT(data)
             }
         }
     }
@@ -47,11 +48,11 @@ object BuffsMeta : BaseMeta("buffs") {
 
     @SubscribeEvent(bind = "com.skillw.attsystem.api.event.EquipmentUpdateEvent\$After")
     fun e(optional: OptionalEvent) {
-        val event = optional.get<EquipmentUpdateEvent.After>()
+        val event = optional.get<EquipmentUpdateEvent.Post>()
         val entity = event.entity
         if (entity !is LivingEntity) return
         val sets = HashSet<String>()
-        event.compound.values.forEach inner@{
+        event.data.values.forEach inner@{
             it.values.forEach { item ->
                 if (item.isAir()) return@forEach
                 tags.getOrPut(item.hashCode()) { item.getItemTag() }[BUFF_KEY]?.asCompound()
@@ -71,7 +72,7 @@ object BuffsMeta : BaseMeta("buffs") {
         data[entity.uniqueId]?.forEach {
             if (!sets.contains(it)) {
                 BuffSystem.buffDataManager.removeBuff(entity, it)
-                data.get(entity.uniqueId)!!.remove(it)
+                data[entity.uniqueId]!!.remove(it)
             }
         }
     }

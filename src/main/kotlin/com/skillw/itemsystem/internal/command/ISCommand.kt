@@ -2,9 +2,9 @@ package com.skillw.itemsystem.internal.command
 
 import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.internal.command.sub.*
-import com.skillw.pouvoir.util.PlayerUtils.soundClick
-import com.skillw.pouvoir.util.PlayerUtils.soundFail
-import com.skillw.pouvoir.util.PlayerUtils.soundSuccess
+import com.skillw.pouvoir.util.soundClick
+import com.skillw.pouvoir.util.soundFail
+import com.skillw.pouvoir.util.soundSuccess
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import taboolib.common.platform.ProxyCommandSender

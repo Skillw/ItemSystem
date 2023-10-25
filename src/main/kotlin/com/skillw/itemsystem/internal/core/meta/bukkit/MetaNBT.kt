@@ -5,9 +5,9 @@ import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.api.meta.data.Memory.Companion.get
 import com.skillw.itemsystem.util.NBTUtils.toMutableMap
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.util.TypeUtils.valuesToTypeString
-import taboolib.module.nms.ItemTag
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
+import com.skillw.pouvoir.util.valuesToTypeString
+import taboolib.module.nms.ItemTagData
 
 @AutoRegister
 object MetaNBT : BaseMeta("nbt") {
@@ -17,7 +17,7 @@ object MetaNBT : BaseMeta("nbt") {
     override fun invoke(memory: Memory) {
         with(memory) {
             val map = memory.get<Map<String, Any>>("nbt").analysis()
-            nbt.putAll(ItemTag.toNBT(map).asCompound())
+            nbt.putAll(ItemTagData.toNBT(map).asCompound())
         }
     }
 

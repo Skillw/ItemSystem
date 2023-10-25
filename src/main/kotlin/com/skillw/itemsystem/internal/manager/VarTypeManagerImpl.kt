@@ -8,16 +8,18 @@ import com.skillw.pouvoir.api.plugin.SubPouvoir
 import java.util.function.Supplier
 
 object VarTypeManagerImpl : VarTypeManager() {
+    private fun readResolve(): Any = VarTypeManagerImpl
+
     override val key: String = "VarTypeManager"
     override val priority: Int = 0
     override val subPouvoir: SubPouvoir = ItemSystem
 
 
-    override fun register(key: String, value: VariableType) {
+    override fun register(key: String, value: VariableType): VariableType? {
         value.alias.forEach {
             super.register(it, value)
         }
-        super.register(key, value)
+        return super.register(key, value)
     }
 
     override fun createVar(memory: Memory): Supplier<Any>? {

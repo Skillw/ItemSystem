@@ -2,7 +2,7 @@ package com.skillw.itemsystem.api.manager
 
 import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.pouvoir.api.manager.Manager
-import com.skillw.pouvoir.api.map.KeyMap
+import com.skillw.pouvoir.api.plugin.map.KeyMap
 
 /**
  * @className MetaManager

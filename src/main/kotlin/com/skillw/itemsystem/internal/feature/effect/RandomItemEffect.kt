@@ -7,9 +7,9 @@ import taboolib.common.platform.sendTo
 import taboolib.common.util.Location
 import taboolib.common.util.Vector
 import taboolib.common.util.random
-import taboolib.module.effect.Arc
 import taboolib.module.effect.ParticleObj
 import taboolib.module.effect.ParticleSpawner
+import taboolib.module.effect.shape.Arc
 import taboolib.platform.util.toProxyLocation
 import java.util.*
 

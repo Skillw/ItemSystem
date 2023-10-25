@@ -4,9 +4,9 @@ import com.skillw.itemsystem.api.ItemAPI
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.util.GsonUtils.parseToMap
 import com.skillw.itemsystem.util.NBTUtils.obj
-import com.skillw.pouvoir.util.FileUtils.loadYaml
-import com.skillw.pouvoir.util.FileUtils.toMap
-import com.skillw.pouvoir.util.GsonUtils.encodeJson
+import com.skillw.pouvoir.util.encodeJson
+import com.skillw.pouvoir.util.loadYaml
+import com.skillw.pouvoir.util.toMap
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.entity.Player
@@ -24,8 +24,8 @@ object BlockData {
 
     fun push(location: Location, item: ItemStack) {
         val nbt = item.getTag()
-        val key = nbt.getDeep("ITEM_SYSTEM.key").asString()
-        val data = nbt.getDeep("ITEM_SYSTEM.data").obj()
+        val key = nbt.getDeep("ITEM_SYSTEM.key")!!.asString()
+        val data = nbt.getDeep("ITEM_SYSTEM.data")!!.obj()
         blockData[location] = mapOf("item_key" to key, "data" to data)
     }
 

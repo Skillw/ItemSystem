@@ -2,7 +2,7 @@ package com.skillw.itemsystem.api.builder
 
 import com.skillw.itemsystem.internal.core.builder.ProcessData
 import com.skillw.itemsystem.internal.core.meta.data.MetaData
-import com.skillw.pouvoir.api.able.Registrable
+import com.skillw.pouvoir.api.plugin.map.component.Registrable
 import org.bukkit.configuration.serialization.ConfigurationSerializable
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack

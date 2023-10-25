@@ -9,7 +9,7 @@ import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.ItemDrop.drop
 import com.skillw.itemsystem.internal.feature.block.BlockData
 import com.skillw.itemsystem.util.NBTUtils.obj
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import org.bukkit.Location
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent

@@ -11,6 +11,8 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
 object ActionTypeManagerImpl : ActionTypeManager() {
+    private fun readResolve(): Any = ActionTypeManagerImpl
+
     override val key: String = "ActionTypeManager"
     override val priority: Int = 2
     override val subPouvoir: SubPouvoir = ItemSystem

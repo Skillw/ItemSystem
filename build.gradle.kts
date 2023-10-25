@@ -3,9 +3,9 @@ import java.net.URL
 plugins {
     `java-library`
     `maven-publish`
-    id("io.izzel.taboolib") version "1.51"
-    id("org.jetbrains.kotlin.jvm") version "1.6.10"
-    id("org.jetbrains.dokka") version "1.6.10"
+    id("io.izzel.taboolib") version "1.56"
+    id("org.jetbrains.kotlin.jvm") version "1.7.20"
+    id("org.jetbrains.dokka") version "1.7.20"
 }
 
 
@@ -71,7 +71,7 @@ taboolib {
     install("platform-bukkit")
     install("module-nms")
     classifier = null
-    version = "6.0.10-38"
+    version = "6.0.12-34"
 }
 
 repositories {
@@ -82,8 +82,12 @@ repositories {
 
 dependencies {
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.10")
-    compileOnly("com.google.code.gson:gson:2.9.0")
+
     compileOnly("ink.ptms:nms-all:1.0.0")
+    compileOnly("ink.ptms.core:v11900:11900:mapped")
+    compileOnly("ink.ptms.core:v11900:11900:universal")
+    compileOnly("ink.ptms.core:v11200:11200")
+
     compileOnly("io.lumine:Mythic-Dist:5.0.3")
     compileOnly("com.github.LoneDev6:api-itemsadder:3.0.0")
 
