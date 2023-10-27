@@ -96,17 +96,17 @@ ExampleItem:
     - global: suffix-effects
     #下面这段是声明后缀相关的变量
     - run: |-
-        var suffix to &default-suffixes 
-        var 后缀颜色 = &randomColor  
+        var suffix to &default-suffixes
+        var 后缀颜色 = &randomColor
 
-        set 后缀 to join [ &后缀颜色 &suffix ] 
-        set 后缀效果 to join &suffix-effects get &suffix by '\n'
+        set 后缀 to join [ &后缀颜色 &suffix ]
+        set 后缀效果 to join { &suffix-effects get &suffix } by '\\n'
+
     #处理强度相关
     #声明强度相关的变量
     - run: |-
         var 强度 = random 0 to 1
         set 强度展示 = format calculate '{&强度} * 100' '#.##'
-        set 强度条 = createBar [ empty to '&8|' , fill to '&a|' , length to 20 , percent to &强度 ]
 
     #计算总评分            转为整数
     - run: "set 总评分 to type int calculate ' { &品质评分 } * {&强度} '"
@@ -144,18 +144,17 @@ ExampleItem:
         - ""
         - "&f&m─&7&m─────────&f&m─&f其它&f&m─&7&m─────────&f&m─"
         - ""
-        - "&f>> &7<&8{syncNBT 'gem.0.name'}&7>"
-        - "&f>> &7<&8{syncNBT 'gem.1.name'}&7>"
-        - "&f>> &7<&8{syncNBT 'gem.2.name'}&7>"
+        - "&f>> &7<&8{ syncNBT 'gem.0.name' }&7>"
+        - "&f>> &7<&8{ syncNBT 'gem.1.name' }&7>"
+        - "&f>> &7<&8{ syncNBT 'gem.2.name' }&7>"
         - ""
         - "&f&m─&7&m─────────&f&m─&f锻造信息&f&m─&7&m─────────&f&m─"
         - ""
-        - "&f>> &e强度: {&强度条} &8[{&强度展示}&8]"
-        - "&f>> &e创建时间: &7{ papi '%pou_run_time.js::getTime%' }"
+        - "&f>> &e强度: {&强度展示}"
         - ""
         - "&f&m─&7&m─────────&f&m─&f其它&f&m─&7&m─────────&f&m─"
         - ""
-        - "&f>> &e耐久: &7[&8{syncNBT '耐久.当前耐久'}&f/&8{syncNBT '耐久.总耐久'}&7]"
+        - "&f>> &e耐久: &7[&8{ syncNBT '耐久.当前耐久' }&f/&8{ syncNBT '耐久.总耐久' }&7]"
         - ""
         - ""
     #NBT
