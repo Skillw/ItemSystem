@@ -65,7 +65,7 @@ object InfixItem : BaseInfix<ItemStack>(ItemStack::class.java) {
             obj.itemMeta.lore
         }
 
-        infix("type") { obj ->
+        infix("material") { obj ->
             if (expect("to")) {
                 obj.type = parseString().let {
                     it.parseToXMaterial().parseMaterial() ?: Coerce.toEnum(
