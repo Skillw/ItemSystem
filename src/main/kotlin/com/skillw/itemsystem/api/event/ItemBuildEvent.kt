@@ -20,7 +20,7 @@ class ItemBuildEvent {
      * @property data 过程数据
      * @property entity 实体
      */
-    class Post(val builder: BaseItemBuilder, val data: ProcessData, val entity: LivingEntity?) : BukkitProxyEvent()
+    class Pre(val builder: BaseItemBuilder, val data: ProcessData, val entity: LivingEntity?) : BukkitProxyEvent()
 
     /**
      * 构建物品中，Meta已经运行完毕，下一步就是构建物品
@@ -38,7 +38,7 @@ class ItemBuildEvent {
      * @property itemStack 结果物品
      * @property entity 实体
      */
-    class After(
+    class Post(
         val builder: BaseItemBuilder,
         val data: ProcessData,
         var itemStack: ItemStack,

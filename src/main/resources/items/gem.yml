@@ -33,8 +33,8 @@ BaseGem:
     - material: "{&材质}"
     - glow-color: "{&品质颜色}"
     - run: |-
-        def name to '模板'
-        def attributes to '无' 
+        var name to '模板'
+        var attributes to '无' 
         set 名字 to &name
         set 属性 to join &attributes by '\n'
     - display: "{&品质颜色}{&名字}宝石"

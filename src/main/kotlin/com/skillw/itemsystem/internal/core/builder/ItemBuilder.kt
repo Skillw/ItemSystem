@@ -37,7 +37,7 @@ class ItemBuilder(key: String) : BaseItemBuilder(key) {
                 name = console().asLangText("command-list-abstract-item")
             }.build()
         }
-        val pre = ItemBuildEvent.Post(this, processData, entity)
+        val pre = ItemBuildEvent.Pre(this, processData, entity)
         pre.call()
         var data = pre.data
         return mirrorNow("product") {
@@ -63,7 +63,7 @@ class ItemBuilder(key: String) : BaseItemBuilder(key) {
                     })
                 }
             }.also {
-                ItemBuildEvent.After(this, data, it, entity).call()
+                ItemBuildEvent.Post(this, data, it, entity).call()
             }
         }
     }

@@ -85,8 +85,8 @@ ExampleItem:
     - global: default-prefixes
     #下面这段是声明前缀相关的变量
     - run: |-
-        def 前缀颜色 = &randomColor
-        def prefix = &default-prefixes get &quality 
+        var 前缀颜色 = &randomColor
+        var prefix = &default-prefixes get &quality 
         set 前缀 = join [ &前缀颜色 &prefix ]
 
     #处理后缀相关
@@ -96,15 +96,15 @@ ExampleItem:
     - global: suffix-effects
     #下面这段是声明后缀相关的变量
     - run: |-
-        def suffix to &default-suffixes 
-        def 后缀颜色 = &randomColor  
+        var suffix to &default-suffixes 
+        var 后缀颜色 = &randomColor  
 
         set 后缀 to join [ &后缀颜色 &suffix ] 
         set 后缀效果 to join &suffix-effects get &suffix by '\n'
     #处理强度相关
     #声明强度相关的变量
     - run: |-
-        def 强度 = random 0 to 1
+        var 强度 = random 0 to 1
         set 强度展示 = format calculate '{&强度} * 100' '#.##'
         set 强度条 = createBar [ empty to '&8|' , fill to '&a|' , length to 20 , percent to &强度 ]
 

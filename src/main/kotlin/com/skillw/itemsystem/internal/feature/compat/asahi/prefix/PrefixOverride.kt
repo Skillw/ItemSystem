@@ -10,9 +10,9 @@ private fun override() = prefixParser {
     expect("=", "to")
     val value = questAny()
     result {
-        if (this !is ProcessData) return@result "Error Context"
+        val data = get("data") as? ProcessData ?: return@result "Error Context"
         this[key.get()] = value.get()
-        savingKeys.add(key.get())
+        data.savingKeys.add(key.get())
         value.get()
     }
 }

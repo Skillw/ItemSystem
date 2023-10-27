@@ -42,7 +42,7 @@ internal object ItemAction {
                         scriptManager.invoke<Any?>(substring(11), arguments = argumentsMap)
                     else asahi(
                         context = AsahiContext.create().apply { putAll(argumentsMap); },
-                        namespaces = arrayOf("common")
+                        namespaces = arrayOf("common", "lang", "bukkit")
                     )
                 }
             }

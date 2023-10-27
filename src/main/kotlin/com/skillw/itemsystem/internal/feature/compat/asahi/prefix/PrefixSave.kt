@@ -7,10 +7,10 @@ import com.skillw.itemsystem.internal.core.builder.ProcessData
 @AsahiPrefix(["save"], "item_system")
 private fun save() = prefixParser {
     result {
-        if (this !is ProcessData) return@result "Error Context"
+        val data = get("data") as? ProcessData ?: return@result "Error Context"
         if (peek() == "[") {
-            return@result questList().get().onEach { savingKeys.add(it.toString()) }
+            return@result questList().get().onEach { data.savingKeys.add(it.toString()) }
         }
-        return@result questString().get().also { savingKeys.add(it) }
+        return@result questString().get().also { data.savingKeys.add(it) }
     }
 }

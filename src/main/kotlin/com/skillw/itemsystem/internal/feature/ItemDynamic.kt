@@ -43,7 +43,7 @@ object ItemDynamic {
             val content = itemStack.getContent(index)
             val replaced = content?.asahi(
                 context = context,
-                namespaces = arrayOf("item_system", "common")
+                namespaces = arrayOf("common", "lang", "bukkit", "item_system")
             ).toString()
             matcher.appendReplacement(
                 buffer,
@@ -78,7 +78,7 @@ object ItemDynamic {
     }
 
     internal fun AsahiContext.addDynamic(content: String): String {
-        val dynamicData = (this as ProcessData).nbt
+        val dynamicData = (get("data") as ProcessData).nbt
             .getOrPut("ITEM_SYSTEM") { ItemTag() }.asCompound()
             .getOrPut("DYNAMIC_DATA") { ItemTag() }.asCompound()
         val index = nextIndex().toString()

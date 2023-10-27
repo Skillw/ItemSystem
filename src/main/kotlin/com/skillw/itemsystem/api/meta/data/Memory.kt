@@ -262,7 +262,7 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getAny(key: String, processData: ProcessData): Any? {
-        return (metaData.get(key) ?: processData[key])
+        return (metaData[key] ?: processData[key])
     }
 
     /**
@@ -273,7 +273,7 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getList(key: String, processData: ProcessData): List<Any>? {
-        return ((metaData.get(key) ?: processData[key]) as? List<Any>?)?.map { it.analysis() }
+        return ((metaData[key] ?: processData[key]) as? List<Any>?)?.map { it.analysis() }
     }
 
     /**
@@ -284,7 +284,7 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getShort(key: String, processData: ProcessData): Short? {
-        return Coerce.toShort((metaData.get(key) ?: processData[key] ?: return null).analysis())
+        return Coerce.toShort((metaData[key] ?: processData[key] ?: return null).analysis())
     }
 
     /**
@@ -295,7 +295,7 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getByte(key: String, processData: ProcessData): Byte? {
-        return Coerce.toByte((metaData.get(key) ?: processData[key] ?: return null).analysis())
+        return Coerce.toByte((metaData[key] ?: processData[key] ?: return null).analysis())
     }
 
     /**
@@ -306,7 +306,7 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getBoolean(key: String, processData: ProcessData): Boolean? {
-        return Coerce.toBoolean((metaData.get(key) ?: processData[key] ?: return null).analysis())
+        return Coerce.toBoolean((metaData[key] ?: processData[key] ?: return null).analysis())
     }
 
     /**
@@ -317,7 +317,7 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getDouble(key: String, processData: ProcessData): Double? {
-        return Coerce.toDouble((metaData.get(key) ?: processData[key] ?: return null).analysis())
+        return Coerce.toDouble((metaData[key] ?: processData[key] ?: return null).analysis())
     }
 
     /**
@@ -328,7 +328,7 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getFloat(key: String, processData: ProcessData): Float? {
-        return Coerce.toFloat((metaData.get(key) ?: processData[key] ?: return null).analysis())
+        return Coerce.toFloat((metaData[key] ?: processData[key] ?: return null).analysis())
     }
 
     /**
@@ -339,7 +339,7 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getLong(key: String, processData: ProcessData): Long? {
-        return Coerce.toLong((metaData.get(key) ?: processData[key] ?: return null).analysis())
+        return Coerce.toLong((metaData[key] ?: processData[key] ?: return null).analysis())
     }
 
     /**
@@ -350,7 +350,7 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getInt(key: String, processData: ProcessData): Int? {
-        return Coerce.toInteger((metaData.get(key) ?: processData[key] ?: return null).analysis())
+        return Coerce.toInteger((metaData[key] ?: processData[key] ?: return null).analysis())
     }
 
     /**
@@ -361,6 +361,6 @@ data class Memory(val metaData: MetaData, val processData: ProcessData) : IMetaD
      * @return
      */
     internal fun getString(key: String, processData: ProcessData): String? {
-        return (metaData.get(key) ?: processData[key] ?: return null).analysis().toString()
+        return (metaData[key] ?: processData[key] ?: return null).analysis().toString()
     }
 }

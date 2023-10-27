@@ -31,7 +31,7 @@ object MetaCanCraft : BaseMeta("can-craft") {
     }
 
     @SubscribeEvent
-    fun build(event: ItemBuildEvent.After) {
+    fun build(event: ItemBuildEvent.Post) {
         event.itemStack.apply {
             setItemTag(getTag().also {
                 it["ITEM_SYSTEM"]?.asCompound()?.putIfAbsent("ITEM_SYSTEM.can-craft", ItemTagData("false"))

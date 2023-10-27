@@ -35,7 +35,7 @@ object MetaCanBePlaced : BaseMeta("can-be-placed") {
     }
 
     @SubscribeEvent
-    fun build(event: ItemBuildEvent.After) {
+    fun build(event: ItemBuildEvent.Post) {
         event.itemStack.apply {
             setItemTag(getTag().also {
                 it["ITEM_SYSTEM"]?.asCompound()?.putIfAbsent("ITEM_SYSTEM.can-be-placed", ItemTagData("true"))
