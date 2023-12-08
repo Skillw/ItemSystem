@@ -33,10 +33,10 @@ BaseGem:
     - material: "{&材质}"
     - glow-color: "{&品质颜色}"
     - run: |-
-        def name to '模板'
-        def attributes to '无' 
+        var name to '模板'
+        var attributes to '无' 
         set 名字 to &name
-        set 属性 to join &attributes by '\n'
+        set 属性 to join &attributes by '\\n'
     - display: "{&品质颜色}{&名字}宝石"
     - lore:
         - "&f&m─&7&m─────────&f&m─&f介绍&f&m─&7&m─────────&f&m─"
@@ -59,7 +59,7 @@ BaseGem:
         type: build
         sync: true
         run: |-
-          set attKey to analysis 'gem-{&unique}'
+          set attKey to inline "gem-{&unique}"
           set gemAtt to attr readLore &item
           attr addItemAttr &item &attKey &gemAtt
     - action:

@@ -4,7 +4,7 @@ import com.skillw.itemsystem.api.builder.ItemData
 import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.api.meta.data.Memory.Companion.get
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import org.bukkit.enchantments.Enchantment
 import taboolib.common.platform.function.warning
 import taboolib.common5.Coerce

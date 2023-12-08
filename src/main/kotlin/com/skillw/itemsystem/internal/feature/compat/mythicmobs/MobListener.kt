@@ -1,9 +1,9 @@
 package com.skillw.itemsystem.internal.feature.compat.mythicmobs
 
+import com.skillw.asahi.api.AsahiAPI.analysis
 import com.skillw.itemsystem.internal.feature.ItemDrop
 import com.skillw.itemsystem.internal.feature.compat.mythicmobs.MobUtils.drop
 import com.skillw.itemsystem.internal.feature.compat.mythicmobs.MobUtils.equip
-import com.skillw.pouvoir.api.PouvoirAPI.analysis
 import ink.ptms.um.event.MobDeathEvent
 import ink.ptms.um.event.MobSpawnEvent
 import org.bukkit.entity.LivingEntity

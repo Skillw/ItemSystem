@@ -5,15 +5,16 @@ import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.api.meta.data.Memory.Companion.get
 import com.skillw.itemsystem.util.NBTUtils.toMutableMap
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import taboolib.module.nms.ItemTag
+import taboolib.module.nms.ItemTagData
 
 @AutoRegister(test = "com.skillw.attsystem.AttributeSystem")
 object ConditionsMeta : BaseMeta("conditions") {
     override fun invoke(memory: Memory) {
         with(memory) {
             val map = memory.get<Map<String, Any>>("conditions").analysis()
-            nbt.getOrPut("CONDITION_DATA") { ItemTag() }.asCompound().putAll(ItemTag.toNBT(map).asCompound())
+            nbt.getOrPut("CONDITION_DATA") { ItemTag() }.asCompound().putAll(ItemTagData.toNBT(map).asCompound())
         }
     }
 

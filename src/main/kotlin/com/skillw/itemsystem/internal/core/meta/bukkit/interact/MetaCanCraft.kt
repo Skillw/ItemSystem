@@ -7,7 +7,7 @@ import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.util.NBTUtils.obj
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import org.bukkit.event.inventory.CraftItemEvent
 import taboolib.common.platform.event.SubscribeEvent
 import taboolib.module.nms.ItemTagData
@@ -31,7 +31,7 @@ object MetaCanCraft : BaseMeta("can-craft") {
     }
 
     @SubscribeEvent
-    fun build(event: ItemBuildEvent.After) {
+    fun build(event: ItemBuildEvent.Post) {
         event.itemStack.apply {
             setItemTag(getTag().also {
                 it["ITEM_SYSTEM"]?.asCompound()?.putIfAbsent("ITEM_SYSTEM.can-craft", ItemTagData("false"))

@@ -7,7 +7,7 @@ import com.skillw.itemsystem.internal.core.option.OptionType.type
 import com.skillw.itemsystem.internal.manager.ISConfig
 import com.skillw.itemsystem.util.ItemUtils.displayClone
 import com.skillw.itemsystem.util.ItemUtils.displayItem
-import com.skillw.pouvoir.util.StringUtils.replacement
+import com.skillw.pouvoir.util.replacement
 import org.bukkit.entity.Player
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.ProxyPlayer

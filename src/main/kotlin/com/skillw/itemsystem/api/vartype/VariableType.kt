@@ -2,7 +2,7 @@ package com.skillw.itemsystem.api.vartype
 
 import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.api.meta.data.Memory
-import com.skillw.pouvoir.api.able.Registrable
+import com.skillw.pouvoir.api.plugin.map.component.Registrable
 
 /**
  * @className VariableType

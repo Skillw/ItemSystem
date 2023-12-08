@@ -2,7 +2,7 @@ package com.skillw.itemsystem.api.manager
 
 import com.skillw.itemsystem.api.action.ActionType
 import com.skillw.pouvoir.api.manager.Manager
-import com.skillw.pouvoir.api.map.LowerKeyMap
+import com.skillw.pouvoir.api.plugin.map.LowerKeyMap
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 

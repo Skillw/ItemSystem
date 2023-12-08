@@ -1,8 +1,8 @@
 package com.skillw.itemsystem.api.glow
 
 import com.skillw.itemsystem.util.nms.NMS
-import com.skillw.pouvoir.api.able.Registrable
-import com.skillw.pouvoir.api.map.KeyMap
+import com.skillw.pouvoir.api.plugin.map.KeyMap
+import com.skillw.pouvoir.api.plugin.map.component.Registrable
 import org.bukkit.ChatColor
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player

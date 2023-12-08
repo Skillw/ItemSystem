@@ -1,17 +1,19 @@
 package com.skillw.itemsystem.internal.core.builder
 
+import com.skillw.asahi.api.AsahiAPI.analysis
+import com.skillw.asahi.api.AsahiAPI.asahi
+import com.skillw.asahi.api.member.context.AsahiContext
+import com.skillw.asahi.api.member.namespace.NamespaceContainer
+import com.skillw.asahi.api.member.namespace.NamespaceHolder
 import com.skillw.itemsystem.api.builder.IProcessData
-import com.skillw.pouvoir.api.PouvoirAPI.analysis
-import com.skillw.pouvoir.api.PouvoirAPI.eval
-import com.skillw.pouvoir.api.function.context.IContext
-import com.skillw.pouvoir.internal.core.function.context.SimpleContext
-import com.skillw.pouvoir.util.TypeUtils.cast
+import com.skillw.pouvoir.util.cast
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import taboolib.library.xseries.XMaterial
 import taboolib.module.nms.ItemTag
 import taboolib.module.nms.getItemTag
 import taboolib.platform.util.ItemBuilder
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * @className ProcessData
@@ -19,15 +21,21 @@ import taboolib.platform.util.ItemBuilder
  * @author Glom
  * @date 2022/8/7 7:30 Copyright 2022 user. All rights reserved.
  */
-class ProcessData(override val entity: LivingEntity? = null, val context: IContext = SimpleContext()) :
-    IContext by context, IProcessData {
+class ProcessData(
+    override val entity: LivingEntity? = null, val context: AsahiContext = AsahiContext.create(ConcurrentHashMap())
+) : AsahiContext by context, IProcessData, NamespaceHolder<ProcessData> {
+
+    override val namespaces = NamespaceContainer()
+
     override val builder = ItemBuilder(XMaterial.STONE)
     override val nbt = ItemTag()
     override val savingKeys = HashSet<String>()
 
     //    MM Hook
     init {
+        namespaces.addNamespaces("bukkit", "item_system")
         entity?.let { context["entity"] = it }
+        this["data"] = this
     }
 
     constructor(entity: LivingEntity? = null, receiver: ProcessData.() -> Unit) : this(entity) {
@@ -35,10 +43,7 @@ class ProcessData(override val entity: LivingEntity? = null, val context: IConte
     }
 
     override fun String.eval(): Any {
-        return this.eval(
-            namespaces = arrayOf("common", "item_system"),
-            context = this@ProcessData
-        )
+        return asahi(this@ProcessData, *namespaceNames())
     }
 
     private fun List<*>.analysis(): List<Any> {

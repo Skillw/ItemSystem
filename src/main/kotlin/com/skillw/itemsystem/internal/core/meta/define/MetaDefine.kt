@@ -3,7 +3,7 @@ package com.skillw.itemsystem.internal.core.meta.define
 import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
 import com.skillw.itemsystem.internal.manager.VarTypeManagerImpl.createVar
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 
 @AutoRegister
 object MetaDefine : BaseMeta("define") {

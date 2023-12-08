@@ -1,18 +1,14 @@
 package com.skillw.itemsystem.internal.feature
 
 
+import com.skillw.asahi.api.AsahiAPI.asahi
+import com.skillw.asahi.api.member.context.AsahiContext
 import com.skillw.itemsystem.internal.core.builder.ProcessData
 import com.skillw.itemsystem.internal.feature.ItemCache.cacheLore
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.internal.manager.ISConfig
-import com.skillw.pouvoir.api.PouvoirAPI.eval
-import com.skillw.pouvoir.api.event.ManagerTime
-import com.skillw.pouvoir.api.function.context.IContext
-import com.skillw.pouvoir.api.function.parser.Parser
-import com.skillw.pouvoir.api.manager.Manager.Companion.addExec
-import com.skillw.pouvoir.internal.core.function.context.SimpleContext
-import com.skillw.pouvoir.util.ColorUtils.decolored
-import com.skillw.pouvoir.util.StringUtils.toList
+import com.skillw.pouvoir.util.script.ColorUtil.decolored
+import com.skillw.pouvoir.util.toObjList
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
@@ -25,21 +21,18 @@ import taboolib.module.nms.getItemTag
 import java.util.regex.Pattern
 
 object ItemDynamic {
-    private var dynamicPattern: Pattern = Pattern.compile("\\{}")
+    internal var dynamicPattern: Pattern = Pattern.compile("\\{}")
 
     @Awake(LifeCycle.ACTIVE)
     fun addFunc() {
         dynamicPattern = Pattern.compile("\\{${ISConfig.unknownDynamic}(?<index>\\d)}")
-        ISConfig.addExec("dynamic-pattern-update", ManagerTime.RELOAD) {
-            dynamicPattern = Pattern.compile("\\{${ISConfig.unknownDynamic}(?<index>\\d)}")
-        }
     }
 
     private fun String.dynamic(itemStack: ItemStack, entity: LivingEntity): String {
         val matcher = dynamicPattern.matcher(this.decolored())
         if (!matcher.find()) return this
         val buffer = StringBuffer()
-        val context = SimpleContext().apply {
+        val context = AsahiContext.create().apply {
             put("item", itemStack)
             put("entity", entity)
             if (entity is Player)
@@ -48,9 +41,9 @@ object ItemDynamic {
         do {
             val index = matcher.group("index")
             val content = itemStack.getContent(index)
-            val replaced = content?.eval(
-                namespaces = arrayOf("item_system", "common"),
-                context = context
+            val replaced = content?.asahi(
+                context = context,
+                namespaces = arrayOf("common", "lang", "bukkit", "item_system")
             ).toString()
             matcher.appendReplacement(
                 buffer,
@@ -69,7 +62,7 @@ object ItemDynamic {
         val newLore = ArrayList<String>()
         display = display?.dynamic(this, entity)
         originLore.forEach { line ->
-            newLore.addAll(line.dynamic(this, entity).toList())
+            newLore.addAll(line.dynamic(this, entity).toObjList())
         }
         meta.setDisplayName(display)
         meta.lore = newLore
@@ -84,8 +77,8 @@ object ItemDynamic {
         return data[index]?.asString()
     }
 
-    internal fun Parser.addDynamic(content: String): String {
-        val dynamicData = (context as ProcessData).nbt
+    internal fun AsahiContext.addDynamic(content: String): String {
+        val dynamicData = (get("data") as ProcessData).nbt
             .getOrPut("ITEM_SYSTEM") { ItemTag() }.asCompound()
             .getOrPut("DYNAMIC_DATA") { ItemTag() }.asCompound()
         val index = nextIndex().toString()
@@ -94,10 +87,10 @@ object ItemDynamic {
         return "{$name}"
     }
 
-    private val IContext.dynamicIndexNow
+    private val AsahiContext.dynamicIndexNow
         get() = getOrPut(INDEX_KEY) { 0 } as Int
 
-    private fun IContext.nextIndex(): Int {
+    private fun AsahiContext.nextIndex(): Int {
         return (dynamicIndexNow + 1).also { put(INDEX_KEY, it) }
     }
 

@@ -3,9 +3,10 @@ package com.skillw.itemsystem.internal.manager
 import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.api.ItemAPI
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
+import com.skillw.itemsystem.internal.feature.ItemDynamic
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.ConfigManager
-import com.skillw.pouvoir.util.ClassUtils.static
+import com.skillw.pouvoir.util.static
 import org.bukkit.inventory.ItemStack
 import taboolib.common.platform.Platform
 import taboolib.common.platform.function.console
@@ -17,8 +18,11 @@ import taboolib.module.nms.ItemTag
 import taboolib.platform.BukkitPlugin
 import java.io.File
 import java.util.function.Function
+import java.util.regex.Pattern
 
 object ISConfig : ConfigManager(ItemSystem) {
+    private fun readResolve(): Any = ISConfig
+
     override val priority = 0
 
     val debug
@@ -41,12 +45,10 @@ object ISConfig : ConfigManager(ItemSystem) {
         )
         createIfNotExists("items", "action.yml", "example.yml", "gem.yml")
         createIfNotExists("global", "global.yml")
-        Metrics(16051, BukkitPlugin.getInstance().description.version, Platform.BUKKIT).run {
-
-        }
+        Metrics(16051, BukkitPlugin.getInstance().description.version, Platform.BUKKIT)
         Pouvoir.scriptEngineManager.globalVariables.also {
             it["ItemAPI"] = ItemAPI::class.java.static()
-            it["getTag"] = Function<ItemStack,ItemTag>{ item ->
+            it["getTag"] = Function<ItemStack, ItemTag> { item ->
                 return@Function item.getTag()
             }
         }
@@ -59,6 +61,7 @@ object ISConfig : ConfigManager(ItemSystem) {
     override fun subReload() {
         Pouvoir.scriptManager.addScriptDir(File(getDataFolder(), "scripts"))
         unknownDynamic = console().asLangText("unknown-dynamic").colored()
+        ItemDynamic.dynamicPattern = Pattern.compile("\\{$unknownDynamic(?<index>\\d)}")
     }
 
     @JvmStatic

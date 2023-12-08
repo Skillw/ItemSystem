@@ -5,7 +5,7 @@ import com.skillw.itemsystem.ItemSystem.metaManager
 import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.IMetaData
 import com.skillw.itemsystem.internal.core.meta.define.MetaDefine
-import com.skillw.pouvoir.api.map.BaseMap
+import com.skillw.pouvoir.api.plugin.map.BaseMap
 
 
 /**
@@ -40,7 +40,7 @@ class MetaData(override val key: BaseMeta) : BaseMap<String, Any>(), IMetaData {
     }
 
     override fun serialize(): MutableMap<String, Any> {
-        return map
+        return toMutableMap()
     }
 
 
@@ -58,6 +58,6 @@ class MetaData(override val key: BaseMeta) : BaseMap<String, Any>(), IMetaData {
     }
 
     override fun hashCode(): Int {
-        return key.hashCode() + map.hashCode()
+        return key.hashCode() + toMutableMap().hashCode()
     }
 }

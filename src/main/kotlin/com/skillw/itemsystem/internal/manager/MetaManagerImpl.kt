@@ -7,6 +7,8 @@ import com.skillw.pouvoir.api.plugin.SubPouvoir
 import java.util.*
 
 object MetaManagerImpl : MetaManager() {
+    private fun readResolve(): Any = MetaManagerImpl
+
     override val key: String = "MetaManager"
     override val priority: Int = 1
     override val subPouvoir: SubPouvoir = ItemSystem

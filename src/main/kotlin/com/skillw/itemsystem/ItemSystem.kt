@@ -2,16 +2,14 @@ package com.skillw.itemsystem
 
 import com.skillw.itemsystem.api.manager.*
 import com.skillw.itemsystem.internal.manager.ISConfig
-import com.skillw.pouvoir.api.annotation.PouManager
 import com.skillw.pouvoir.api.manager.ManagerData
 import com.skillw.pouvoir.api.plugin.SubPouvoir
-import com.skillw.pouvoir.api.thread.BasicThreadFactory
+import com.skillw.pouvoir.api.plugin.annotation.PouManager
 import org.bukkit.plugin.java.JavaPlugin
 import taboolib.common.platform.Plugin
 import taboolib.module.configuration.Config
 import taboolib.module.configuration.ConfigFile
 import taboolib.platform.BukkitPlugin
-import java.util.concurrent.ScheduledThreadPoolExecutor
 
 object ItemSystem : Plugin(), SubPouvoir {
 

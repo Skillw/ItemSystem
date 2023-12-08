@@ -3,7 +3,7 @@ package com.skillw.itemsystem.internal.core.meta.bukkit
 import com.skillw.itemsystem.api.builder.ItemData
 import com.skillw.itemsystem.api.meta.BaseMeta
 import com.skillw.itemsystem.api.meta.data.Memory
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import org.bukkit.ChatColor
 import taboolib.common.platform.function.warning
 import taboolib.common5.Coerce
