@@ -22,6 +22,7 @@ import taboolib.platform.util.ItemBuilder
 
 object ItemUtils {
 
+    @OptIn(ExperimentalStdlibApi::class)
     @JvmStatic
     fun TellrawJson.displayItem(item: ItemStack?): TellrawJson {
         val text = item?.run {

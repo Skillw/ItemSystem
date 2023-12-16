@@ -4,6 +4,8 @@ import com.skillw.itemsystem.ItemSystem
 import com.skillw.itemsystem.api.ItemAPI
 import com.skillw.itemsystem.internal.feature.ItemCache.getTag
 import com.skillw.itemsystem.internal.feature.ItemDynamic
+import com.skillw.itemsystem.util.ItemUtils
+import com.skillw.itemsystem.util.NBTUtils
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.ConfigManager
 import com.skillw.pouvoir.util.static
@@ -51,6 +53,8 @@ object ISConfig : ConfigManager(ItemSystem) {
             it["getTag"] = Function<ItemStack, ItemTag> { item ->
                 return@Function item.getTag()
             }
+            it["ItemUtils"] = ItemUtils::class.java.static()
+            it["NBTUtils"] = NBTUtils::class.java.static()
         }
     }
 

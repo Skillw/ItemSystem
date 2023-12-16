@@ -5,7 +5,7 @@ import com.skillw.asahi.api.prefixParser
 import com.skillw.itemsystem.internal.core.builder.ProcessData
 
 @AsahiPrefix(["var", "let", "const"], "item_system")
-private fun let() = prefixParser {
+private fun let() = prefixParser<Any?> {
     val key = next()
     expect("=", "to")
     val value = questAny()

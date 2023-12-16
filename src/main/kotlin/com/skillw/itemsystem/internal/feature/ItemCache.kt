@@ -1,6 +1,7 @@
 package com.skillw.itemsystem.internal.feature
 
 
+import com.skillw.attsystem.api.AttrAPI.readItemNBT
 import org.bukkit.inventory.ItemStack
 import taboolib.module.nms.ItemTag
 import taboolib.module.nms.getItemTag
@@ -12,6 +13,7 @@ object ItemCache {
     
     @JvmStatic
     fun ItemStack.cacheLore(): MutableList<String> {
+        readItemNBT()
         return ArrayList(loreCache.getOrPut(hashCode()) {
             if (hasItemMeta()) itemMeta.lore ?: mutableListOf() else mutableListOf()
         })

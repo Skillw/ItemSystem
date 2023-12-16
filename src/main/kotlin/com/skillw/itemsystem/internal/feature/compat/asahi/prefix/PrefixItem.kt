@@ -7,7 +7,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
 @AsahiPrefix(["item"], "common")
-private fun item() = prefixParser {
+private fun item() = prefixParser<ItemStack> {
     val material = quest<Material>()
     result {
         ItemStack(material.get())

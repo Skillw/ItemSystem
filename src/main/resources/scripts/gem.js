@@ -1,3 +1,20 @@
+
+
+
+ItemCache = Java.type("com.skillw.itemsystem.internal.feature.ItemCache")
+
+function name(item){
+    return ItemUtils.name(item)
+}
+
+function obj(tag){
+    return NBTUtils.obj(tag)
+}
+
+function getTag(item){
+    return ItemCache.getTag(item)
+}
+
 function unique(gem) {
     const nbt = getTag(gem);
     return nbt.get("unique").asString();
@@ -21,7 +38,6 @@ function checkAttr(player) {
     }
     return true
 }
-
 function inlay() {
     const player = this.player;
     if (!checkAttr(player)) return;
@@ -46,13 +62,13 @@ function inlay() {
         gemNbt.put(key, mapOf(gemData));
         itemNbt.put("gem", gemNbt);
         itemNbt.saveTo(weapon);
-        const gemAttr = AttrAPI.readItemNBT(gem, player, null);
+        const gemAttr = AttrAPI.readItemNBT(gem, player, null).eval(player);
         gemAttr.saveTo(weapon);
         gem.amount--;
         soundSuccess(player)
-        taskLater([5, function (task) {
+        taskLater(5, function (task) {
             soundFinish(player)
-        }])
+        })
         player.sendMessage(
             color(
                 "&a你成功地将 &6 " + gemName + " &a镶嵌到了 &b" + weaponName + " &a上!"

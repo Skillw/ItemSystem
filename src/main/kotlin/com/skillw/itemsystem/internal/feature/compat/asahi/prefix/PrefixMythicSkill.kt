@@ -7,7 +7,7 @@ import ink.ptms.um.Mythic
 import org.bukkit.entity.LivingEntity
 
 @AsahiPrefix(["mmskill"], "common")
-private fun mmskill() = prefixParser {
+private fun mmskill() = prefixParser<Boolean> {
     val skillKey = questString()
     val power = if (expect("with")) questFloat() else quester { 1.0f }
     result {

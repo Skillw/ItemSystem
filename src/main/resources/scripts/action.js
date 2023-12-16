@@ -4,7 +4,7 @@ shiftRight = ItemAPI.registerAction("shift_right");
 shiftLeft = ItemAPI.registerAction("shift_left");
 clickItem = ItemAPI.registerAction("click_item"); // org.bukkit.event.inventory.InventoryClickEvent
 attack = ItemAPI.registerAction("attack"); // org.bukkit.event.entity.EntityDamageByEntityEvent
-build = ItemAPI.registerAction("build"); // com.skillw.itemsystem.api.event.ItemBuildEvent$After
+build = ItemAPI.registerAction("build"); // com.skillw.itemsystem.api.event.ItemBuildEvent$Post
 consume = ItemAPI.registerAction("consume"); // org.bukkit.event.player.PlayerItemConsumeEvent
 swapToMainHand = ItemAPI.registerAction("swap_to_main_hand"); // org.bukkit.event.player.PlayerSwapHandItemsEvent
 swapToOffHand = ItemAPI.registerAction("swap_to_offhand");
@@ -94,7 +94,7 @@ function onAttack(event) {
     });
 }
 
-//@Listener(-event com.skillw.itemsystem.api.event.ItemBuildEvent$After -priority HIGHEST --ignoreCancelled)
+//@Listener(-event com.skillw.itemsystem.api.event.ItemBuildEvent$Post -priority HIGHEST --ignoreCancelled)
 function onBuild(event) {
     const entity = event.entity;
     if (entity == null) return;

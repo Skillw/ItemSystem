@@ -5,7 +5,7 @@ import com.skillw.asahi.api.prefixParser
 import com.skillw.itemsystem.internal.core.builder.ProcessData
 
 @AsahiPrefix(["save"], "item_system")
-private fun save() = prefixParser {
+private fun save() = prefixParser<Any> {
     result {
         val data = get("data") as? ProcessData ?: return@result "Error Context"
         if (peek() == "[") {

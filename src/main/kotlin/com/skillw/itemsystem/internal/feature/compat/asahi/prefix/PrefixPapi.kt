@@ -6,7 +6,7 @@ import com.skillw.pouvoir.api.PouvoirAPI.placeholder
 import org.bukkit.entity.LivingEntity
 
 @AsahiPrefix(["papi"], "item_system")
-private fun papi() = prefixParser {
+private fun papi() = prefixParser<String> {
     val str = questString()
     result {
         val entity = this["entity"] as? LivingEntity? ?: return@result str.get()

@@ -60,8 +60,7 @@ BaseGem:
         sync: true
         run: |-
           set attKey to inline "gem-{&unique}"
-          set gemAtt to attr readLore &item
-          attr addItemAttr &item &attKey &gemAtt
+          attr addItemAttr &item &attKey attr readLore &item
     - action:
         type: click_item
         sync: true

@@ -5,7 +5,7 @@ import com.skillw.asahi.api.prefixParser
 import com.skillw.itemsystem.internal.core.builder.ProcessData
 
 @AsahiPrefix(["override"], "item_system")
-private fun override() = prefixParser {
+private fun override() = prefixParser<Any> {
     val key = questString()
     expect("=", "to")
     val value = questAny()
