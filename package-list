@@ -1,0 +1,58 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.skillw.itemsystem.api.builder/ItemData.Companion///PointingToDeclaration/com/skillw/itemsystem/api/builder/ItemData.Companion.html
+$dokka.location:com.skillw.itemsystem.api.event/ItemBuildEvent.Building///PointingToDeclaration/com/skillw/itemsystem/api/event/ItemBuildEvent.Building.html
+$dokka.location:com.skillw.itemsystem.api.event/ItemBuildEvent.Post///PointingToDeclaration/com/skillw/itemsystem/api/event/ItemBuildEvent.Post.html
+$dokka.location:com.skillw.itemsystem.api.event/ItemBuildEvent.Pre///PointingToDeclaration/com/skillw/itemsystem/api/event/ItemBuildEvent.Pre.html
+$dokka.location:com.skillw.itemsystem.api.event/ItemBuildEvent.Update///PointingToDeclaration/com/skillw/itemsystem/api/event/ItemBuildEvent.Update.html
+$dokka.location:com.skillw.itemsystem.api.glow/GlowColor.Companion///PointingToDeclaration/com/skillw/itemsystem/api/glow/GlowColor.Companion.html
+$dokka.location:com.skillw.itemsystem.api.glow/GlowColor.Operation///PointingToDeclaration/com/skillw/itemsystem/api/glow/GlowColor.Operation.html
+$dokka.location:com.skillw.itemsystem.api.meta.data/Memory.Companion///PointingToDeclaration/com/skillw/itemsystem/api/meta/data/Memory.Companion.html
+$dokka.location:com.skillw.itemsystem.internal.core.builder/ItemBuilder.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/core/builder/ItemBuilder.Companion.html
+$dokka.location:com.skillw.itemsystem.internal.core.meta.data/MetaData.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/core/meta/data/MetaData.Companion.html
+$dokka.location:com.skillw.itemsystem.internal.feature.effect/RandomItemEffect.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/feature/effect/RandomItemEffect.Companion.html
+$dokka.location:com.skillw.itemsystem.internal.feature.product/DemandData.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/feature/product/DemandData.Companion.html
+$dokka.location:com.skillw.itemsystem.internal.feature.product/ProductData.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/feature/product/ProductData.Companion.html
+$dokka.location:com.skillw.itemsystem.util.nms/NMS.Companion///PointingToDeclaration/com/skillw/itemsystem/util/nms/NMS.Companion.html
+$dokka.location:com.skillw.itemsystem.util.nms/NMS.VersionType///PointingToDeclaration/com/skillw/itemsystem/util/nms/NMS.VersionType.html
+com.skillw.itemsystem
+com.skillw.itemsystem.api
+com.skillw.itemsystem.api.action
+com.skillw.itemsystem.api.builder
+com.skillw.itemsystem.api.event
+com.skillw.itemsystem.api.glow
+com.skillw.itemsystem.api.manager
+com.skillw.itemsystem.api.meta
+com.skillw.itemsystem.api.meta.data
+com.skillw.itemsystem.api.option
+com.skillw.itemsystem.api.vartype
+com.skillw.itemsystem.internal.command
+com.skillw.itemsystem.internal.command.sub
+com.skillw.itemsystem.internal.core.builder
+com.skillw.itemsystem.internal.core.meta.action
+com.skillw.itemsystem.internal.core.meta.bukkit
+com.skillw.itemsystem.internal.core.meta.bukkit.egg
+com.skillw.itemsystem.internal.core.meta.bukkit.flag
+com.skillw.itemsystem.internal.core.meta.bukkit.interact
+com.skillw.itemsystem.internal.core.meta.bukkit.leather
+com.skillw.itemsystem.internal.core.meta.bukkit.potion
+com.skillw.itemsystem.internal.core.meta.bukkit.skull
+com.skillw.itemsystem.internal.core.meta.data
+com.skillw.itemsystem.internal.core.meta.define
+com.skillw.itemsystem.internal.core.meta.eval
+com.skillw.itemsystem.internal.core.option
+com.skillw.itemsystem.internal.core.vartype
+com.skillw.itemsystem.internal.feature
+com.skillw.itemsystem.internal.feature.block
+com.skillw.itemsystem.internal.feature.compat.asahi.annotation
+com.skillw.itemsystem.internal.feature.compat.asahi.infix
+com.skillw.itemsystem.internal.feature.compat.attsystem
+com.skillw.itemsystem.internal.feature.compat.buffsystem
+com.skillw.itemsystem.internal.feature.compat.mythicmobs
+com.skillw.itemsystem.internal.feature.compat.mythicmobs.meta
+com.skillw.itemsystem.internal.feature.effect
+com.skillw.itemsystem.internal.feature.product
+com.skillw.itemsystem.internal.manager
+com.skillw.itemsystem.util
+com.skillw.itemsystem.util.nms
+
