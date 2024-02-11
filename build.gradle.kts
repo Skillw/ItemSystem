@@ -71,7 +71,7 @@ taboolib {
     install("platform-bukkit")
     install("module-nms")
     classifier = null
-    version = "6.0.12-35"
+    version = "6.0.12-69"
 }
 
 repositories {
@@ -84,9 +84,8 @@ dependencies {
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.10")
 
     compileOnly("ink.ptms:nms-all:1.0.0")
-    compileOnly("ink.ptms.core:v11900:11900:mapped")
-    compileOnly("ink.ptms.core:v11900:11900:universal")
-    compileOnly("ink.ptms.core:v11200:11200")
+
+//    compileOnly("ink.ptms.core:v12004-minimize:universal")
 
     compileOnly("io.lumine:Mythic-Dist:5.0.3")
     compileOnly("com.github.LoneDev6:api-itemsadder:3.0.0")

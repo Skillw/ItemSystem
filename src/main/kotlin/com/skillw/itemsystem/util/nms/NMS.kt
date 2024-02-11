@@ -6,6 +6,7 @@ import org.bukkit.World
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
+import taboolib.common.util.unsafeLazy
 import taboolib.module.nms.MinecraftVersion
 import taboolib.module.nms.nmsProxy
 
@@ -16,17 +17,13 @@ import taboolib.module.nms.nmsProxy
  * @date 2022/8/9 22:24 Copyright 2022 user. All rights reserved.
  */
 abstract class NMS {
-    val itemsField by lazy {
-        when (MinecraftVersion.major) {
-            in 9..11 -> "c"
-            else -> "b"
-        }
+    val itemsField by unsafeLazy {
+        if (MinecraftVersion.major >= 9) "c"
+        else "b"
     }
-    val itemField by lazy {
-        when (MinecraftVersion.major) {
-            in 9..11 -> "f"
-            else -> "c"
-        }
+    val itemField by unsafeLazy {
+        if (MinecraftVersion.major >= 9) "f"
+        else "c"
     }
 
     enum class VersionType {
