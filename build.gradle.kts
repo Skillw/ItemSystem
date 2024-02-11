@@ -12,11 +12,19 @@ plugins {
 
 
 tasks.dokkaJavadoc.configure {
-    outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\itemsystem"))
     dokkaSourceSets {
         configureEach {
             externalDocumentationLink {
                 url.set(URL("https://doc.skillw.com/pouvoir/"))
+            }
+            externalDocumentationLink {
+                url.set(URL("https://docs.oracle.com/javase/8/docs/api/"))
+            }
+            externalDocumentationLink {
+                url.set(URL("https://docs.oracle.com/javase/8/docs/api/"))
+            }
+            externalDocumentationLink {
+                url.set(URL("https://doc.skillw.com/bukkit/"))
             }
         }
     }
