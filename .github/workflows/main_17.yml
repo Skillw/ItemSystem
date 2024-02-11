@@ -2,7 +2,7 @@ name: build_16
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   build:
     name: Build Jar1

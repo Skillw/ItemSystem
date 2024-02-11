@@ -2,7 +2,7 @@ name: javadoc
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   javadoc:
     name: javadoc
