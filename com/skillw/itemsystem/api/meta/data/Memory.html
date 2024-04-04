@@ -7,8 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
-    <script type="text/javascript" src="../../../../../../jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
     <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
 
     <script type="text/javascript" src="../../../../../../search.js"></script>
@@ -88,7 +88,7 @@ var pathtoroot = "../../../../../../";
 
 <main role="main">
     <div class="header">
-        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.skillw.itemsystem.api.meta.data</a></div>
         <h2 title="Class Memory" class="title">Class Memory</h2>
     </div>
     <div class="contentContainer">
@@ -136,6 +136,19 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
  implements <a href=IMetaData.html>IMetaData</a>, <a href=../../builder/IProcessData.html>IProcessData</a>
                     </pre>
                     <div class="block"></div>
+
+                    <dl>
+
+                    
+
+                    
+                        <dt><span class="authorLabel">Author:</span></dt>
+                        
+                            <dd><p>Glom</p></dd>
+                        
+                    
+
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -157,13 +170,6 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <th class="colFirst" scope="col">Modifier and Type</th>
                                             <th class="colSecond" scope="col">Class</th>
                                             <th class="colLast" scope="col">Description</th>
-                                        </tr>
-                                        
-                                        <tr class="altColor">
-                                            <td class="colFirst"><code>public class</code></td>
-                                            <th class="colSecond" scope="row"><code><a href="Memory.Companion.html">Memory.Companion</a></span></code>
-                                            </th>
-                                            <td class="colLast"></td>
                                         </tr>
                                         
                                     </table>
@@ -257,7 +263,7 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                         
                                             <tr class="altColor">
                                                 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
-                                                        href="#Memory(MetaData,ProcessData)">Memory</a></span>(<a href=../../../internal/core/meta/data/MetaData.html>MetaData</a> metaData, <a href=../../../internal/core/builder/ProcessData.html>ProcessData</a> processData)</code></th>
+                                                        href="#Memory(com.skillw.itemsystem.internal.core.meta.data.MetaData,com.skillw.itemsystem.internal.core.builder.ProcessData)">Memory</a></span>(<a href=../../../internal/core/meta/data/MetaData.html>MetaData</a> metaData, <a href=../../../internal/core/builder/ProcessData.html>ProcessData</a> processData)</code></th>
                                                 <td class="colLast"></td>
                                             </tr>
                                         
@@ -327,201 +333,161 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                         </tr>
                                         
                                         <tr id="i2" class="altColor">
-                                            <td class="colFirst"><code><a href=../BaseMeta.html>BaseMeta</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getKey()>getKey</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getAny(java.lang.String)>getAny</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">根据键获取任意对象</td>
                                         </tr>
                                         
                                         <tr id="i3" class="rowColor">
-                                            <td class="colFirst"><code><a href=https://doc.skillw.com/bukkit/org/bukkit/entity/LivingEntity.html>LivingEntity</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getEntity()>getEntity</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getAny(java.lang.String,java.lang.Object)>getAny</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> default) </code>
                                             </th>
-                                            <td class="colLast">实体</td>
+                                            <td class="colLast">根据键获取任意对象</td>
                                         </tr>
                                         
                                         <tr id="i4" class="altColor">
-                                            <td class="colFirst"><code>ItemBuilder</code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getBuilder()>getBuilder</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getList(java.lang.String)>getList</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
-                                            <td class="colLast">TLib的物品构建器，与本插件的区分开</td>
+                                            <td class="colLast">根据键获取 列表</td>
                                         </tr>
                                         
                                         <tr id="i5" class="rowColor">
-                                            <td class="colFirst"><code>ItemTag</code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getNbt()>getNbt</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getList(java.lang.String,java.util.List)>getList</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; default) </code>
                                             </th>
-                                            <td class="colLast">物品NBT</td>
+                                            <td class="colLast">根据键获取 列表</td>
                                         </tr>
                                         
                                         <tr id="i6" class="altColor">
-                                            <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/util/Set.html>Set</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt;</code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getSavingKeys()>getSavingKeys</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getShort(java.lang.String)>getShort</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
-                                            <td class="colLast">会保存到 ITEM_SYSTEM.</td>
+                                            <td class="colLast">根据键获取 short</td>
                                         </tr>
                                         
                                         <tr id="i7" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getAny(String)>getAny</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getShort(java.lang.String,java.lang.Short)>getShort</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a> default) </code>
                                             </th>
-                                            <td class="colLast">根据键获取任意对象</td>
+                                            <td class="colLast">根据键获取 short</td>
                                         </tr>
                                         
                                         <tr id="i8" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getAny(String,Object)>getAny</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> default) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getByte(java.lang.String)>getByte</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
-                                            <td class="colLast">根据键获取任意对象</td>
+                                            <td class="colLast">根据键获取 byte</td>
                                         </tr>
                                         
                                         <tr id="i9" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;</code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getList(String)>getList</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getByte(java.lang.String,java.lang.Byte)>getByte</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a> default) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 列表</td>
+                                            <td class="colLast">根据键获取 byte</td>
                                         </tr>
                                         
                                         <tr id="i10" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;</code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getList(String,List)>getList</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; default) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getBoolean(java.lang.String)>getBoolean</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 列表</td>
+                                            <td class="colLast">根据键获取 boolean</td>
                                         </tr>
                                         
                                         <tr id="i11" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getShort(String)>getShort</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getBoolean(java.lang.String,java.lang.Boolean)>getBoolean</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> default) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 short</td>
+                                            <td class="colLast">根据键获取 boolean</td>
                                         </tr>
                                         
                                         <tr id="i12" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getShort(String,Short)>getShort</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a> default) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getDouble(java.lang.String)>getDouble</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 short</td>
+                                            <td class="colLast">根据键获取 double</td>
                                         </tr>
                                         
                                         <tr id="i13" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getByte(String)>getByte</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getDouble(java.lang.String,java.lang.Double)>getDouble</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> default) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 byte</td>
+                                            <td class="colLast">根据键获取 double</td>
                                         </tr>
                                         
                                         <tr id="i14" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getByte(String,Byte)>getByte</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a> default) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getFloat(java.lang.String)>getFloat</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 byte</td>
+                                            <td class="colLast">根据键获取 float</td>
                                         </tr>
                                         
                                         <tr id="i15" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getBoolean(String)>getBoolean</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getFloat(java.lang.String,java.lang.Float)>getFloat</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a> default) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 boolean</td>
+                                            <td class="colLast">根据键获取 float</td>
                                         </tr>
                                         
                                         <tr id="i16" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getBoolean(String,Boolean)>getBoolean</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> default) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getLong(java.lang.String)>getLong</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 boolean</td>
+                                            <td class="colLast">根据键获取 long</td>
                                         </tr>
                                         
                                         <tr id="i17" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getDouble(String)>getDouble</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getLong(java.lang.String,java.lang.Long)>getLong</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a> default) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 double</td>
+                                            <td class="colLast">根据键获取 long</td>
                                         </tr>
                                         
                                         <tr id="i18" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getDouble(String,Double)>getDouble</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> default) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getInt(java.lang.String)>getInt</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 double</td>
+                                            <td class="colLast">根据键获取 int</td>
                                         </tr>
                                         
                                         <tr id="i19" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a></code>
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getFloat(String)>getFloat</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getInt(java.lang.String,java.lang.Integer)>getInt</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> default) </code>
                                             </th>
-                                            <td class="colLast">根据键获取 float</td>
+                                            <td class="colLast">根据键获取 int</td>
                                         </tr>
                                         
                                         <tr id="i20" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getFloat(String,Float)>getFloat</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a> default) </code>
-                                            </th>
-                                            <td class="colLast">根据键获取 float</td>
-                                        </tr>
-                                        
-                                        <tr id="i21" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getLong(String)>getLong</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
-                                            </th>
-                                            <td class="colLast">根据键获取 long</td>
-                                        </tr>
-                                        
-                                        <tr id="i22" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getLong(String,Long)>getLong</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a> default) </code>
-                                            </th>
-                                            <td class="colLast">根据键获取 long</td>
-                                        </tr>
-                                        
-                                        <tr id="i23" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getInt(String)>getInt</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
-                                            </th>
-                                            <td class="colLast">根据键获取 int</td>
-                                        </tr>
-                                        
-                                        <tr id="i24" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getInt(String,Integer)>getInt</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> default) </code>
-                                            </th>
-                                            <td class="colLast">根据键获取 int</td>
-                                        </tr>
-                                        
-                                        <tr id="i25" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getString(String)>getString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getString(java.lang.String)>getString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key) </code>
                                             </th>
                                             <td class="colLast">根据键获取字符串</td>
                                         </tr>
                                         
-                                        <tr id="i26" class="altColor">
+                                        <tr id="i21" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getString(String,String)>getString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> default) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Memory.html#getString(java.lang.String,java.lang.String)>getString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> default) </code>
                                             </th>
                                             <td class="colLast">根据键获取字符串</td>
                                         </tr>
@@ -531,16 +497,28 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                 </div>
                                 <ul class="blockList">
                                 
-                                    <li class="blockList"><a id="methods.inherited.from.class.com.skillw.itemsystem.api.meta.data.Memory">
+                                    <li class="blockList"><a id="methods.inherited.from.class.com.skillw.pouvoir.api.plugin.map.component.Keyable">
                                             <!--   -->
                                         </a>
-                                            <h3>Methods inherited from class&nbsp;com.skillw.itemsystem.api.meta.data.Memory</h3>
-                                            <code>analysis, clone, eval, result</code></li>
+                                            <h3>Methods inherited from class&nbsp;com.skillw.pouvoir.api.plugin.map.component.Keyable</h3>
+                                            <code>getKey</code></li>
+                                 
+                                    <li class="blockList"><a id="methods.inherited.from.class.com.skillw.itemsystem.api.builder.IProcessData">
+                                            <!--   -->
+                                        </a>
+                                            <h3>Methods inherited from class&nbsp;com.skillw.itemsystem.api.builder.IProcessData</h3>
+                                            <code>analysis, eval, getBuilder, getEntity, getNbt, getSavingKeys, result</code></li>
                                  
                                     <li class="blockList"><a id="methods.inherited.from.class.com.skillw.itemsystem.api.meta.data.IMetaData">
                                             <!--   -->
                                         </a>
                                             <h3>Methods inherited from class&nbsp;com.skillw.itemsystem.api.meta.data.IMetaData</h3>
+                                            <code>clone</code></li>
+                                 
+                                    <li class="blockList"><a id="methods.inherited.from.class.org.bukkit.configuration.serialization.ConfigurationSerializable">
+                                            <!--   -->
+                                        </a>
+                                            <h3>Methods inherited from class&nbsp;org.bukkit.configuration.serialization.ConfigurationSerializable</h3>
                                             <code>serialize</code></li>
                                  
                                     <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -569,7 +547,7 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                             </a>
                                 <h3>Constructor Detail</h3>
                                 
-                                <a name="Memory(MetaData,ProcessData)"></a>
+                                <a name="Memory(com.skillw.itemsystem.internal.core.meta.data.MetaData,com.skillw.itemsystem.internal.core.builder.ProcessData)"></a>
                                 <ul class="blockList">
                                     <li class="blockList">
                                         <h4>Memory</h4>
@@ -602,8 +580,16 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                         <h4>getMetaData</h4>
                                         <pre class="methodSignature"> final <a href=../../../internal/core/meta/data/MetaData.html>MetaData</a> <a href=Memory.html#getMetaData()>getMetaData</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -617,87 +603,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                         <h4>getProcessData</h4>
                                         <pre class="methodSignature"> final <a href=../../../internal/core/builder/ProcessData.html>ProcessData</a> <a href=Memory.html#getProcessData()>getProcessData</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getKey()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>getKey</h4>
-                                        <pre class="methodSignature"> <a href=../BaseMeta.html>BaseMeta</a> <a href=Memory.html#getKey()>getKey</a>()</pre>
-                                        <div class="block"></div>
-                                        
-                                        <!-- TODO missing return annotation -->
-                                    </li>
-                                </ul>
-                                
-                                <a id="getEntity()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>getEntity</h4>
-                                        <pre class="methodSignature"> <a href=https://doc.skillw.com/bukkit/org/bukkit/entity/LivingEntity.html>LivingEntity</a> <a href=Memory.html#getEntity()>getEntity</a>()</pre>
-                                        <div class="block"><p>实体</p></div>
-                                        
-                                        <!-- TODO missing return annotation -->
-                                    </li>
-                                </ul>
-                                
-                                <a id="getBuilder()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>getBuilder</h4>
-                                        <pre class="methodSignature"> ItemBuilder <a href=Memory.html#getBuilder()>getBuilder</a>()</pre>
-                                        <div class="block"><p>TLib的物品构建器，与本插件的区分开</p></div>
-                                        
-                                        <!-- TODO missing return annotation -->
-                                    </li>
-                                </ul>
-                                
-                                <a id="getNbt()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>getNbt</h4>
-                                        <pre class="methodSignature"> ItemTag <a href=Memory.html#getNbt()>getNbt</a>()</pre>
-                                        <div class="block"><p>物品NBT</p></div>
-                                        
-                                        <!-- TODO missing return annotation -->
-                                    </li>
-                                </ul>
-                                
-                                <a id="getSavingKeys()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>getSavingKeys</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Set.html>Set</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt; <a href=Memory.html#getSavingKeys()>getSavingKeys</a>()</pre>
-                                        <div class="block"><p>会保存到 ITEM_SYSTEM.data 的变量名</p></div>
-                                        
-                                        <!-- TODO missing return annotation -->
-                                    </li>
-                                </ul>
-                                
-                                <a id="getAny(String)">
+                                <a id="getAny(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -705,23 +624,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getAny</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> <a href=Memory.html#getAny(String)>getAny</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> <a href=Memory.html#getAny(java.lang.String)>getAny</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取任意对象</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>对象</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getAny(String,Object)">
+                                <a id="getAny(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -729,10 +657,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getAny</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> <a href=Memory.html#getAny(String,Object)>getAny</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> <a href=Memory.html#getAny(java.lang.String,java.lang.Object)>getAny</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> default)</pre>
                                         <div class="block"><p>根据键获取任意对象</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -743,13 +673,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>对象</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getList(String)">
+                                <a id="getList(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -757,23 +694,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getList</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; <a href=Memory.html#getList(String)>getList</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; <a href=Memory.html#getList(java.lang.String)>getList</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取 列表</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>列表</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getList(String,List)">
+                                <a id="getList(java.lang.String,java.util.List)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -781,10 +727,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getList</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; <a href=Memory.html#getList(String,List)>getList</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; <a href=Memory.html#getList(java.lang.String,java.util.List)>getList</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; default)</pre>
                                         <div class="block"><p>根据键获取 列表</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -795,13 +743,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>列表</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getShort(String)">
+                                <a id="getShort(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -809,23 +764,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getShort</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a> <a href=Memory.html#getShort(String)>getShort</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a> <a href=Memory.html#getShort(java.lang.String)>getShort</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取 short</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>short</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getShort(String,Short)">
+                                <a id="getShort(java.lang.String,java.lang.Short)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -833,10 +797,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getShort</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a> <a href=Memory.html#getShort(String,Short)>getShort</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a> default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a> <a href=Memory.html#getShort(java.lang.String,java.lang.Short)>getShort</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a> default)</pre>
                                         <div class="block"><p>根据键获取 short</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -847,13 +813,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>short</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getByte(String)">
+                                <a id="getByte(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -861,23 +834,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getByte</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a> <a href=Memory.html#getByte(String)>getByte</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a> <a href=Memory.html#getByte(java.lang.String)>getByte</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取 byte</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>byte</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getByte(String,Byte)">
+                                <a id="getByte(java.lang.String,java.lang.Byte)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -885,10 +867,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getByte</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a> <a href=Memory.html#getByte(String,Byte)>getByte</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a> default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a> <a href=Memory.html#getByte(java.lang.String,java.lang.Byte)>getByte</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a> default)</pre>
                                         <div class="block"><p>根据键获取 byte</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -899,13 +883,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>byte</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getBoolean(String)">
+                                <a id="getBoolean(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -913,23 +904,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getBoolean</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Memory.html#getBoolean(String)>getBoolean</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Memory.html#getBoolean(java.lang.String)>getBoolean</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取 boolean</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>boolean</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getBoolean(String,Boolean)">
+                                <a id="getBoolean(java.lang.String,java.lang.Boolean)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -937,10 +937,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getBoolean</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Memory.html#getBoolean(String,Boolean)>getBoolean</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Memory.html#getBoolean(java.lang.String,java.lang.Boolean)>getBoolean</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> default)</pre>
                                         <div class="block"><p>根据键获取 boolean</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -951,13 +953,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>boolean</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getDouble(String)">
+                                <a id="getDouble(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -965,23 +974,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getDouble</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> <a href=Memory.html#getDouble(String)>getDouble</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> <a href=Memory.html#getDouble(java.lang.String)>getDouble</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取 double</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>double</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getDouble(String,Double)">
+                                <a id="getDouble(java.lang.String,java.lang.Double)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -989,10 +1007,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getDouble</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> <a href=Memory.html#getDouble(String,Double)>getDouble</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> <a href=Memory.html#getDouble(java.lang.String,java.lang.Double)>getDouble</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> default)</pre>
                                         <div class="block"><p>根据键获取 double</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -1003,13 +1023,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>double</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getFloat(String)">
+                                <a id="getFloat(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1017,23 +1044,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getFloat</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a> <a href=Memory.html#getFloat(String)>getFloat</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a> <a href=Memory.html#getFloat(java.lang.String)>getFloat</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取 float</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>float</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getFloat(String,Float)">
+                                <a id="getFloat(java.lang.String,java.lang.Float)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1041,10 +1077,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getFloat</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a> <a href=Memory.html#getFloat(String,Float)>getFloat</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a> default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a> <a href=Memory.html#getFloat(java.lang.String,java.lang.Float)>getFloat</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a> default)</pre>
                                         <div class="block"><p>根据键获取 float</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -1055,13 +1093,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>float</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getLong(String)">
+                                <a id="getLong(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1069,23 +1114,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getLong</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a> <a href=Memory.html#getLong(String)>getLong</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a> <a href=Memory.html#getLong(java.lang.String)>getLong</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取 long</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>long</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getLong(String,Long)">
+                                <a id="getLong(java.lang.String,java.lang.Long)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1093,10 +1147,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getLong</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a> <a href=Memory.html#getLong(String,Long)>getLong</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a> default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a> <a href=Memory.html#getLong(java.lang.String,java.lang.Long)>getLong</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a> default)</pre>
                                         <div class="block"><p>根据键获取 long</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -1107,13 +1163,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>long</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getInt(String)">
+                                <a id="getInt(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1121,23 +1184,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getInt</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=Memory.html#getInt(String)>getInt</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=Memory.html#getInt(java.lang.String)>getInt</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取 int</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>int</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getInt(String,Integer)">
+                                <a id="getInt(java.lang.String,java.lang.Integer)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1145,10 +1217,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getInt</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=Memory.html#getInt(String,Integer)>getInt</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=Memory.html#getInt(java.lang.String,java.lang.Integer)>getInt</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> default)</pre>
                                         <div class="block"><p>根据键获取 int</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -1159,13 +1233,20 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>int</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getString(String)">
+                                <a id="getString(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1173,23 +1254,32 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getString</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=Memory.html#getString(String)>getString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=Memory.html#getString(java.lang.String)>getString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</pre>
                                         <div class="block"><p>根据键获取字符串</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>key</code> - 键</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>字符串</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getString(String,String)">
+                                <a id="getString(java.lang.String,java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1197,10 +1287,12 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                           >
                                     <li class="blockList">
                                         <h4>getString</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=Memory.html#getString(String,String)>getString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> default)</pre>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=Memory.html#getString(java.lang.String,java.lang.String)>getString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> default)</pre>
                                         <div class="block"><p>根据键获取字符串</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -1211,9 +1303,16 @@ public final class <span class="typeNameLabel"><a href=Memory.html>Memory</a></s
                                             <dd><code>default</code> - 如果没有找到则返回的默认值</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>字符串</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 

@@ -5,16 +5,13 @@ $dokka.location:com.skillw.itemsystem.api.event/ItemBuildEvent.Building///Pointi
 $dokka.location:com.skillw.itemsystem.api.event/ItemBuildEvent.Post///PointingToDeclaration/com/skillw/itemsystem/api/event/ItemBuildEvent.Post.html
 $dokka.location:com.skillw.itemsystem.api.event/ItemBuildEvent.Pre///PointingToDeclaration/com/skillw/itemsystem/api/event/ItemBuildEvent.Pre.html
 $dokka.location:com.skillw.itemsystem.api.event/ItemBuildEvent.Update///PointingToDeclaration/com/skillw/itemsystem/api/event/ItemBuildEvent.Update.html
-$dokka.location:com.skillw.itemsystem.api.glow/GlowColor.Companion///PointingToDeclaration/com/skillw/itemsystem/api/glow/GlowColor.Companion.html
 $dokka.location:com.skillw.itemsystem.api.glow/GlowColor.Operation///PointingToDeclaration/com/skillw/itemsystem/api/glow/GlowColor.Operation.html
-$dokka.location:com.skillw.itemsystem.api.meta.data/Memory.Companion///PointingToDeclaration/com/skillw/itemsystem/api/meta/data/Memory.Companion.html
-$dokka.location:com.skillw.itemsystem.internal.core.builder/ItemBuilder.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/core/builder/ItemBuilder.Companion.html
-$dokka.location:com.skillw.itemsystem.internal.core.meta.data/MetaData.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/core/meta/data/MetaData.Companion.html
-$dokka.location:com.skillw.itemsystem.internal.feature.effect/RandomItemEffect.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/feature/effect/RandomItemEffect.Companion.html
-$dokka.location:com.skillw.itemsystem.internal.feature.product/DemandData.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/feature/product/DemandData.Companion.html
-$dokka.location:com.skillw.itemsystem.internal.feature.product/ProductData.Companion///PointingToDeclaration/com/skillw/itemsystem/internal/feature/product/ProductData.Companion.html
 $dokka.location:com.skillw.itemsystem.util.nms/NMS.Companion///PointingToDeclaration/com/skillw/itemsystem/util/nms/NMS.Companion.html
 $dokka.location:com.skillw.itemsystem.util.nms/NMS.VersionType///PointingToDeclaration/com/skillw/itemsystem/util/nms/NMS.VersionType.html
+$dokka.location:com.skillw.pouvoir.util.legacy/Mirror.MirrorCollect///PointingToDeclaration/com/skillw/pouvoir/util/legacy/Mirror.MirrorCollect.html
+$dokka.location:com.skillw.pouvoir.util.legacy/Mirror.MirrorData///PointingToDeclaration/com/skillw/pouvoir/util/legacy/Mirror.MirrorData.html
+$dokka.location:com.skillw.pouvoir.util.legacy/Mirror.MirrorFuture///PointingToDeclaration/com/skillw/pouvoir/util/legacy/Mirror.MirrorFuture.html
+$dokka.location:com.skillw.pouvoir.util.legacy/Mirror.MirrorSettings///PointingToDeclaration/com/skillw/pouvoir/util/legacy/Mirror.MirrorSettings.html
 com.skillw.itemsystem
 com.skillw.itemsystem.api
 com.skillw.itemsystem.api.action
@@ -55,4 +52,5 @@ com.skillw.itemsystem.internal.feature.product
 com.skillw.itemsystem.internal.manager
 com.skillw.itemsystem.util
 com.skillw.itemsystem.util.nms
+com.skillw.pouvoir.util.legacy
 
