@@ -1,12 +1,14 @@
+import io.izzel.taboolib.gradle.*
+import org.jetbrains.kotlin.analysis.decompiler.stub.flags.DATA
 import java.net.URL
 
 plugins {
     `java-library`
     `maven-publish`
     signing
-    id("io.izzel.taboolib") version "1.56"
-    id("org.jetbrains.kotlin.jvm") version "1.5.31"
-    id("org.jetbrains.dokka") version "1.5.31"
+    id("io.izzel.taboolib") version "2.0.11"
+    id("org.jetbrains.kotlin.jvm") version "1.9.22"
+    id("org.jetbrains.dokka") version "1.9.20"
     id("io.codearte.nexus-staging") version "0.30.0"
 }
 
@@ -54,9 +56,6 @@ task("version") {
 
 
 taboolib {
-    if (project.version.toString().contains("-api")) {
-        options("skip-kotlin-relocate")
-    }
     description {
         contributors {
             name("Glom_")
@@ -69,19 +68,19 @@ taboolib {
 
         }
     }
-    install("common")
-    install("module-chat")
-    install("module-configuration")
-    install("common-5")
-    install("module-database")
-    install("module-effect")
-    install("module-nms-util")
-    install("module-lang")
-    install("module-metrics")
-    install("platform-bukkit")
-    install("module-nms")
+    env{
+        install(CHAT, CONFIGURATION, DATABASE, EFFECT, NMS_UTIL, NMS, LANG, METRICS, BUKKIT, BUKKIT_ALL)
+    }
     classifier = null
-    version = "6.0.12-69"
+    classifier = null
+    version {
+        if(project.gradle.startParameter.taskNames.getOrNull(0) == "taboolibBuildApi" || api != null){
+            println("api!")
+            isSkipKotlinRelocate =true
+            isSkipKotlin = true
+        }
+        taboolib = "6.1.1-beta17"
+    }
 }
 
 repositories {

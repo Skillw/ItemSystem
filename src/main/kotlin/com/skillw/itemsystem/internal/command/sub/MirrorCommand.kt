@@ -1,9 +1,9 @@
 package com.skillw.itemsystem.internal.command.sub
 
 import com.skillw.itemsystem.internal.command.ISCommand.soundSuccess
+import com.skillw.pouvoir.util.legacy.Mirror
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.command.subCommand
-import taboolib.common5.Mirror
 import taboolib.module.lang.sendLang
 
 object MirrorCommand {

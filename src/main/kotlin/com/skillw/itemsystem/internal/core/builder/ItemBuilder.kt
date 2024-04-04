@@ -9,11 +9,11 @@ import com.skillw.itemsystem.api.event.ItemBuildEvent
 import com.skillw.itemsystem.internal.core.meta.data.MetaData
 import com.skillw.itemsystem.internal.core.option.OptionAbstract.abstract
 import com.skillw.itemsystem.internal.core.option.OptionType.type
+import com.skillw.pouvoir.util.legacy.mirrorNow
 import org.bukkit.Material
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import taboolib.common.platform.function.console
-import taboolib.common5.mirrorNow
 import taboolib.module.lang.asLangText
 import taboolib.module.nms.ItemTag
 import taboolib.module.nms.ItemTagData

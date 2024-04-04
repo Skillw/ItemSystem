@@ -2,10 +2,10 @@ package com.skillw.itemsystem.internal.feature.product
 
 import com.skillw.itemsystem.api.builder.BaseItemBuilder
 import com.skillw.itemsystem.internal.core.builder.ProcessData
+import com.skillw.pouvoir.util.legacy.mirrorNow
 import org.bukkit.entity.LivingEntity
 import org.bukkit.inventory.ItemStack
 import taboolib.common5.Demand
-import taboolib.common5.mirrorNow
 
 /**
  * @className ProductData
