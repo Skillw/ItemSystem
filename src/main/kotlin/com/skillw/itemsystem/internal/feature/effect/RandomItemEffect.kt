@@ -36,7 +36,9 @@ class RandomItemEffect(val origin: Location) {
     fun play() {
         var count = 0
         submitAsync(period = 1) {
-            items.removeIf { it.isDead || it.isOnGround || it.isInWater }
+            items.removeIf {
+                it.isDead || it.isOnGround || it.isInWater
+            }
             list.forEach(ParticleObj::show)
             if (count++ >= 100 || items.isEmpty()) return@submitAsync
         }

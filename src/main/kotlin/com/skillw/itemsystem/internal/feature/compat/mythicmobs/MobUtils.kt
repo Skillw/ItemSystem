@@ -50,13 +50,13 @@ internal object MobUtils {
             val slot = BukkitEquipment.fromString(slotId)
             if (slot == null) normalDrop(dropLine) else equipmentDrop(slot, dropLine.substringAfter(' '))
         }.run {
-            if (effect) {
-                effectDrop(RandomItemEffect(location.toProxyLocation()), vector, this@drop)
-            } else {
+            //if (effect) {
+                //有BUG，先别用effectDrop(RandomItemEffect(location.toProxyLocation()), vector, this@drop)
+            //} else {
                 forEach {
                     it.drop(location, this@drop)
                 }
-            }
+            //}
         }
 
     }
